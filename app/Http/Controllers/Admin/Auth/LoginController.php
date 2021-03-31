@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = 'admin/index/';
 
     /**
      * Create a new controller instance.
@@ -44,10 +44,12 @@ class LoginController extends Controller
     {
         return view('admin.auth.login');
     }
+
     protected function guard()
     {
         return Auth::guard('admin');
     }
+
     protected function loggedOut(Request $request)
     {
         return redirect()->route('admin.login');

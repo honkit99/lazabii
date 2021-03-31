@@ -73,7 +73,7 @@ class AdminController extends Controller
     {
         $admin->update($request->validated());
 
-        $request->session()->flash('success', "You created successfully");
+        $request->session()->flash('success', "You updated successfully");
 
         return redirect()->route('admin.admin.index');
     }
@@ -87,7 +87,7 @@ class AdminController extends Controller
     {
         $admin->delete();
 
-        $request->session()->flash('success', "You created successfully");
+        $request->session()->flash('success', "You deleted successfully");
 
         return redirect()->route('admin.admin.index');
     }
