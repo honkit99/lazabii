@@ -39,5 +39,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'gender' => 'integer',
+        'dob' => 'datetime',
     ];
+
+    public function address()
+    {
+        return $this->belongsTo(\App\Models\Address::class);
+    }
 }

@@ -39,5 +39,7 @@ class Admin extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'gender' => 'integer',
+        'dob' => 'datetime',
     ];
 }

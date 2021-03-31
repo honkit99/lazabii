@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('gender');
             $table->string('phone');
             $table->dateTime('dob');
-            $table->integer('country_id');
+            $table->integer('address_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
