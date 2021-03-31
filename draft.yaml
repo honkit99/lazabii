@@ -1,0 +1,375 @@
+models:
+  Product:
+    name: string:255
+    price: decimal:8,2
+    quantity: integer
+    description: text
+    status: tinyInteger
+
+  Variance:
+    color: string
+    type: string
+    product_id: unsignedBigInteger foreign:product
+    
+  ProductImage:
+    product_id: unsignedBigInteger foreign:product
+    product_image: text
+    default: integer
+
+  ProductCategoryRelation:
+    product_id: integer
+    category_id: integer
+    deleted_at: softDeletes
+
+  Category:
+    parent_id: integer
+    name: string:255
+    image: text
+    status: tinyInteger
+    deleted_at: softDeletes
+
+  Country:
+    name: string
+
+  State:
+    country_id: unsignedBigInteger foreign:country
+    name: string
+
+  City:
+    state_id: unsignedBigInteger foreign:state
+    name: string
+
+  Postcode:
+    city_id: unsignedBigInteger foreign:city
+    number: integer
+
+  Address:
+    receiver_name: string:255
+    receiver_contact: string:255
+    receiver_email: string:255
+    address1: string:255
+    address2: string:255
+    city_id: unsignedBigInteger foreign:city
+    state_id: unsignedBigInteger foreign:state
+    country_id: unsignedBigInteger foreign:country
+    postcode_id: unsignedBigInteger foreign:postcode
+
+  Log:
+    action: string
+    time: timestamp
+
+  PaymentMethod:
+    method: string
+    bank_type: string  
+
+  DeliveryCompany:
+    name: string:255
+    code: string:255  
+    tracking_url: string:255
+    estimate: string:255
+    status: tinyInteger
+
+  Ewallet:
+    current_balance: decimal:8,2
+    transaction_amount: decimal:8,2
+    new_balance: decimal:8,2
+
+  Langauge:
+    language: string
+    status: tinyInteger 
+
+  Order:
+    user_id: integer UNIQUE
+    total_amount: decimal:8,2
+    delivery_company_id: unsignedBigInteger foreign:delivery_company
+    delivery_company_name: string:255
+    tracking_code: string:255
+    delivery_status: tinyInteger
+    payment_status: tinyInteger
+    delivery_amount: decimal:8,2
+    discount_amount: decimal:8,2
+    total_payment_amount: decimal:8,2
+    payment_method_id: unsignedBigInteger foreign:paymentMethod
+    receiver_name: string:255
+    receiver_contact: string:255
+    receiver_email: string:255
+    address: string:255
+    city_id: unsignedBigInteger foreign:city
+    state_id: unsignedBigInteger foreign:state
+    country_id: unsignedBigInteger foreign:country
+    postcode_id: unsignedBigInteger foreign:postcode
+    transaction_id: string:20
+    status: tinyInteger
+    deleted_at: softDeletes
+
+  Notification:
+    message: string
+    user_id: unsignedBigInteger foreign:user
+
+  Favourite:
+    user_id: unsignedBigInteger foreign:user
+    product_id: unsignedBigInteger foreign:product
+
+  Feedback:
+    answer: string
+    rating: tinyInteger
+    user_id: unsignedBigInteger foreign:user
+
+  Refund:
+    order_id: unsignedBigInteger foreign:order
+    status: tinyInteger
+    cart_id: unsignedBigInteger foreign:cart
+    product_id: unsignedBigInteger foreign:product
+    product_name: string:255
+    product_price: decimal:8,2
+    product_qty: integer
+
+  Chat:
+    message: text
+    status: tinyInteger
+    user_id: unsignedBigInteger foreign:user
+
+  Receipt:
+    payment_method_id: unsignedBigInteger foreign:payment_method
+    order_id: unsignedBigInteger foreign:order
+    product_id: unsignedBigInteger foreign:product
+    delivery_company_id: unsignedBigInteger foreign:delivery_company
+
+  Payment:
+    order_id: unsignedBigInteger foreign:order
+    payment_method_id: unsignedBigInteger foreign:payment_method
+
+  Voucher:
+    order_id: unsignedBigInteger foreign:order
+    type: string
+    discount: integer
+    quantity: integer 
+
+  Cart:
+    order_id: unsignedBigInteger foreign:order
+    product_id: unsignedBigInteger foreign:product
+    product_name: string:255
+    product_price: decimal:8,2
+    product_qty: integer
+    variance_id: unsignedBigInteger foreign:variance
+
+  DeliveryState:
+    delivery_company_id: unsignedBigInteger foreign:DeliveryCompany
+    state_id: unsignedBigInteger foreign:State
+    price: decimal:8,2
+
+controllers:
+  Admin\Product:
+        index:   { query: 'all:products', render: 'admin.product.index with:products' }
+        create:  { render: admin.product.create }
+        store:   { validate: product, save: product, flash: success, redirect: admin.product.index }
+        show:    { render: 'admin.product.show with:product' }
+        edit:    { render: 'admin.product.edit with:product' }
+        update:  { validate: product, update: product, flash: success, redirect: admin.product.index }
+        destroy: { delete: product, flash: success, redirect: admin.product.index }
+
+  Admin\Voucher:
+        index:   { query: 'all:vouchers', render: 'admin.voucher.index with:vouchers' }
+        create:  { render: admin.voucher.create }
+        store:   { validate: voucher, save: voucher, flash: success, redirect: admin.voucher.index }
+        show:    { render: 'admin.voucher.show with:voucher' }
+        edit:    { render: 'admin.voucher.edit with:voucher' }
+        update:  { validate: voucher, update: voucher, flash: success, redirect: admin.voucher.index }
+        destroy: { delete: voucher, flash: success, redirect: admin.voucher.index }
+        
+  Admin\Order:
+        index:   { query: 'all:orders', render: 'admin.order.index with:orders' }
+        create:  { render: admin.order.create }
+        store:   { validate: order, save: order, flash: success, redirect: admin.order.index }
+        show:    { render: 'admin.order.show with:order' }
+        edit:    { render: 'admin.order.edit with:order' }
+        update:  { validate: order, update: order, flash: success, redirect: admin.order.index }
+        destroy: { delete: order, flash: success, redirect: admin.order.index }
+
+  Admin\Category:
+        index:   { query: 'all:categorys', render: 'admin.category.index with:categorys' }
+        create:  { render: admin.category.create }
+        store:   { validate: category, save: category, flash: success, redirect: admin.category.index }
+        show:    { render: 'admin.category.show with:category' }
+        edit:    { render: 'admin.category.edit with:category' }
+        update:  { validate: category, update: category, flash: success, redirect: admin.category.index }
+        destroy: { delete: category, flash: success, redirect: admin.category.index }
+
+  Admin\Variance:
+        index:   { query: 'all:variances', render: 'admin.variance.index with:variances' }
+        create:  { render: admin.variance.create }
+        store:   { validate: variance, save: variance, flash: success, redirect: admin.variance.index }
+        show:    { render: 'admin.variance.show with:variance' }
+        edit:    { render: 'admin.variance.edit with:variance' }
+        update:  { validate: variance, update: variance, flash: success, redirect: admin.variance.index }
+        destroy: { delete: variance, flash: success, redirect: admin.variance.index }
+
+  Admin\ProductImage:
+        index:   { query: 'all:product_images', render: 'admin.product_image.index with:product_images' }
+        create:  { render: admin.product_image.create }
+        store:   { validate: product_image, save: product_image, flash: success, redirect: admin.product_image.index }
+        show:    { render: 'admin.product_image.show with:product_image' }
+        edit:    { render: 'admin.product_image.edit with:product_image' }
+        update:  { validate: product_image, update: product_image, flash: success, redirect: admin.product_image.index }
+        destroy: { delete: product_image, flash: success, redirect: admin.product_image.index }
+        
+  Admin\DeliveryCompany:
+        index:   { query: 'all:delivery_companys', render: 'admin.delivery_company.index with:delivery_companys' }
+        create:  { render: admin.delivery_company.create }
+        store:   { validate: delivery_company, save: delivery_company, flash: success, redirect: admin.delivery_company.index }
+        show:    { render: 'admin.delivery_company.show with:delivery_company' }
+        edit:    { render: 'admin.delivery_company.edit with:delivery_company' }
+        update:  { validate: delivery_company, update: delivery_company, flash: success, redirect: admin.delivery_company.index }
+        destroy: { delete: delivery_company, flash: success, redirect: admin.delivery_company.index }
+
+  Admin\Notification:
+        index:   { query: 'all:notifications', render: 'admin.notification.index with:notifications' }
+        create:  { render: admin.notification.create }
+        store:   { validate: notification, save: notification, flash: success, redirect: admin.notification.index }
+        show:    { render: 'admin.notification.show with:notification' }
+        edit:    { render: 'admin.notification.edit with:notification' }
+        update:  { validate: notification, update: notification, flash: success, redirect: admin.notification.index }
+        destroy: { delete: notification, flash: success, redirect: admin.notification.index }      
+
+  Admin\Language:
+        index:   { query: 'all:languages', render: 'admin.language.index with:languages' }
+        create:  { render: admin.language.create }
+        store:   { validate: language, save: language, flash: success, redirect: admin.language.index }
+        show:    { render: 'admin.language.show with:language' }
+        edit:    { render: 'admin.language.edit with:language' }
+        update:  { validate: language, update: language, flash: success, redirect: admin.language.index }
+        destroy: { delete: language, flash: success, redirect: admin.language.index }     
+        
+  Admin\Refund:
+        index:   { query: 'all:refunds', render: 'admin.refund.index with:refunds' }
+        create:  { render: admin.refund.create }
+        store:   { validate: refund, save: refund, flash: success, redirect: admin refund.index }
+        show:    { render: 'admin refund.show with refund' }
+        edit:    { render: 'admin refund.edit with refund' }
+        update:  { validate: refund, update: refund, flash: success, redirect: admin refund.index }
+        destroy: { delete: refund, flash: success, redirect: admin refund.index }   
+        
+  log:
+        index:   { query: 'all:logs', render: 'admin.log.index with:logs' }
+        create:  { render: admin.log.create }
+        store:   { validate: log, save: log, flash: success, redirect: admin log.index }
+        show:    { render: 'admin log.show with log' }
+        edit:    { render: 'admin log.edit with log' }
+        update:  { validate: log, update: log, flash: success, redirect: admin log.index }
+        destroy: { delete: log, flash: success, redirect: admin log.index }     
+
+  User\Product:
+        index:   { query: 'all:products', render: 'user.product.index with:products' }
+        create:  { render: user.product.create }
+        store:   { validate: product, save: product, flash: success, redirect: user.product.index }
+        show:    { render: 'user.product.show with:product' }
+        edit:    { render: 'user.product.edit with:product' }
+        update:  { validate: product, update: product, flash: success, redirect: user.product.index }
+        destroy: { delete: product, flash: success, redirect: user.product.index }
+
+  User\Voucher:
+        index:   { query: 'all:vouchers', render: 'user.voucher.index with:vouchers' }
+        create:  { render: user.voucher.create }
+        store:   { validate: voucher, save: voucher, flash: success, redirect: user.voucher.index }
+        show:    { render: 'user.voucher.show with:voucher' }
+        edit:    { render: 'user.voucher.edit with:voucher' }
+        update:  { validate: voucher, update: voucher, flash: success, redirect: user.voucher.index }
+        destroy: { delete: voucher, flash: success, redirect: user.voucher.index }
+
+  User\Cart:
+        index:   { query: 'all:carts', render: 'user.cart.index with:carts' }
+        create:  { render: user.cart.create }
+        store:   { validate: cart, save: cart, flash: success, redirect: user.cart.index }
+        show:    { render: 'user.cart.show with:cart' }
+        edit:    { render: 'user.cart.edit with:cart' }
+        update:  { validate: cart, update: cart, flash: success, redirect: user.cart.index }
+        destroy: { delete: cart, flash: success, redirect: user.cart.index }
+
+  User\Order:
+        index:   { query: 'all:orders', render: 'user.order.index with:orders' }
+        create:  { render: user.order.create }
+        store:   { validate: order, save: order, flash: success, redirect: user.order.index }
+        show:    { render: 'user.order.show with:order' }
+        edit:    { render: 'user.order.edit with:order' }
+        update:  { validate: order, update: order, flash: success, redirect: user.order.index }
+        destroy: { delete: order, flash: success, redirect: user.order.index }
+
+  User\Ewallet:
+        index:   { query: 'all:ewallets', render: 'user.ewallet.index with:ewallets' }
+        create:  { render: user.ewallet.create }
+        edit:    { render: 'user.address.edit with:ewallet' }
+        store:   { validate: ewallet, save: ewallet, flash: success, redirect: user.ewallet.index }
+        show:    { render: 'user.ewallet.show with:ewallet' }
+        update:  { validate: ewallet, update: ewallet, flash: success, redirect: user.ewallet.index }
+  
+  User\Address:
+        index:   { query: 'all:addresss', render: 'user.address.index with:addresss' }
+        create:  { render: user.address.create }
+        store:   { validate: address, save: address, flash: success, redirect: user.address.index }
+        show:    { render: 'user.address.show with:address' }
+        edit:    { render: 'user.address.edit with:address' }
+        update:  { validate: address, update: address, flash: success, redirect: user.address.index }
+        destroy: { delete: address, flash: success, redirect: user.address.index }
+
+  User\Favourite:
+        index:   { query: 'all:favourites', render: 'user.favourite.index with:favourites' }
+        create:  { render: user.favourite.create }
+        store:   { validate: favourite, save: favourite, flash: success, redirect: user.favourite.index }
+        show:    { render: 'user.favourite.show with:favourite' }
+        edit:    { render: 'user.favourite.edit with:favourite' }
+        update:  { validate: favourite, update: favourite, flash: success, redirect: user.favourite.index }
+        destroy: { delete: favourite, flash: success, redirect: user.favourite.index }
+
+  User\Feedback:
+        index:   { query: 'all:feedbacks', render: 'user.feedback.index with:feedbacks' }
+        create:  { render: user.feedback.create }
+        store:   { validate: feedback, save: feedback, flash: success, redirect: user.feedback.index }
+        show:    { render: 'user.feedback.show with:feedback' }
+        edit:    { render: 'user.feedback.edit with:feedback' }
+        update:  { validate: feedback, update: feedback, flash: success, redirect: user.feedback.index }
+        destroy: { delete: feedback, flash: success, redirect: user.feedback.index }
+
+  User\Category:
+        index:   { query: 'all:categorys', render: 'user.category.index with:categorys' }
+        create:  { render: user.category.create }
+        store:   { validate: category, save: category, flash: success, redirect: user.category.index }
+        show:    { render: 'user.category.show with:category' }
+        edit:    { render: 'user.category.edit with:category' }
+        update:  { validate: category, update: category, flash: success, redirect: user.category.index }
+        destroy: { delete: category, flash: success, redirect: user.category.index }
+
+  User\Variance:
+        index:   { query: 'all:variances', render: 'user.variance.index with:variances' }
+        create:  { render: user.variance.create }
+        store:   { validate: variance, save: variance, flash: success, redirect: user.variance.index }
+        show:    { render: 'user.variance.show with:variance' }
+        edit:    { render: 'user.variance.edit with:variance' }
+        update:  { validate: variance, update: variance, flash: success, redirect: user.variance.index }
+        destroy: { delete: variance, flash: success, redirect: user.variance.index }
+
+  User\Language:
+        index:   { query: 'all:languages', render: 'user.language.index with:languages' }
+        create:  { render: user.language.create }
+        store:   { validate: language, save: language, flash: success, redirect: user.language.index }
+        show:    { render: 'user.language.show with:language' }
+        edit:    { render: 'user.language.edit with:language' }
+        update:  { validate: language, update: language, flash: success, redirect: user.language.index }
+        destroy: { delete: language, flash: success, redirect: user.language.index } 
+        
+  User\Payment:
+        index:   { query: 'all:payments', render: 'user.payment.index with:payments' }
+        create:  { render: user.payment.create }
+        store:   { validater.payment, saver.payment, flash: success, redirect: user.payment.index }
+        show:    { render: 'user.payment.show witr.payment' }
+        edit:    { render: 'user.payment.edit witr.payment' }
+        update:  { validater.payment, updater.payment, flash: success, redirect: user.payment.index }
+        destroy: { deleter.payment, flash: success, redirect: user.payment.index } 
+
+  User\Refund:
+        index:   { query: 'all:refunds', render:  user.refund.index with:refunds' }
+        create:  { render: user.refund.create }
+        store:   { validate: refund, save: refund, flash: success, redirect: user.refund.index }
+        show:    { render:  user.refund.show with refund' }
+        edit:    { render:  user.refund.edit with refund' }
+        update:  { validate: refund, update: refund, flash: success, redirect: user.refund.index }
+        destroy: { delete: refund, flash: success, redirect: user.refund.index }   
