@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = 'welcome';
 
     /**
      * Create a new controller instance.
@@ -79,6 +79,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('admin.auth.register');
+        return view('welcome');
     }
 }
