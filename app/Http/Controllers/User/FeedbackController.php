@@ -34,11 +34,13 @@ class FeedbackController extends Controller
      * @param \App\Http\Requests\User\FeedbackStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FeedbackStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $feedback = Feedback::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.feedback.index');
     }
@@ -68,11 +70,13 @@ class FeedbackController extends Controller
      * @param \App\Feedback $feedback
      * @return \Illuminate\Http\Response
      */
-    public function update(FeedbackUpdateRequest $request, Feedback $feedback)
+    public function update(Request $request, Feedback $feedback)
     {
+        $request->validated();
         $feedback->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.feedback.index');
     }
@@ -86,7 +90,8 @@ class FeedbackController extends Controller
     {
         $feedback->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.feedback.index');
     }

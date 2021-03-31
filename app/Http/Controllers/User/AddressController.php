@@ -6,7 +6,7 @@ use App\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\AddressStoreRequest;
 use App\Http\Requests\User\AddressUpdateRequest;
-use App\User\Addresss;
+use App\Http\Controllers\User\Addresss;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -17,7 +17,7 @@ class AddressController extends Controller
      */
     public function index(Request $request)
     {
-        $addresss = Addresss::all();
+        $addresss = Address::all();
 
         return view('user.address.index', compact('addresss'));
     }
@@ -35,11 +35,14 @@ class AddressController extends Controller
      * @param \App\Http\Requests\User\AddressStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddressStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
+
         $address = Address::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.address.index');
     }
@@ -69,11 +72,14 @@ class AddressController extends Controller
      * @param \App\Address $address
      * @return \Illuminate\Http\Response
      */
-    public function update(AddressUpdateRequest $request, Address $address)
+    public function update(Request $request, Address $address)
     {
+        $request->validated();
         $address->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+
+        session('success');
 
         return redirect()->route('user.address.index');
     }
@@ -87,7 +93,9 @@ class AddressController extends Controller
     {
         $address->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+
+        session('success');
 
         return redirect()->route('user.address.index');
     }

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RefundStoreRequest;
-use App\Http\Requests\Admin\RefundUpdateRequest;
 use App\Http\Requests\User\RefundStoreRequest;
 use App\Http\Requests\User\RefundUpdateRequest;
 use App\Refund;
@@ -20,7 +18,7 @@ class RefundController extends Controller
     {
         $refunds = Refund::all();
 
-        return view('user.refund.index', compact('refunds''));
+        return view('user.refund.index', compact('refunds'));
     }
 
     /**
@@ -36,11 +34,13 @@ class RefundController extends Controller
      * @param \App\Http\Requests\User\RefundStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RefundStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $refund = Refund::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.refund.index');
     }
@@ -52,7 +52,7 @@ class RefundController extends Controller
      */
     public function show(Request $request, Refund $refund)
     {
-        return view('user.refund.show', compact('refund''));
+        return view('user.refund.show', compact('refund'));
     }
 
     /**
@@ -62,7 +62,7 @@ class RefundController extends Controller
      */
     public function edit(Request $request, Refund $refund)
     {
-        return view('user.refund.edit', compact('refund''));
+        return view('user.refund.edit', compact('refund'));
     }
 
     /**
@@ -70,11 +70,13 @@ class RefundController extends Controller
      * @param \App\Refund $refund
      * @return \Illuminate\Http\Response
      */
-    public function update(RefundUpdateRequest $request, Refund $refund)
+    public function update(Request $request, Refund $refund)
     {
+        $request->validated();
         $refund->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.refund.index');
     }
@@ -88,7 +90,8 @@ class RefundController extends Controller
     {
         $refund->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.refund.index');
     }

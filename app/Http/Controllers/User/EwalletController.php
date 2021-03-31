@@ -44,11 +44,14 @@ class EwalletController extends Controller
      * @param \App\Http\Requests\User\EwalletStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EwalletStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
+
         $ewallet = Ewallet::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.ewallet.index');
     }
@@ -68,11 +71,13 @@ class EwalletController extends Controller
      * @param \App\Ewallet $ewallet
      * @return \Illuminate\Http\Response
      */
-    public function update(EwalletUpdateRequest $request, Ewallet $ewallet)
+    public function update(Request $request, Ewallet $ewallet)
     {
+        $request->validated();
         $ewallet->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.ewallet.index');
     }

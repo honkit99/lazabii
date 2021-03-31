@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductStoreRequest;
-use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Http\Requests\User\ProductStoreRequest;
 use App\Http\Requests\User\ProductUpdateRequest;
 use App\Product;
@@ -36,11 +34,13 @@ class ProductController extends Controller
      * @param \App\Http\Requests\User\ProductStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $product = Product::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.product.index');
     }
@@ -70,12 +70,14 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductUpdateRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
+        $request->validated();
         $product->update($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
+        
         return redirect()->route('user.product.index');
     }
 
@@ -88,7 +90,8 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.product.index');
     }

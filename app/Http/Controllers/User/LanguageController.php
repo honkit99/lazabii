@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Admin\Language;
-use App\Admin\language;
+use App\Langauge;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\LanguageStoreRequest;
-use App\Http\Requests\Admin\LanguageUpdateRequest;
-use App\Http\Requests\User\LanguageStoreRequest;
-use App\Http\Requests\User\LanguageUpdateRequest;
-use App\User\Language;
-use App\User\language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -21,7 +14,7 @@ class LanguageController extends Controller
      */
     public function index(Request $request)
     {
-        $languages = Language::all();
+        $languages = Langauge::all();
 
         return view('user.language.index', compact('languages'));
     }
@@ -39,11 +32,13 @@ class LanguageController extends Controller
      * @param \App\Http\Requests\User\LanguageStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LanguageStoreRequest $request)
+    public function store(Request $request)
     {
-        $language = Language::create($request->validated());
+        $request->validated();
+        $language = Langauge::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.language.index');
     }
@@ -53,7 +48,7 @@ class LanguageController extends Controller
      * @param \App\User\language $language
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Language $language)
+    public function show(Request $request, Langauge $language)
     {
         return view('user.language.show', compact('language'));
     }
@@ -63,7 +58,7 @@ class LanguageController extends Controller
      * @param \App\User\language $language
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Language $language)
+    public function edit(Request $request, Langauge $language)
     {
         return view('user.language.edit', compact('language'));
     }
@@ -73,11 +68,13 @@ class LanguageController extends Controller
      * @param \App\User\language $language
      * @return \Illuminate\Http\Response
      */
-    public function update(LanguageUpdateRequest $request, Language $language)
+    public function update(Request $request, Langauge $language)
     {
+        $request->validated();
         $language->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.language.index');
     }
@@ -87,11 +84,12 @@ class LanguageController extends Controller
      * @param \App\User\language $language
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Language $language)
+    public function destroy(Request $request, Langauge $language)
     {
         $language->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.language.index');
     }

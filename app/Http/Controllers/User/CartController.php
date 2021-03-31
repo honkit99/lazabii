@@ -34,11 +34,13 @@ class CartController extends Controller
      * @param \App\Http\Requests\User\CartStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CartStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $cart = Cart::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.cart.index');
     }
@@ -68,11 +70,14 @@ class CartController extends Controller
      * @param \App\Cart $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(CartUpdateRequest $request, Cart $cart)
+    public function update(Request $request, Cart $cart)
     {
+        $request->validated();
         $cart->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+
+        session('success');
 
         return redirect()->route('user.cart.index');
     }
@@ -86,7 +91,9 @@ class CartController extends Controller
     {
         $cart->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+
+        session('success');
 
         return redirect()->route('user.cart.index');
     }
