@@ -159,6 +159,15 @@ models:
     price: decimal:8,2
 
 controllers:
+  Admin\Admin:
+        index:   { query: 'all:admins', render: 'admin.admin.index with:admins' }
+        create:  { render: admin.admin.create }
+        store:   { validate: admin, save: admin, flash: success, redirect: admin.admin.index }
+        show:    { render: 'admin.admin.show with:admin' }
+        edit:    { render: 'admin.admin.edit with:admin' }
+        update:  { validate: admin, update: admin, flash: success, redirect: admin.admin.index }
+        destroy: { delete: admin, flash: success, redirect: admin.admin.index }
+
   Admin\Product:
         index:   { query: 'all:products', render: 'admin.product.index with:products' }
         create:  { render: admin.product.create }
@@ -257,6 +266,15 @@ controllers:
         edit:    { render: 'admin log.edit with log' }
         update:  { validate: log, update: log, flash: success, redirect: admin log.index }
         destroy: { delete: log, flash: success, redirect: admin log.index }     
+
+  User\User:
+        index:   { query: 'all:users', render: 'user.user.index with:users' }
+        create:  { render: user.user.create }
+        store:   { validate: user, save: user, flash: success, redirect: user.user.index }
+        show:    { render: 'user.user.show with:user' }
+        edit:    { render: 'user.user.edit with:user' }
+        update:  { validate: user, update: user, flash: success, redirect: user.user.index }
+        destroy: { delete: user, flash: success, redirect: user.user.index }
 
   User\Product:
         index:   { query: 'all:products', render: 'user.product.index with:products' }
