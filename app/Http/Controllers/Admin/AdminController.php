@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin\Admin;
-use App\Admin\admin;
+use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminStoreRequest;
 use App\Http\Requests\Admin\AdminUpdateRequest;
@@ -32,15 +31,16 @@ class AdminController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\Admin\AdminStoreRequest $request
+     * @param \App\Http\Requests\Admin\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $admin = Admin::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.admin.index');
     }
 
@@ -69,11 +69,11 @@ class AdminController extends Controller
      * @param \App\Admin\admin $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminUpdateRequest $request, Admin $admin)
+    public function update(Request $request, Admin $admin)
     {
         $admin->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.admin.index');
     }
@@ -87,7 +87,7 @@ class AdminController extends Controller
     {
         $admin->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.admin.index');
     }

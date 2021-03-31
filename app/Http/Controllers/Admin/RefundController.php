@@ -34,13 +34,14 @@ class RefundController extends Controller
      * @param \App\Http\Requests\Admin\RefundStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RefundStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $refund = Refund::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
-        return redirect()->route('admin', [$d.index]);
+        $request->session()->flash('success', "You created successfully");
+        session('success');
+        return redirect()->route('admin.refund.index');
     }
 
     /**
@@ -68,13 +69,13 @@ class RefundController extends Controller
      * @param \App\Refund $refund
      * @return \Illuminate\Http\Response
      */
-    public function update(RefundUpdateRequest $request, Refund $refund)
+    public function update(Request $request, Refund $refund)
     {
         $refund->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
-        return redirect()->route('admin', [$d.index]);
+        return redirect()->route('admin.refund.index');
     }
 
     /**
@@ -86,8 +87,8 @@ class RefundController extends Controller
     {
         $refund->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
-        return redirect()->route('admin', [$d.index]);
+        return redirect()->route('admin.refund.index');
     }
 }

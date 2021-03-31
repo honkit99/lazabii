@@ -34,12 +34,13 @@ class ProductImageController extends Controller
      * @param \App\Http\Requests\Admin\ProductImageStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductImageStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $productImage = ProductImage::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.product_image.index');
     }
 
@@ -68,11 +69,11 @@ class ProductImageController extends Controller
      * @param \App\ProductImage $productImage
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductImageUpdateRequest $request, ProductImage $productImage)
+    public function update(Request $request, ProductImage $productImage)
     {
         $productImage->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.product_image.index');
     }
@@ -86,7 +87,7 @@ class ProductImageController extends Controller
     {
         $productImage->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.product_image.index');
     }

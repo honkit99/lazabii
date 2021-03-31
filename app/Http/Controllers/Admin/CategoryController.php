@@ -34,12 +34,13 @@ class CategoryController extends Controller
      * @param \App\Http\Requests\Admin\CategoryStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $category = Category::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.category.index');
     }
 
@@ -68,11 +69,11 @@ class CategoryController extends Controller
      * @param \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryUpdateRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
         $category->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.category.index');
     }
@@ -86,7 +87,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.category.index');
     }

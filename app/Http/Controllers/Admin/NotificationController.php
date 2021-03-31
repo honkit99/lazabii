@@ -34,12 +34,13 @@ class NotificationController extends Controller
      * @param \App\Http\Requests\Admin\NotificationStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NotificationStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $notification = Notification::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.notification.index');
     }
 
@@ -68,11 +69,11 @@ class NotificationController extends Controller
      * @param \App\Notification $notification
      * @return \Illuminate\Http\Response
      */
-    public function update(NotificationUpdateRequest $request, Notification $notification)
+    public function update(Request $request, Notification $notification)
     {
         $notification->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.notification.index');
     }
@@ -86,7 +87,7 @@ class NotificationController extends Controller
     {
         $notification->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.notification.index');
     }

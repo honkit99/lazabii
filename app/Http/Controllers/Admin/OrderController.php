@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\OrderStoreRequest;
-use App\Http\Requests\Admin\OrderUpdateRequest;
-use App\Order;
 use Illuminate\Http\Request;
+use App\Order;
 
 class OrderController extends Controller
 {
@@ -34,12 +32,13 @@ class OrderController extends Controller
      * @param \App\Http\Requests\Admin\OrderStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $order = Order::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.order.index');
     }
 
@@ -68,11 +67,11 @@ class OrderController extends Controller
      * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderUpdateRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
         $order->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.order.index');
     }
@@ -86,7 +85,7 @@ class OrderController extends Controller
     {
         $order->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.order.index');
     }

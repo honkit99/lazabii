@@ -34,12 +34,13 @@ class ProductController extends Controller
      * @param \App\Http\Requests\Admin\ProductStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $product = Product::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.product.index');
     }
 
@@ -68,11 +69,11 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductUpdateRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         $product->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.product.index');
     }
@@ -86,7 +87,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.product.index');
     }

@@ -34,12 +34,13 @@ class VarianceController extends Controller
      * @param \App\Http\Requests\Admin\VarianceStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VarianceStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $variance = Variance::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.variance.index');
     }
 
@@ -68,11 +69,11 @@ class VarianceController extends Controller
      * @param \App\Variance $variance
      * @return \Illuminate\Http\Response
      */
-    public function update(VarianceUpdateRequest $request, Variance $variance)
+    public function update(Request $request, Variance $variance)
     {
         $variance->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.variance.index');
     }
@@ -86,7 +87,7 @@ class VarianceController extends Controller
     {
         $variance->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.variance.index');
     }

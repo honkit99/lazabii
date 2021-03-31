@@ -34,12 +34,13 @@ class VoucherController extends Controller
      * @param \App\Http\Requests\Admin\VoucherStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VoucherStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $voucher = Voucher::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.voucher.index');
     }
 
@@ -68,11 +69,11 @@ class VoucherController extends Controller
      * @param \App\Voucher $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(VoucherUpdateRequest $request, Voucher $voucher)
+    public function update(Request $request, Voucher $voucher)
     {
         $voucher->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.voucher.index');
     }
@@ -86,7 +87,7 @@ class VoucherController extends Controller
     {
         $voucher->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.voucher.index');
     }

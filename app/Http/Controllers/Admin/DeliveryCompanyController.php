@@ -34,12 +34,13 @@ class DeliveryCompanyController extends Controller
      * @param \App\Http\Requests\Admin\DeliveryCompanyStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DeliveryCompanyStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validate();
         $deliveryCompany = DeliveryCompany::create($request->validated());
 
-        $request->session()->flash('success', $success);
-
+        $request->session()->flash('success', "You created successfully");
+        session('success');
         return redirect()->route('admin.delivery_company.index');
     }
 
@@ -68,11 +69,11 @@ class DeliveryCompanyController extends Controller
      * @param \App\DeliveryCompany $deliveryCompany
      * @return \Illuminate\Http\Response
      */
-    public function update(DeliveryCompanyUpdateRequest $request, DeliveryCompany $deliveryCompany)
+    public function update(Request $request, DeliveryCompany $deliveryCompany)
     {
         $deliveryCompany->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.delivery_company.index');
     }
@@ -86,7 +87,7 @@ class DeliveryCompanyController extends Controller
     {
         $deliveryCompany->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.delivery_company.index');
     }
