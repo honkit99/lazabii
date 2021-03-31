@@ -33,7 +33,7 @@ class logController extends Controller
      * @param \App\Http\Requests\logStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(logStoreRequest $request)
+    public function store(Request $request)
     {
         $log = Log::create($request->validated());
 
@@ -67,7 +67,7 @@ class logController extends Controller
      * @param \App\Log $log
      * @return \Illuminate\Http\Response
      */
-    public function update(logUpdateRequest $request, log $log)
+    public function update(Request $request, log $log)
     {
         $log->update($request->validated());
 

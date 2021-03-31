@@ -32,4 +32,24 @@ Route::post('password/reset', 'App\Http\Controllers\Admin\Auth\ResetPasswordCont
 Route::group(['middleware'=>['auth:admin']], function () {
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'home'])->name('home');
     Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('profile');
+    
+Route::resource('product', 'Admin\ProductController');
+
+Route::resource('voucher', 'Admin\VoucherController');
+
+Route::resource('order', 'Admin\OrderController');
+
+Route::resource('category', 'Admin\CategoryController');
+
+Route::resource('variance', 'Admin\VarianceController');
+
+Route::resource('product-image', 'Admin\ProductImageController');
+
+Route::resource('delivery-company', 'Admin\DeliveryCompanyController');
+
+Route::resource('notification', 'Admin\NotificationController');
+
+Route::resource('language', 'Admin\LanguageController');
+
+Route::resource('refund', 'Admin\RefundController');
 });
