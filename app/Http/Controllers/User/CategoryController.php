@@ -6,8 +6,6 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryStoreRequest;
 use App\Http\Requests\Admin\CategoryUpdateRequest;
-use App\Http\Requests\User\CategoryStoreRequest;
-use App\Http\Requests\User\CategoryUpdateRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -36,11 +34,13 @@ class CategoryController extends Controller
      * @param \App\Http\Requests\User\CategoryStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $category = Category::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.category.index');
     }
@@ -70,11 +70,13 @@ class CategoryController extends Controller
      * @param \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryUpdateRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
+        $request->validated();
         $category->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.category.index');
     }
@@ -88,7 +90,8 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.category.index');
     }

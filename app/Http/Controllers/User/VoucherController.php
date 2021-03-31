@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\VoucherStoreRequest;
-use App\Http\Requests\Admin\VoucherUpdateRequest;
 use App\Http\Requests\User\VoucherStoreRequest;
 use App\Http\Requests\User\VoucherUpdateRequest;
 use App\Voucher;
@@ -36,11 +34,13 @@ class VoucherController extends Controller
      * @param \App\Http\Requests\User\VoucherStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VoucherStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $voucher = Voucher::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.voucher.index');
     }
@@ -70,11 +70,13 @@ class VoucherController extends Controller
      * @param \App\Voucher $voucher
      * @return \Illuminate\Http\Response
      */
-    public function update(VoucherUpdateRequest $request, Voucher $voucher)
+    public function update(Request $request, Voucher $voucher)
     {
+        $request->validated();
         $voucher->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.voucher.index');
     }
@@ -88,7 +90,8 @@ class VoucherController extends Controller
     {
         $voucher->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.voucher.index');
     }

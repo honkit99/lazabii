@@ -5,8 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
-use App\User\User;
-use App\User\user;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,11 +34,13 @@ class UserController extends Controller
      * @param \App\Http\Requests\User\UserStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $user = User::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.user.index');
     }
@@ -69,11 +70,13 @@ class UserController extends Controller
      * @param \App\User\user $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
+        $request->validated();
         $user->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.user.index');
     }
@@ -87,7 +90,8 @@ class UserController extends Controller
     {
         $user->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.user.index');
     }

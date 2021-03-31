@@ -34,11 +34,13 @@ class FavouriteController extends Controller
      * @param \App\Http\Requests\User\FavouriteStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FavouriteStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $favourite = Favourite::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
         return redirect()->route('user.favourite.index');
     }
@@ -68,11 +70,13 @@ class FavouriteController extends Controller
      * @param \App\Favourite $favourite
      * @return \Illuminate\Http\Response
      */
-    public function update(FavouriteUpdateRequest $request, Favourite $favourite)
+    public function update(Request $request, Favourite $favourite)
     {
+        $request->validated();
         $favourite->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
         return redirect()->route('user.favourite.index');
     }
@@ -86,7 +90,8 @@ class FavouriteController extends Controller
     {
         $favourite->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
         return redirect()->route('user.favourite.index');
     }

@@ -33,13 +33,15 @@ class logController extends Controller
      * @param \App\Http\Requests\logStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(logStoreRequest $request)
+    public function store(Request $request)
     {
+        $request->validated();
         $log = Log::create($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have created successfully');
+        session('success');
 
-        return redirect()->route('admin', [$ndex]);
+        return redirect()->route('admin');
     }
 
     /**
@@ -67,13 +69,15 @@ class logController extends Controller
      * @param \App\Log $log
      * @return \Illuminate\Http\Response
      */
-    public function update(logUpdateRequest $request, log $log)
+    public function update(Request $request, log $log)
     {
+        $request->validated();
         $log->update($request->validated());
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
 
-        return redirect()->route('admin', [$ndex]);
+        return redirect()->route('admin');
     }
 
     /**
@@ -85,8 +89,9 @@ class logController extends Controller
     {
         $log->delete();
 
-        $request->session()->flash('success', $success);
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
-        return redirect()->route('admin', [$ndex]);
+        return redirect()->route('admin');
     }
 }
