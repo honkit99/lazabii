@@ -30,32 +30,32 @@ Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswo
 Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
 
 Route::group(['middleware'=>['auth:user']], function () {
-    Route::get('home', [App\Http\Controllers\User\HomeController::class, 'home'])->name('home');
-    Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
-    
-Route::resource('product', 'User\ProductController');
+   // Route::get('home', [App\Http\Controllers\User\HomeController::class, 'home'])->name('home');
+   // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
+        
+    // Route::resource('product', 'User\ProductController');
 
-Route::resource('voucher', 'User\VoucherController');
+    // Route::resource('voucher', 'User\VoucherController');
 
-Route::resource('cart', 'User\CartController');
+    // Route::resource('cart', 'User\CartController');
 
-Route::resource('order', 'User\OrderController');
+    // Route::resource('order', 'User\OrderController');
 
-Route::resource('ewallet', 'User\EwalletController')->except('destroy');
+    // Route::resource('ewallet', 'User\EwalletController')->except('destroy');
 
-Route::resource('address', 'User\AddressController');
+    // Route::resource('address', 'User\AddressController');
 
-Route::resource('favourite', 'User\FavouriteController');
+    // Route::resource('favourite', 'User\FavouriteController');
 
-Route::resource('feedback', 'User\FeedbackController');
+    // Route::resource('feedback', 'User\FeedbackController');
 
-Route::resource('category', 'User\CategoryController');
+    // Route::resource('category', 'User\CategoryController');
 
-Route::resource('variance', 'User\VarianceController');
+    // Route::resource('variance', 'User\VarianceController');
 
-Route::resource('language', 'User\LanguageController');
+    // Route::resource('language', 'User\LanguageController');
 
-Route::resource('payment', 'User\PaymentController');
+    // Route::resource('payment', 'User\PaymentController');
 
-Route::resource('refund', 'User\RefundController');
+    // Route::resource('refund', 'User\RefundController');
 });
