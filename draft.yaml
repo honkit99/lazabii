@@ -44,11 +44,10 @@ models:
     number: integer
 
   Address:
-    receiver_name: string:255
-    receiver_contact: string:255
-    receiver_email: string:255
-    address1: string:255
-    address2: string:255
+    name: string:255
+    contact: string:255
+    email: string:255
+    address: string:255
     city_id: unsignedBigInteger foreign:city
     state_id: unsignedBigInteger foreign:state
     country_id: unsignedBigInteger foreign:country
