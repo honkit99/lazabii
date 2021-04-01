@@ -7,6 +7,8 @@
     <title>Lazabii Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="{{asset('vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+
 	<link rel="stylesheet" href="{{asset('vendor/chartist/css/chartist.min.css')}}">
 	<link href="{{asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -150,7 +152,7 @@
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="">Customers</a></li>
-                            <li><a href="">Admins</a></li>
+                            <li><a href="{{ route('admin.adminlist.index') }}">Admins</a></li>
                         
                         </ul>
                     </li>
@@ -209,5 +211,7 @@
     <script src="{{asset('js/custom.min.js')}}"></script>
 	<script src="{{asset('js/demo.js')}}"></script>
     <script src="{{asset('js/styleSwitcher.js')}}"></script>
+    <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('js/plugins-init/datatables.init.js')}}"></script>
 </body>
 </html>

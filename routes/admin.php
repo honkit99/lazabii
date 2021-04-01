@@ -35,7 +35,7 @@ Route::group(['middleware'=>['auth:admin']], function () {
     //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('profile');
     
      Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
-
+     Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
     // Route::resource('voucher', 'Admin\VoucherController');
 
     // Route::resource('order', 'Admin\OrderController');
