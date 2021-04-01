@@ -30,7 +30,7 @@ Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswo
 Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
 
 Route::group(['middleware'=>['auth:user']], function () {
-   // Route::get('home', [App\Http\Controllers\User\HomeController::class, 'home'])->name('home');
+    Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
    // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
         
     // Route::resource('product', 'User\ProductController');
