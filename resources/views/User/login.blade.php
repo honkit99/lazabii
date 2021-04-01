@@ -14,7 +14,7 @@
                         <div class="heading_s1">
                             <h3>Login</h3>
                         </div>
-                        <form method="post">
+                        <form method="post" action="{{ route('user.login') }}>
                             <div class="form-group">
                                 <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
                             </div>
