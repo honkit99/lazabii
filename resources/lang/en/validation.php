@@ -134,8 +134,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'required' => 'Password Required',
         ],
 
         'password' => [
