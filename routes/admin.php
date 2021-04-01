@@ -3,6 +3,7 @@
 use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use ConsoleTVs\Charts\ChartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::post('password/reset', 'App\Http\Controllers\Admin\Auth\ResetPasswordCont
 Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
+
     //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('profile');
     
     // Route::resource('product', 'App\Http\Controllers\Admin\Auth\ProductController@index');
@@ -54,3 +56,5 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     // Route::resource('refund', 'Admin\RefundController');
 });
+
+
