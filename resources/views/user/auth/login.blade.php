@@ -1,5 +1,19 @@
 @extends('user.layouts.contentHF')
 
+@section('contents')
+    <div class="col-md-6">
+        <div class="page-title">
+            <h1>Shop List</h1>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <ol class="breadcrumb justify-content-md-end">
+            <li class="breadcrumb-item "><a href="index-4.html" class="color_white">Home</a></li>
+            <li class="breadcrumb-item active">Login</li>
+        </ol>
+    </div>
+@endsection
+
 @section('contenthf')
 <!-- START MAIN CONTENT -->
 <div class="main_content">
@@ -13,7 +27,7 @@
                             <div class="heading_s1">
                                 <h3>Login</h3>
                             </div>
-                            <form method="post" action="{{ route('admin.login') }}>
+                            <form method="post" action="{{ route('admin.register') }}">
                                 <div class="form-group">
                                     <input type="email" autofocus class="form-control" name="email" placeholder="Your Email" required autocomplete="email">
                                     @error('email')
