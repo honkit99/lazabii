@@ -27,7 +27,7 @@
                             <div class="heading_s1">
                                 <h3>Login</h3>
                             </div>
-                            <form method="post" action="{{ route('admin.register') }}">
+                            <form method="post" action="{{ route('user.register') }}">
                                 <div class="form-group">
                                     <input type="email" autofocus class="form-control" name="email" placeholder="Your Email" required autocomplete="email">
                                     @error('email')
@@ -36,42 +36,53 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="Password" required autocomplete="current-password">
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" required name="password" autocomplete="current-password">
+    
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="login_footer form-group">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
-                                            <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                        </div>
-                                    </div>
-                                    <a href="login.html#">Forgot password?</a>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
-                                </div>
-                            </form>
-                            <div class="different_login">
-                                <span> or</span>
                             </div>
-                            <ul class="btn-login list_none text-center">
-                                <li><a href="login.html#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
-                                <li><a href="login.html#" class="btn btn-google"><i class="ion-social-googleplus"></i>Google</a></li>
-                            </ul>
-                            <div class="form-note text-center">Don't Have an Account? <a href="signup.html">Sign up now</a></div>
-                        </div>
+    
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Login') }}
+                                    </button>
+    
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END LOGIN SECTION -->
-</div>
-<!-- END MAIN CONTENT -->
-@endsection
+</body>
+</html>
+
