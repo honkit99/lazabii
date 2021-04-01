@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 <div class="container">
@@ -15,6 +15,35 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                </div>
+
+                <div>
+                    <ul class="list-group">
+                    @foreach ($products as $key=>$product )
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            {{ $product->name }}
+                        </div>
+                    </li>
+                    @endforeach
+                    </ul>
+
+                    <ul class="list-group">
+                        @foreach ($categories as $key=>$category )
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                {{ $category->name }}
+                                {{-- @foreach ($subcategories as $key=>$subcategory )
+                                <ul>
+                                    <li>
+                                        {{ $subcategory->name }}{{ $subcategory->name }}
+                                    </li>
+                                </ul>
+                                @endforeach --}}
+                            </div>
+                        </li>
+                        @endforeach
+                        </ul>
                 </div>
             </div>
         </div>

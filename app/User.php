@@ -20,6 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'dob' ,
+        'phone' ,
     ];
 
     /**
@@ -45,6 +48,6 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->belongsTo(\App\Models\Address::class);
+        return $this->belongsTo(\App\Address::class);
     }
 }

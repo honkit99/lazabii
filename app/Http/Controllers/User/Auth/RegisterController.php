@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Auth;
 
+use App\Address;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'user/home';
+    protected $redirectTo = 'user/login';
 
     /**
      * Create a new controller instance.
@@ -54,6 +55,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required'],
+            'dob' =>  ['required'],
+            'phone' => ['required','min:10'],
         ]);
     }
 
@@ -69,16 +73,20 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            'gender' => $data['gender'],
+            'dob' => $data['dob'],
+            'phone' => $data['phone'],
+        ],
+    );
     }
 
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard('user');
     }
 
     public function showRegistrationForm()
     {
-        return view('admin.auth.register');
+        return view('user.auth.register');
     }
 }

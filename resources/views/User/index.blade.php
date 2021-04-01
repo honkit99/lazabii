@@ -12,33 +12,33 @@
 <!-- SITE TITLE -->
 <title>Shopwise - eCommerce Bootstrap 4 HTML Template</title>
 <!-- Favicon Icon -->
-<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('Template/images/favicon.png') }}">
 <!-- Animation CSS -->
-<link rel="stylesheet" href="assets/css/animate.css">	
+<link rel="stylesheet" href="{{ asset('Template/css/animate.css') }}">	
 <!-- Latest Bootstrap min CSS -->
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('Template/bootstrap/css/bootstrap.min.css') }}">
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet"> 
 <!-- Icon Font CSS -->
-<link rel="stylesheet" href="assets/css/all.min.css">
-<link rel="stylesheet" href="assets/css/ionicons.min.css">
-<link rel="stylesheet" href="assets/css/themify-icons.css">
-<link rel="stylesheet" href="assets/css/linearicons.css">
-<link rel="stylesheet" href="assets/css/flaticon.css">
-<link rel="stylesheet" href="assets/css/simple-line-icons.css">
+<link rel="stylesheet" href="{{ asset('Template/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/ionicons.min.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/themify-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/linearicons.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/flaticon.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/simple-line-icons.css') }}">
 <!--- owl carousel CSS-->
-<link rel="stylesheet" href="assets/owlcarousel/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/owlcarousel/css/owl.theme.css">
-<link rel="stylesheet" href="assets/owlcarousel/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="{{ asset('Template/owlcarousel/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/owlcarousel/css/owl.theme.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/owlcarousel/css/owl.theme.default.min.css') }}">
 <!-- Magnific Popup CSS -->
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="{{ asset('Template/css/magnific-popup.css') }}">
 <!-- Slick CSS -->
-<link rel="stylesheet" href="assets/css/slick.css">
-<link rel="stylesheet" href="assets/css/slick-theme.css">
+<link rel="stylesheet" href="{{ asset('Template/css/slick.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/slick-theme.css') }}">
 <!-- Style CSS -->
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="{{ asset('Template/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('Template/css/responsive.css') }}">
 
 <!-- Hotjar Tracking Code for bestwebcreator.com -->
 <script>
@@ -72,8 +72,8 @@
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
                 <a class="navbar-brand" href="index.html">
-                    <img class="logo_light" src="assets/images/logo_light.png" alt="logo" />
-                    <img class="logo_dark" src="assets/images/logo_dark.png" alt="logo" />
+                    <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo" />
+                    <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"> 
                     <span class="ion-android-menu"></span>
@@ -142,7 +142,7 @@
                                 <div class="d-lg-flex menu_banners">
                                     <div class="col-sm-4">
                                         <div class="header-banner">
-                                            <img src="assets/images/menu_banner11.jpg" alt="menu_banner1">
+                                            <img src="{{ asset('Template/images/menu_banner11.jpg') }}" alt="menu_banner1">
                                             <div class="banne_info">
                                                 <h6>10% Off</h6>
                                                 <h4>Wooden Chair</h4>
@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="header-banner">
-                                            <img src="assets/images/menu_banner22.jpg" alt="menu_banner2">
+                                            <img src="{{ asset('Template/images/menu_banner22.jpg') }}" alt="menu_banner2">
                                             <div class="banne_info">
                                                 <h6>15% Off</h6>
                                                 <h4>Wooden Chair</h4>
@@ -162,7 +162,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="header-banner">
-                                            <img src="assets/images/menu_banner33.jpg" alt="menu_banner3">
+                                            <img src="{{ asset('Template/images/menu_banner33.jpg') }}" alt="menu_banner3">
                                             <div class="banne_info">
                                                 <h6>23% Off</h6>
                                                 <h4>Wooden Chair</h4>
@@ -204,12 +204,12 @@
                             <ul class="cart_list">
                                 <li>
                                     <a href="index-4.html#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="index-4.html#"><img src="assets/images/cart_thamb1.jpg" alt="cart_thumb1">Variable product 001</a>
+                                    <a href="index-4.html#"><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
                                     <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
                                 </li>
                                 <li>
                                     <a href="index-4.html#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="index-4.html#"><img src="assets/images/cart_thamb2.jpg" alt="cart_thumb2">Ornare sed consequat</a>
+                                    <a href="index-4.html#"><img src="{{ asset('Template/images/cart_thamb2.jpg') }}" alt="cart_thumb2">Ornare sed consequat</a>
                                     <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span>
                                 </li>
                             </ul>
@@ -231,7 +231,7 @@
 <div class="banner_section full_screen staggered-animation-wrap">
     <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow carousel_style2" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active background_bg overlay_bg_50" data-img-src="assets/images/banner10.jpg">
+            <div class="carousel-item active background_bg overlay_bg_50" data-img-src="{{ asset('Template/images/banner10.jpg') }}">
                 <div class="banner_slide_content banner_content_inner">
                 	<div class="container">
                     	<div class="row justify-content-center">
@@ -247,7 +247,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item background_bg overlay_bg_50" data-img-src="assets/images/banner11.jpg">
+            <div class="carousel-item background_bg overlay_bg_50" data-img-src="{{ asset('Template/images/banner11.jpg') }}">
                 <div class="banner_slide_content banner_content_inner">
                 	<div class="container">
                     	<div class="row justify-content-center">
@@ -263,7 +263,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item background_bg overlay_bg_60" data-img-src="assets/images/banner12.jpg">
+            <div class="carousel-item background_bg overlay_bg_60" data-img-src="{{ asset('Template/images/banner12.jpg') }}">
                 <div class="banner_slide_content banner_content_inner">
                 	<div class="container">
                     	<div class="row justify-content-center">
@@ -379,7 +379,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img1.jpg" alt="furniture_img1">
+                            <img src="{{ asset('Template/images/furniture_img1.jpg" alt="furniture_img1') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -414,7 +414,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img2.jpg" alt="furniture_img2">
+                            <img src="{{ asset('Template/images/furniture_img2.jpg" alt="furniture_img2') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -449,7 +449,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img3.jpg" alt="furniture_img3">
+                            <img src="{{ asset('Template/images/furniture_img3.jpg" alt="furniture_img3') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -484,7 +484,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img4.jpg" alt="furniture_img4">
+                            <img src="{{ asset('Template/images/furniture_img4.jpg" alt="furniture_img4') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -519,7 +519,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img5.jpg" alt="furniture_img5">
+                            <img src="{{ asset('Template/images/furniture_img5.jpg" alt="furniture_img5') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -554,7 +554,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img6.jpg" alt="furniture_img6">
+                            <img src="{{ asset('Template/images/furniture_img6.jpg" alt="furniture_img6') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -589,7 +589,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img7.jpg" alt="furniture_img7">
+                            <img src="{{ asset('Template/images/furniture_img7.jpg" alt="furniture_img7') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -624,7 +624,7 @@
                 <div class="product_box text-center">
                     <div class="product_img">
                         <a href="shop-product-detail.html">
-                            <img src="assets/images/furniture_img8.jpg" alt="furniture_img8">
+                            <img src="{{ asset('Template/images/furniture_img8.jpg" alt="furniture_img8') }}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
@@ -672,7 +672,7 @@
                 <div class="col-lg-4 col-12">
                 	<div class="widget">
                         <div class="footer_logo">
-                            <a href="index-4.html#"><img src="assets/images/logo_light.png" alt="logo"/></a>
+                            <a href="index-4.html#"><img src="{{ asset('Template/images/logo_light.png') }}" alt="logo"/></a>
                         </div>
                         <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
                     </div>
@@ -783,11 +783,11 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="footer_payment text-center text-md-right">
-                        <li><a href="index-4.html#"><img src="assets/images/visa.png" alt="visa"></a></li>
-                        <li><a href="index-4.html#"><img src="assets/images/discover.png" alt="discover"></a></li>
-                        <li><a href="index-4.html#"><img src="assets/images/master_card.png" alt="master_card"></a></li>
-                        <li><a href="index-4.html#"><img src="assets/images/paypal.png" alt="paypal"></a></li>
-                        <li><a href="index-4.html#"><img src="assets/images/amarican_express.png" alt="amarican_express"></a></li>
+                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/visa.png') }}" alt="visa"></a></li>
+                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/discover.png') }}" alt="discover"></a></li>
+                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/master_card.png') }}" alt="master_card"></a></li>
+                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/paypal.png') }}" alt="paypal"></a></li>
+                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/amarican_express.png') }}" alt="amarican_express"></a></li>
                     </ul>
                 </div>
             </div>
@@ -799,33 +799,33 @@
 <a href="index-4.html#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
 
 <!-- Latest jQuery --> 
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-1.12.4.min.js"></script> 
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('Template/js/jquery-1.12.4.min.js') }}"></script> 
 <!-- popper min js -->
-<script src="assets/js/popper.min.js"></script>
+<script src="{{ asset('Template/js/popper.min.js') }}"></script>
 <!-- Latest compiled and minified Bootstrap --> 
-<script src="assets/bootstrap/js/bootstrap.min.js"></script> 
+<script src="{{ asset('Template/bootstrap/js/bootstrap.min.js') }}"></script> 
 <!-- owl-carousel min js  --> 
-<script src="assets/owlcarousel/js/owl.carousel.min.js"></script> 
+<script src="{{ asset('Template/owlcarousel/js/owl.carousel.min.js') }}"></script> 
 <!-- magnific-popup min js  --> 
-<script src="assets/js/magnific-popup.min.js"></script> 
+<script src="{{ asset('Template/js/magnific-popup.min.js') }}"></script> 
 <!-- waypoints min js  --> 
-<script src="assets/js/waypoints.min.js"></script> 
+<script src="{{ asset('Template/js/waypoints.min.js') }}"></script> 
 <!-- parallax js  --> 
-<script src="assets/js/parallax.js"></script> 
+<script src="{{ asset('Template/js/parallax.js') }}"></script> 
 <!-- countdown js  --> 
-<script src="assets/js/jquery.countdown.min.js"></script> 
+<script src="{{ asset('Template/js/jquery.countdown.min.js') }}"></script> 
 <!-- imagesloaded js --> 
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="{{ asset('Template/js/imagesloaded.pkgd.min.js') }}"></script>
 <!-- isotope min js --> 
-<script src="assets/js/isotope.min.js"></script>
+<script src="{{ asset('Template/js/isotope.min.js') }}"></script>
 <!-- jquery.dd.min js -->
-<script src="assets/js/jquery.dd.min.js"></script>
+<script src="{{ asset('Template/js/jquery.dd.min.js') }}"></script>
 <!-- slick js -->
-<script src="assets/js/slick.min.js"></script>
+<script src="{{ asset('Template/js/slick.min.js') }}"></script>
 <!-- elevatezoom js -->
-<script src="assets/js/jquery.elevatezoom.js"></script>
+<script src="{{ asset('Template/js/jquery.elevatezoom.js') }}"></script>
 <!-- scripts js --> 
-<script src="assets/js/scripts.js"></script>
+<script src="{{ asset('Template/js/scripts.js') }}"></script>
 
 </body>
 </html>
