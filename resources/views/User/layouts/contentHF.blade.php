@@ -10,7 +10,7 @@
 <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
 
 <!-- SITE TITLE -->
-<title>Shopwise</title>
+<title>Shopwise - eCommerce Bootstrap 4 HTML Template</title>
 <!-- Favicon Icon -->
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Template/images/favicon.png') }}">
 <!-- Animation CSS -->
@@ -62,8 +62,8 @@
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
                 <a class="navbar-brand" href="index.html">
-                    <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo" />
-                    <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo" />
+                    <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo') }}" />
+                    <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo') }}" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"> 
                     <span class="ion-android-menu"></span>
@@ -228,12 +228,23 @@
 
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_dark3 page-title-mini">
-        <div class="container"><!-- STRART CONTAINER -->
-            <div class="row align-items-center">
-                @yield('contents')
+    <div class="container"><!-- STRART CONTAINER -->
+        <div class="row align-items-center">
+        	<div class="col-md-6">
+                <div class="page-title">
+            		<h1>Shop List</h1>
+                </div>
             </div>
-        </div><!-- END CONTAINER-->
-    </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb justify-content-md-end">
+                    <li class="breadcrumb-item "><a href="index-4.html" class="color_white">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item active">Shop Left Sidebar</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- END CONTAINER-->
+</div>
 <!-- END SECTION BREADCRUMB -->
 
 <!-- START MAIN CONTENT -->
