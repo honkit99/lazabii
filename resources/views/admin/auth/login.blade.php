@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -34,21 +31,23 @@
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"  name="email"value="">
-                                        </div>
-                                        @error('email')
+                                            @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                        <div class="form-group">
-                                            <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password"value="">
                                         </div>
-                                        @error('password')
+                                       
+                                <div class="form-group">
+                                             <label class="mb-1"><strong>Password</strong></label>
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror"" name="password"value="">
+                                            @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                        </div>
+                               
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                <div class="custom-control custom-checkbox ml-1">
@@ -67,7 +66,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="">Sign up</a></p>
+                                        <p>Don't have an account? <a class="text-primary" href="{{route('admin.register')}}">Sign up</a></p>
                                     </div>
                                 </div>
                             </div>
