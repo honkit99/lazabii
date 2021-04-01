@@ -18,15 +18,15 @@ class SampleChart extends BaseChart
      * and never a string or an array.
      */
 
-    /*public function handler(Request $request): Chartisan
+    public function handler(Request $request): Chartisan
     {
         return Chartisan::build()
             ->labels(['First', 'Second', 'Third'])
             ->dataset('Sample', [1, 2, 3])
             ->dataset('Sample 2', [3, 2, 1]);
-    }*/
+    }
 
-    public ?string $name = 'my_chart';
+   /* public ?string $name = 'my_chart';
 
     public ?string $routeName = 'my_chart';
 
@@ -47,5 +47,5 @@ class SampleChart extends BaseChart
         return Chartisan::build()
             ->labels($labels)
             ->dataset('Sample', $count);
-    }
+    }*/
 }
