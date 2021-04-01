@@ -13,11 +13,37 @@ use Illuminate\Http\Request;
 class SampleChart extends BaseChart
 {
     /**
+     * Determines the chart name to be used on the
+     * route. If null, the name will be a snake_case
+     * version of the class name.
+     */
+    public ?string $name = 'custom_chart_name';
+
+    /**
+     * Determines the name suffix of the chart route.
+     * This will also be used to get the chart URL
+     * from the blade directrive. If null, the chart
+     * name will be used.
+     */
+    public ?string $routeName = 'chart_route_name';
+
+    /**
+     * Determines the prefix that will be used by the chart
+     * endpoint.
+     */
+    public ?string $prefix = 'some_prefix';
+
+    /**
+     * Determines the middlewares that will be applied
+     * to the chart endpoint.
+     */
+    public ?array $middlewares = ['auth'];
+
+    /**
      * Handles the HTTP request for the given chart.
      * It must always return an instance of Chartisan
      * and never a string or an array.
      */
-
     public function handler(Request $request): Chartisan
     {
         return Chartisan::build()
@@ -25,27 +51,4 @@ class SampleChart extends BaseChart
             ->dataset('Sample', [1, 2, 3])
             ->dataset('Sample 2', [3, 2, 1]);
     }
-
-   /* public ?string $name = 'my_chart';
-
-    public ?string $routeName = 'my_chart';
-
-    public function handler(Request $request): Chartisan
-    {
-        $sports = DB::table('sports')->get();
-        $labels = [];
-        $count = [];
-        foreach ($sports as $sport){
-            array_push($labels,$sport->name);
-        }
-        $values = Sport::with('users' )->get();
-    
-        foreach ($values as $item) {
-            array_push($count,$item->users->count());
-        }
-    
-        return Chartisan::build()
-            ->labels($labels)
-            ->dataset('Sample', $count);
-    }*/
 }
