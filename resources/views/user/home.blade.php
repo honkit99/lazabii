@@ -16,6 +16,18 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <div>
+                    <ul class="list-group">
+                    @foreach ($products as $key=>$product )
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            {{ $product->name }}
+                        </div>
+                    </li>
+                    @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
