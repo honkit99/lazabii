@@ -27,6 +27,23 @@
                     </li>
                     @endforeach
                     </ul>
+
+                    <ul class="list-group">
+                        @foreach ($categories as $key=>$category )
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                {{ $category->name }}
+                                {{-- @foreach ($subcategories as $key=>$subcategory )
+                                <ul>
+                                    <li>
+                                        {{ $subcategory->name }}{{ $subcategory->name }}
+                                    </li>
+                                </ul>
+                                @endforeach --}}
+                            </div>
+                        </li>
+                        @endforeach
+                        </ul>
                 </div>
             </div>
         </div>
