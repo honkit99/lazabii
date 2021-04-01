@@ -137,6 +137,14 @@ return [
         'password' => [
             'required' => 'Password Required',
         ],
+
+        'password' => [
+            'required' => 'Password is required',
+        ],
+
+        'email' => [
+            'required' => 'email is required',
+        ],
     ],
 
     /*
