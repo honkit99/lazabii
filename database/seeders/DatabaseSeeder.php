@@ -45,7 +45,6 @@ class DatabaseSeeder extends Seeder
             'country_id' => 1,
             'postcode_id' => 1,
         ],);
-        
        
     }
 }
