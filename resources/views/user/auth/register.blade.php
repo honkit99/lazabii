@@ -31,13 +31,23 @@
                             <form method="POST" action="{{ route('user.register') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" required="" class="form-control" name="name" placeholder="Enter Your Name">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter Your Name">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror  
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" required="" class="form-control" name="email" placeholder="Enter Your Email">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Enter Your Email">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror  
                                 </div>
                                 <div class="form-group">
-                                    <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>
+                                    <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}"  autofocus>
                                         <option value="0">Male</option>
                                         <option value="1">Female</option>
                                     </select>
@@ -48,7 +58,7 @@
                                     @enderror                                
                                 </div>
                                 <div class="form-group">
-                                <input id="phone" type="tel" class="form-control" placeholder="Phone Number" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone Number" name="phone" value="{{ old('phone') }}" autofocus>
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -56,7 +66,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input id="dob" type="date" class="form-control" name="dob" value="{{ old('dob') }}" required autocomplete="dob" autofocus>
+                                    <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" autofocus>
                                     @error('dob')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,10 +74,20 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" required="" type="password" name="password" placeholder="Password">
+                                    <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" required="" type="password" name="password" placeholder="Confirm Password">
+                                    <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="login_footer form-group">
                                     <div class="chek-form">
