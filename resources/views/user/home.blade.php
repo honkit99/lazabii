@@ -85,51 +85,19 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                                    @foreach ($categories as $category )
-                                                    <li class="mega-menu-col col-lg-3">
-                                                        <ul> 
-                                                        <li class="dropdown-header">{{ $category->name }}</li>
-                                                        @if ($category->children)
-                                                            @foreach ($category->children as $children )
-                                                            <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.product.show',$children->id) }}">{{ $children->name }}</a></li>
-                                                            @endforeach
-                                                        @endif
-                                                        </ul>
-                                                    </li>
-                                                    @endforeach
+                                    @foreach ($categories as $category )
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul> 
+                                            <li class="dropdown-header">{{ $category->name }}</li>
+                                            @if ($category->children)
+                                                @foreach ($category->children as $children )
+                                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.product.show',$children->id) }}">{{ $children->name }}</a></li>
+                                                @endforeach
+                                            @endif
                                         </ul>
-                                <div class="d-lg-flex menu_banners">
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner11.jpg') }}" alt="menu_banner1">
-                                            <div class="banne_info">
-                                                <h6>10% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner22.jpg') }}" alt="menu_banner2">
-                                            <div class="banne_info">
-                                                <h6>15% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner33.jpg') }}" alt="menu_banner3">
-                                            <div class="banne_info">
-                                                <h6>23% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </li>
 						<li class="dropdown">
