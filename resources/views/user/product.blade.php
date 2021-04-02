@@ -190,5 +190,5 @@
 @endsection
 
 @section('up')
-<a href="{{ route('user.product') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+<a href="{{ route('user.product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection
