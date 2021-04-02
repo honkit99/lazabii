@@ -48,7 +48,7 @@
 												</div>
 												<img src="images/menu/Untitled-1.jpg" alt="">
 											</div>
-											
+
 										</div>
 									</div>
 								</div>
