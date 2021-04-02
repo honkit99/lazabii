@@ -1,5 +1,19 @@
 @extends('user.layouts.contentHF')
 
+@section('contents')
+    <div class="col-md-6">
+        <div class="page-title">
+            <h1>Shop List</h1>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <ol class="breadcrumb justify-content-md-end">
+            <li class="breadcrumb-item "><a href="index-4.html" class="color_white">Home</a></li>
+            <li class="breadcrumb-item active">Login</li>
+        </ol>
+    </div>
+@endsection
+
 @section('contenthf')
 <!-- START MAIN CONTENT -->
 <div class="main_content">
@@ -51,7 +65,7 @@
                                 <li><a href="login.html#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
                                 <li><a href="login.html#" class="btn btn-google"><i class="ion-social-googleplus"></i>Google</a></li>
                             </ul>
-                            <div class="form-note text-center">Don't Have an Account? <a href="signup.html">Sign up now</a></div>
+                            <div class="form-note text-center">Don't Have an Account? <a href="{{ route('user.register') }}">Sign up now</a></div>
                         </div>
                     </div>
                 </div>
@@ -60,5 +74,9 @@
     </div>
 </div>
 <!-- END LOGIN SECTION -->
+@endsection
+
+@section('up')
+<a href="{{ route('user.login') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection
 

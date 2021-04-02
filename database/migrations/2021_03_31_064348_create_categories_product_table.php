@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductCategoryRelationsTable extends Migration
+class CreateCategoriesProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateProductCategoryRelationsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('product_category_relations', function (Blueprint $table) {
+        Schema::create('categories_Product', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
             $table->integer('category_id');
@@ -33,6 +33,6 @@ class CreateProductCategoryRelationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_category_relations');
+        Schema::dropIfExists('categories_Product');
     }
 }

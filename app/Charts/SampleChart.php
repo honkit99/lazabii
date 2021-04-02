@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Ewallet;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -46,11 +47,21 @@ class SampleChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+        $data1 = Ewallet::all();
+        $gg1 = [];
+        $gg2 = [];
+        $gg3 = [];
+        foreach ($data1 as $key=>$da1):
+
+            $gg1[] = $da1->id;
+            $gg2[] = $da1->new_balance;
+            $gg3[] = $da1->current_balance;
+
+        endforeach;
+
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Orders', [
-                1, 2, 3
-                ])
-            ->dataset('Sales', [3, 2, 1]);
+            ->labels($gg1)
+            ->dataset('new', $gg2)
+            ->dataset('current', $gg3);
     }
 }

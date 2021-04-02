@@ -3,7 +3,10 @@
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ProductCategoryRelationController;
+use App\Http\Controllers\User\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,15 +33,15 @@ Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswo
 Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
 
 Route::group(['middleware'=>['auth:user']], function () {
-    // Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+    Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
    // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
-        
-    // Route::resource('product', 'User\ProductController');
 
+    Route::resource('category', CartController::class);
+    Route::resource('product', ProductController::class);
     // Route::resource('voucher', 'User\VoucherController');
-
-    // Route::resource('cart', 'User\CartController');
-
+    Route::resource('productCategory', ProductCategoryRelationController::class);
+    Route::resource('cart', CartController::class);
+    
     // Route::resource('order', 'User\OrderController');
 
     // Route::resource('ewallet', 'User\EwalletController')->except('destroy');
@@ -49,7 +52,6 @@ Route::group(['middleware'=>['auth:user']], function () {
 
     // Route::resource('feedback', 'User\FeedbackController');
 
-    // Route::resource('category', 'User\CategoryController');
 
     // Route::resource('variance', 'User\VarianceController');
 

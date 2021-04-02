@@ -20,7 +20,7 @@
 										</div>
 									</div>
 									<div class="card-body  text-center">
-										<div id="radialChart"></div>
+										<div id="radialChart" style="height:300px"></div>
 										<h3 class="fs-28 text-black font-w500">$749.56</h3>
 										<span class="mb-3 d-block">from $1,000</span>
 										<p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
@@ -258,16 +258,15 @@
 @endsection
 
 @push('scripts')
-<!-- Charting library -->
-<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
-<!-- Chartisan -->
-<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
 <!-- Your application script -->
 <script>
     const sampleChart = new Chartisan({
-    el: '#chart',
+    el: '#radialChart',
     url: "@chart('sample_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: false }, 'line']),
     });
-    
 </script>
 @endpush
