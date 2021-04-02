@@ -172,6 +172,16 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                @foreach ($filproducts as $fill)
+                <span>{{ $fill->name }}</span>
+                @foreach ($fill->product as $product)
+                <br><br>
+                --{{ $product->name }}<br>RM{{ $product->price }}<br> Description : {{ $product->description }}
+                @endforeach
+               
+                @endforeach
+                
             </div>
         </div>
     </div>
@@ -180,5 +190,5 @@
 @endsection
 
 @section('up')
-<a href="{{ route('user.product') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+<a href="{{ route('user.product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection
