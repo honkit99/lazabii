@@ -61,7 +61,7 @@ class AdminController extends Controller
      */
     public function edit(Request $request, Admin $admin)
     {
-        return view('admin.admin.edit', compact('admin'));
+        return view('admin.auth.adminedit', compact('admin'));
     }
 
     /**
@@ -71,11 +71,20 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        $admin->update($request->validated());
+        $validated=$request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'gender'=> 'required',
+            'phone'=> 'required',
+            'dob'=> 'required',
 
-        $request->session()->flash('success', "You updated successfully");
+        ],[
+            'name.required'=>'Please fill in the title',
+        ],[
+            ]);
+        $admin->update($validated);
 
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admins.index');
     }
 
     /**
