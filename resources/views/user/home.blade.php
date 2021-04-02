@@ -85,59 +85,18 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul> 
-                                                    <li class="dropdown-header">Bedroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bed</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Chests & Drawers</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Wardrobes</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Clothes Organisers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Hook & Hangers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dressing Tables</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Mirror</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Lamp</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Rugs</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Kitchen</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Interior fittings</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Sinks & taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Kitchen lighting</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Unit kitchens</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cookware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Food Storage and Organising</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cooking & baking utensils</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dishwashing accessories</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Bathroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom funiture sets</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom cabinets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom vanities</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Showers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom sinks</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom accessories</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom Textiles</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Dining</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Dining tables</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining chairs</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining sets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Table linen</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Stools and Benches</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cafe furniture</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dinnerware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cutlery</a></li>
-												</ul>
-                                            </li>
+                                                    @foreach ($categories as $category )
+                                                    <li class="mega-menu-col col-lg-3">
+                                                        <ul> 
+                                                        <li class="dropdown-header">{{ $category->name }}</li>
+                                                        @if ($category->children)
+                                                            @foreach ($category->children as $children )
+                                                            <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.product.show',$children->id) }}">{{ $children->name }}</a></li>
+                                                            @endforeach
+                                                        @endif
+                                                        </ul>
+                                                    </li>
+                                                    @endforeach
                                         </ul>
                                 <div class="d-lg-flex menu_banners">
                                     <div class="col-sm-4">
@@ -185,14 +144,24 @@
                             </div>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">My Account</a>
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="my-account.html">Profile</a></li>
-                                    <li><a class="dropdown-item nav-link nav_item" href="login.html">Log out</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+									<li>
+                                        <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>   
                     </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">

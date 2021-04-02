@@ -18,7 +18,15 @@
                     <br>
                     <a href="{{ route('user.cart.index') }}">Cart</a>
                 </div>
-                ewewe{{ $product->id }}
+                <br>
+                @foreach ($filproducts as $fill)
+                <span>{{ $fill->name }}</span>
+                @foreach ($fill->product as $product)
+                --{{ $product->name }}<br>RM{{ $product->price }}<br> Description : {{ $product->description }}
+                @endforeach
+               
+                @endforeach
+                
             </div>
         </div>
     </div>

@@ -179,7 +179,17 @@
                             <div class="dropdown-menu">
                                 <ul> 
                                     <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="{{ route('user.login') }}">Log out</a></li>
+									<li>
+                                        <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
