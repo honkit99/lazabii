@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
         $admins = Admin::all();
 
-        return view('admin.admin.index', compact('admins'));
+        return view('admin.auth.adminlist', compact('admins'));
     }
 
     /**

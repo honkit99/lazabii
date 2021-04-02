@@ -32,4 +32,10 @@ class Product extends Model
         'price' => 'decimal:2',
         'status' => 'integer',
     ];
+
+    public function category()
+    {
+        return $this->belongsToMany(\App\Category::class);
+    }
+
 }

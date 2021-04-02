@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ProductStoreRequest;
 use App\Http\Requests\User\ProductUpdateRequest;
 use App\Product;
+use App\ProductCategoryRelation;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -50,8 +52,14 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Product $product)
+    public function show(Product $product)
     {
+       $id = $product->id;
+    //    dd($id);
+       $filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
+        dd($filteredProduct);
+        // ProductCategoryRelation::wherecategory_id()
+        // dd($product);
         return view('user.product.show', compact('product'));
     }
 
