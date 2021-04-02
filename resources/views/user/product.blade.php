@@ -22,6 +22,7 @@
                 @foreach ($filproducts as $fill)
                 <span>{{ $fill->name }}</span>
                 @foreach ($fill->product as $product)
+                <br><br>
                 --{{ $product->name }}<br>RM{{ $product->price }}<br> Description : {{ $product->description }}
                 @endforeach
                
