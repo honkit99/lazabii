@@ -30,4 +30,9 @@ class Category extends Model
         'id' => 'integer',
         'status' => 'integer',
     ];
+
+    public function children() //to find children from parent
+    {
+      return $this->hasMany('App\Category', 'parent_id');
+    }
 }
