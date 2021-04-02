@@ -214,4 +214,5 @@
     <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{asset('js/plugins-init/datatables.init.js')}}"></script>
 </body>
+@stack('scripts')
 </html>
