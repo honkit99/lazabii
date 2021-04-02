@@ -71,7 +71,7 @@
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('user.home') }}">
                     <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo" />
                     <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo" />
                 </a>
@@ -104,10 +104,10 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="about.html">About Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="contact.html">Contact Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="faq.html">Faq</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="term-condition.html">Terms and Conditions</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">About Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Contact Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Faq</a></li>
+									<li><a class="dropdown-item nav-link nav_item" href="">Terms and Conditions</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -142,7 +142,7 @@
                             </form>
                         </div><div class="search_overlay"></div><div class="search_overlay"></div>
                     </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="shop-cart.html" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
@@ -178,7 +178,7 @@
                                     <h5 class="mb-3 bg_strip staggered-animation text-uppercase" data-animation="fadeInDown" data-animation-delay="0.2s">Starting $90.00</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Unique Furniture Style</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.5s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.5s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="fadeInDown" data-animation-delay="0.2s">Get up to 50% off Today Only!</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Quality Furniture</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="fadeInDown" data-animation-delay="0.2s">Taking your Viewing Experience to Next Level</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Living Room Collection</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -218,8 +218,8 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="index-4.html#carouselExampleControls" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
-        <a class="carousel-control-next" href="index-4.html#carouselExampleControls" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
     </div>
 </div>
 <!-- END SECTION BANNER -->
@@ -316,7 +316,7 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="product_box text-center">
                     <div class="product_img">
-                        <a href="shop-product-detail.html">
+                        <a href="">
                             <img src="{{ asset('Template/images/furniture_img1.jpg') }}" alt="furniture_img1">
                         </a>
                         <div class="product_action_box">
@@ -328,7 +328,7 @@
                         </div>
                     </div>
                     <div class="product_info">
-                        <h6 class="product_title"><a href="shop-product-detail.html">enim expedita sed</a></h6>
+                        <h6 class="product_title"><a href="">enim expedita sed</a></h6>
                         <div class="product_price">
                             <span class="price">$45.00</span>
                             <del>$55.25</del>
