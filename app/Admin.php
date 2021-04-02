@@ -25,6 +25,9 @@ class Admin extends Authenticatable
         'phone' ,
     ];
 
+    protected $appends =['gender_name'];
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -43,4 +46,22 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getStatusNameAttribute(){
+        /*
+        if($this->status ==0)
+        return "New";
+        if($this->status ==1)
+        return "Doing";
+        if($this->status ==2)
+        return "Done";*/
+
+        //Method 2
+        return[
+            0=>'Male',
+            1=>'Female',
+        ][$this->gender];
+       
+        
+    }
 }
