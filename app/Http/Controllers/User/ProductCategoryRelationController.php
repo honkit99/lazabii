@@ -10,7 +10,7 @@ use App\Product;
 use App\ProductCategoryRelation;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductCategoryRelationController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -52,12 +52,11 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(ProductCategoryRelation $productCategoryRelation)
     {
-       $id = $product->id;
-    //    dd($id);
-       $filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
-        dd($filteredProduct);
+        //$id = $Prodcategory->id;
+       // $sql = ProductCategoryRelation::wherecategory_id($ProdcategoproductCategoryRelationry);
+        dd($productCategoryRelation);
         // ProductCategoryRelation::wherecategory_id()
         // dd($product);
         return view('user.product.show', compact('product'));

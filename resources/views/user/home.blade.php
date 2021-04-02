@@ -40,7 +40,7 @@
                                 <ul>
                                     @foreach ($category->children as $child )
                                     <li>
-                                        {{ $child->name }}
+                                        <a href="{{ route('user.product.show',$child->id) }}">{{ $child->name }}</a>
                                     </li>
                                     @endforeach                                  
                                 </ul>

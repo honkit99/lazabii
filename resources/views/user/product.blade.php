@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{  Auth::user()->name  }}{{ __(' ,here is your Cart') }}</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,10 +16,9 @@
 
                     {{ __('You are logged in!') }}
                     <br>
-                    CARTTT
+                    <a href="{{ route('user.cart.index') }}">Cart</a>
                 </div>
-               
-                </div>
+                ewewe{{ $product->id }}
             </div>
         </div>
     </div>

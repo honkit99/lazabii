@@ -31,6 +31,11 @@ class Category extends Model
         'status' => 'integer',
     ];
 
+    public function product()
+    {
+        return $this->belongsToMany(\App\Product::class);
+    }
+
     public function children() //to find children from parent
     {
       return $this->hasMany('App\Category', 'parent_id');
