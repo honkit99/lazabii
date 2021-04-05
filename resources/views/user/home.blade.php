@@ -115,7 +115,7 @@
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.profile.edit', Auth('user')->user()->id) }}">Profile</a></li>
 									<li>
                                         <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();

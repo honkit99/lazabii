@@ -36,7 +36,7 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
 
-    Route::resource('changePassword', App\Http\Controllers\Admin\ProfileController::class);
+    //Route::resource('changePassword', App\Http\Controllers\Admin\changePasswordController::class);
     
     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
 

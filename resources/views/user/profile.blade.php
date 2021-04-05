@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Self Profile') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route( 'admin.profile.update', Auth('admin')->user()->id ) }}">
+                    <form method="POST" action="{{ route( 'user.profile.update', Auth('user')->user()->id ) }}">
                         @csrf
                         @method("PATCH")
 
@@ -17,7 +17,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" 
-                                name="name" value="{{ Auth('admin')->user()->name }}" 
+                                name="name" value="{{ Auth('user')->user()->name }}" 
                                 required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -33,7 +33,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
-                                name="email" value="{{ Auth('admin')->user()->email }}" required autocomplete="email">
+                                name="email" value="{{ Auth('user')->user()->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 
                             <div class="col-md-6">
                                 <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" 
-                                name="gender" value="{{ Auth('admin')->user()->gender }}" required autocomplete="gender" autofocus>
+                                name="gender" value="{{ Auth('user')->user()->gender }}" required autocomplete="gender" autofocus>
                                     <option value="0">Male</option>
                                     <option value="1">Female</option>
                                 </select>
@@ -65,7 +65,7 @@
 
                             <div class="col-md-6">
                                 <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" 
-                                name="phone" value="{{ Auth('admin')->user()->phone }}" autocomplete="phone" autofocus>
+                                name="phone" value="{{ Auth('user')->user()->phone }}" autocomplete="phone" autofocus>
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
 
                             <div class="col-md-6">
                                 <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" 
-                                name="dob" value="{{ Auth('admin')->user()->dob }}" required autocomplete="dob" autofocus>
+                                name="dob" value="{{ Auth('user')->user()->dob }}" required autocomplete="dob" autofocus>
 
                                 @error('dob')
                                     <span class="invalid-feedback" role="alert">
