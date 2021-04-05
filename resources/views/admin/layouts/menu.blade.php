@@ -139,8 +139,8 @@
                         <ul aria-expanded="false">
                                 
                                 <ul aria-expanded="false">
-                                    <li><a href="{{ route('admin.product.index') }}">Product List</a></li>
-									<li><a href="">Product Details</a></li>
+                                    <li><a href="{{ route('admin.products.index') }}">Product List</a></li>
+									<li><a href="">Product Category</a></li>
                                 </ul>
                             </li>
                         </ul>

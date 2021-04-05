@@ -30,18 +30,20 @@
                             <div class="card-body">
                                 <div class="new-arrival-product">
                                     <div class="new-arrivals-img-contnent">
+                                    @foreach($products as $key =>$product)
                                         <img class="img-fluid" src="{{asset('images/product/1.jpg')}}" alt="">
                                     </div>
                                     <div class="new-arrival-content text-center mt-3">
-                                        <h4><a href="">Bonorum et Malorum</a></h4>
+                                        <h4><a href="">{{$product ->name}}</a></h4>
                                         <ul class="star-rating">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-empty"></i></li>
-                                            <li><i class="fa fa-star-half-empty"></i></li>
+                                            <li>{{$product ->quantity}}</li>
+                                            
+
                                         </ul>
-                                        <span class="price">$761.00</span>
+                                        <li>{{$product ->description}}</li>
+                                        <span class="price">{{$product ->price}}</span>
+                                        @endforeach
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -10,32 +10,42 @@
 						<div class="table-responsive">
 						<table style="text-align: center;"id="dataTable1" class="display mb-4 dataTablesCard card-table text-black customer-list-tbl">
 								<thead>
-								<form action="{{route('admin.admins.store') }}" method="post">
+								<form action="{{route('admin.productCategory.store') }}" method="post">
                                 @csrf
-                                <p><b>Name: </b><input type="text" name="name"class="form-control @error('name') is-invalid @enderror" minlength="5"value="{{ old('name') }}"></p>
+                                <p><b>Product Name: </b><input type="text" name="name"class="form-control @error('name') is-invalid @enderror"value="{{ old('name') }}"></p>
 								@error('name')
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
-                                <p><b>Email: </b><input type="email" class="form-control @error('email') is-invalid @enderror"name="email"value="{{ old('email') }}"></p>
-								@error('email')
+                                <p><b>Price: </b><input type="text" class="form-control @error('price') is-invalid @enderror"name="price"value="{{ old('price') }}"></p>
+								@error('price')
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
-                                <label class="form-label">Gender: </label>
-                                <select name="gender"class="form-control @error('gender') is-invalid @enderror" aria-label="Default select example">
-                                    <option value="">-Please select the option-</option>
-                                    <option value="0">Male</option>
-                                    <option value="1">Female</option>
-                                </select>
-                                @error('gender')
+                                <p><b>Quantity: </b><input type="text" class="form-control @error('qty') is-invalid @enderror"name="quantity"value="{{ old('quantity') }}"></p>
+								@error('quantity')
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
+                                <p><b>Description: </b><input type="text" class="form-control @error('description') is-invalid @enderror"name="description"value="{{ old('descrption') }}"></p>
+								@error('description')
+                                <span class="mt-2 text-danger">{{ $message }}</span>
+                                @enderror
+                                <p><b>Description: </b><input type="file" class="form-control @error('description') is-invalid @enderror"name="image"value="{{ old('image') }}"></p>
+								@error('image')
+                                <span class="mt-2 text-danger">{{ $message }}</span>
+                                @enderror
+                                <label class="form-label">Category: </label>
                                 
-                                <p><b>Phone number: </b><input type="tel" class="form-control @error('phone') is-invalid @enderror"name="phone"pattern="[0-9]{3}-[0-9]{7}" value="{{ old('phone') }}"></p>
-								@error('phone')
+                                <select name="category"class="form-control " aria-label="Default select example">
+                                    <option value="">-Please select the option-</option>   
+                                    @foreach($categorys as $key =>$category)
+
+                                    <option value="">{{$category -> id}}</option>
+                                    @endforeach
+
+                                </select>
+
+                                @error('category')
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
-                                <p><b>Date of Birth: </b><input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror"value="{{ old('dob') }}"></p>
-								<p><b>Password: </b><input type="password" name="password"class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}"></p>
                                 <button type ="submit"class="btn btn-primary">Submit</button>
                 
 								</form>
