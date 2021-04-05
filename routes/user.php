@@ -37,9 +37,13 @@ Route::group(['middleware'=>['auth:user']], function () {
    // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
 
     Route::resource('category', CartController::class);
+
     Route::resource('product', ProductController::class);
+
     // Route::resource('voucher', 'User\VoucherController');
+    
     Route::resource('productCategory', ProductCategoryRelationController::class);
+
     Route::resource('cart', CartController::class);
     
     // Route::resource('order', 'User\OrderController');

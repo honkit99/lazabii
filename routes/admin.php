@@ -34,11 +34,19 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 
-    //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('profile');
+    //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile');
+
+    //Route::post('profile', [App\Http\Controllers\Admin\ProfileController::class, 'update']);
+
+    Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
+
+    //Route::post('profile', 'App\Http\Controllers\Admin\ProfileController@update');
     
-     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
-     Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
-    // Route::resource('voucher', 'Admin\VoucherController');
+    Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+
+    Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
+    
+     // Route::resource('voucher', 'Admin\VoucherController');
 
     // Route::resource('order', 'Admin\OrderController');
 
