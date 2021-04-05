@@ -65,7 +65,7 @@
 
                             <div class="col-md-6">
                                 <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" 
-                                name="phone" value="{{ Auth('admin')->user()->phone }}" required autocomplete="phone" autofocus>
+                                name="phone" value="{{ Auth('admin')->user()->phone }}" autocomplete="phone" autofocus>
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
