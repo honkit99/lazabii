@@ -18,9 +18,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
-
-        return view('user.product.index', compact('products'));
+        $products = Product::paginate(1);
+        return view('user.product', compact('products'));
     }
 
     /**
@@ -57,7 +56,9 @@ class ProductController extends Controller
         // $filtererd = Product::with('category')->where('categories.id', $id)->get();
         $filproducts = Category::with(['product' => function($q) use ($id) {
             return $q->where('category_id','=',$id);
-        }])->whereId($id)->get();
+        }])->whereId($id)->paginate(2);
+
+
         //    $id = $product->id;
         //    dd($id);
        //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();

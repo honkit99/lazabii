@@ -236,7 +236,7 @@
                 	<div class="row align-items-center">
         				<div class="col-lg-3 col-md-4">
                         	<div class="text-center text-md-left">
-                                <h4>Top Categories</h4>
+                                <h4>Categories</h4>
                                 <p class="mb-2">There are many variations of passages of Lorem</p>
                                 <a href="" class="btn btn-line-fill btn-sm">View All</a>
                             </div>
@@ -381,27 +381,15 @@
                 
 				<div class="col-lg-8 col-12">
                 	<div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="widget">
-                                <h6 class="widget_title">Quick Links</h6>
-                                <ul class="widget_links">
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">FAQ</a></li>
-                                    <li><a href="">Affiliates</a></li>
-                                    <li><a href="">Blogs</a></li>
-                                    <li><a href="">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <div class="col-lg-4 col-md-4 col-12"></div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="widget">
                                 <h6 class="widget_title">Information</h6>
                                 <ul class="widget_links">
+                                    <li><a href="">About Us</a></li>
+                                    <li><a href="">Contact Us</a></li>
+                                    <li><a href="">FAQ</a></li>
                                     <li><a href="">Term Of Service</a></li>
-                                    <li><a href="">Privacy Policy</a></li>
-                                    <li><a href="">Return policy</a></li>
-                                    <li><a href="">Your Account</a></li>
-                                    <li><a href="">Suppliers</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -411,9 +399,8 @@
                                 <ul class="widget_links">
                                     <li><a href="">My Account</a></li>
                                     <li><a href="">Discount</a></li>
-                                    <li><a href="">Returns</a></li>
+                                    <li><a href="">E-wallet</a></li>
                                     <li><a href="">Orders History</a></li>
-                                    <li><a href="">Order Tracking</a></li>
                                 </ul>
                             </div>
                         </div>
