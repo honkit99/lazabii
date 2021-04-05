@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -13,7 +14,7 @@ class ProfileController extends Controller
     {
         $todos = Admin::all();//select all
 
-        return view('admin.home', compact('admin'));
+        return view('admin.home');
 
         //compact means
 
@@ -34,24 +35,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'gender' => ['required'],
-            'dob' =>  ['required'],
-            'phone' => ['required','min:10'],
-        ]);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -61,9 +44,43 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $admin_data = Admin::find($id);
-        $this->save($admin_data, $request);
+        // $this->save($admin_data, $request);
+        $encypt_password = Hash::check($request->current_password, $admin_data->password);
 
-        return redirect()->route('admin.home');
+        //dd($encypt_password);
+
+        if($request->current_password == null){
+            $this->save($admin_data, $request);
+
+            return redirect()->route('admin.home');
+        }
+        else if($encypt_password){
+            $this->passwordSave($admin_data, $request);
+
+            return redirect()->route('admin.home');
+        }
+        else if(!$encypt_password){
+            return redirect()->route('admin.profile.index');
+        }
+    }
+
+    private function passwordSave(Admin $admin_data, Request $request){
+        $profile = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|unique:admins,email,'.$admin_data->id,
+            'gender' => 'required|integer',
+            'phone' => 'required',
+            'dob' => 'required|date',
+            'password' => 'required',
+            'comfirm_password' => 'required|same:password',
+        ]);
+
+        $profile['password'] = Hash::make($profile['password']);
+
+        $admin_data->update($profile);
+
+        $request->session()->flash('success', "You updated successfully");
+        session("success");
     }
 
     private function save(Admin $admin_data, Request $request){

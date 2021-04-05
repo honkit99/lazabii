@@ -95,7 +95,7 @@
 
                             <div class="col-md-6">
                                 <input id="current_password" type="password" class="form-control @error('password') is-invalid @enderror" 
-                                name="password" autocomplete="new-password">
+                                name="current_password" autocomplete="new-password">
                             </div>
                         </div>
                         
@@ -114,7 +114,13 @@
 
                             <div class="col-md-6">
                                 <input id="comfirm_password" type="password" class="form-control @error('password') is-invalid @enderror" 
-                                name="password" autocomplete="new-password">
+                                name="comfirm_password" autocomplete="new-password">
+
+                                @error('comfirm_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
