@@ -33,18 +33,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	<tr>
+                            @foreach ($carts as $cart)
+                            <tr>
                             	<td class="product-thumbnail"><a href="shop-cart.html#"><img src="assets/images/product_img1.jpg" alt="product1"></a></td>
-                                <td class="product-name" data-title="Product"><a href="shop-cart.html#">Blue Dress For Woman</a></td>
-                                <td class="product-price" data-title="Price">$45.00</td>
+                                <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart["name"] }}</a></td>
+                                <td class="product-price" data-title="Price">{{ $cart["price"] }}</td>
                                 <td class="product-quantity" data-title="Quantity"><div class="quantity">
                                 <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="2" title="Qty" class="qty" size="4">
+                                <input type="text" name="quantity" value="{{ $cart["quantity"] }}" title="Qty" class="qty" size="4">
                                 <input type="button" value="+" class="plus">
                               </div></td>
-                              	<td class="product-subtotal" data-title="Total">$90.00</td>
+                              	<td class="product-subtotal" data-title="Total">{{ $cart["quantity"]*$cart["price"] }}</td>
                                 <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
                             </tr>
+                            @endforeach
+                        	
+                            
                         </tbody>
                         <tfoot>
                         	<tr>
