@@ -10,7 +10,7 @@
 <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
 
 <!-- SITE TITLE -->
-<title>Shopwise - eCommerce Bootstrap 4 HTML Template</title>
+<title>Shopwise</title>
 <!-- Favicon Icon -->
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Template/images/favicon.png') }}">
 <!-- Animation CSS -->
@@ -61,18 +61,18 @@
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
-                <a class="navbar-brand" href="index.html">
-                    <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo') }}" />
-                    <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo') }}" />
+                <a class="navbar-brand" href="{{ route('user.home') }}">
+                    <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo" />
+                    <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"> 
                     <span class="ion-android-menu"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li><a class="nav-link nav_item" href="index-4.html">Home</a></li>
+                        <li><a class="nav-link nav_item" href="{{ route('user.home') }}">Home</a></li>
                         <li class="dropdown dropdown-mega-menu">
-                            <a class="dropdown-toggle nav-link" href="index-4.html#" data-toggle="dropdown">Products</a>
+                            <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
                                             <li class="mega-menu-col col-lg-3">
@@ -136,7 +136,7 @@
                                             <div class="banne_info">
                                                 <h6>10% Off</h6>
                                                 <h4>Wooden Chair</h4>
-                                                <a href="index-4.html#">Shop now</a>
+                                                <a href="">Shop now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                             <div class="banne_info">
                                                 <h6>15% Off</h6>
                                                 <h4>Wooden Chair</h4>
-                                                <a href="index-4.html#">Shop now</a>
+                                                <a href="">Shop now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                             <div class="banne_info">
                                                 <h6>23% Off</h6>
                                                 <h4>Wooden Chair</h4>
-                                                <a href="index-4.html#">Shop now</a>
+                                                <a href="">Shop now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -164,23 +164,32 @@
                             </div>
                         </li>
 						<li class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="index-4.html#" data-toggle="dropdown">Pages</a>
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="about.html">About Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="contact.html">Contact Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="faq.html">Faq</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="term-condition.html">Terms and Conditions</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">About Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Contact Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Faq</a></li>
+									<li><a class="dropdown-item nav-link nav_item" href="">Terms and Conditions</a></li>
                                 </ul>
                             </div>
                         </li>
 						<li class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="my-account.html" data-toggle="dropdown">My Account</a>
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="my-account.html">Profile</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="login.html">Login</a></li>
-                                    <li><a class="dropdown-item nav-link nav_item" href="signup.html">Register</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+									<li>
+                                        <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -196,29 +205,27 @@
                             </form>
                         </div><div class="search_overlay"></div>
                     </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="shop-left-sidebar.html#" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
-                                    <a href="shop-left-sidebar.html#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="shop-left-sidebar.html#"><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
+                                    <a href="" class="item_remove"><i class="ion-close"></i></a>
+                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
                                     <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.html#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="shop-left-sidebar.html#"><img src="{{ asset('Template/images/cart_thamb2.jpg') }}" alt="cart_thumb2">Ornare sed consequat</a>
-                                    <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span>
                                 </li>
                             </ul>
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
-                                <p class="cart_buttons"><a href="shop-left-sidebar.html#" class="btn btn-fill-line view-cart">View Cart</a><a href="shop-left-sidebar.html#" class="btn btn-fill-out checkout">Checkout</a></p>
+                                <p class="cart_buttons">
+                                    <a href="" class="btn btn-fill-line view-cart">View Cart</a>
+                                    <a href="" class="btn btn-fill-out checkout">Checkout</a>
+                                </p>
                             </div>
                         </div>
                     </li>
                 </ul>
 				<ul class="navbar-nav attr-nav align-items-center">
-					<li><a href="wishlist.html"><i class="ti-heart"></i></a></li>
+					<li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
 				</ul>
             </nav>
         </div>
@@ -228,23 +235,12 @@
 
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_dark3 page-title-mini">
-    <div class="container"><!-- STRART CONTAINER -->
-        <div class="row align-items-center">
-        	<div class="col-md-6">
-                <div class="page-title">
-            		<h1>Shop List</h1>
-                </div>
+        <div class="container"><!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                @yield('contents')
             </div>
-            <div class="col-md-6">
-                <ol class="breadcrumb justify-content-md-end">
-                    <li class="breadcrumb-item "><a href="index-4.html" class="color_white">Home</a></li>
-                    <li class="breadcrumb-item active">Product</li>
-                    <li class="breadcrumb-item active">Shop Left Sidebar</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- END CONTAINER-->
-</div>
+        </div><!-- END CONTAINER-->
+    </div>
 <!-- END SECTION BREADCRUMB -->
 
 <!-- START MAIN CONTENT -->
@@ -261,17 +257,17 @@
                 <div class="col-lg-4 col-12">
                 	<div class="widget">
                         <div class="footer_logo">
-                            <a href="index-4.html#"><img src="{{ asset('Template/images/logo_light.png') }}" alt="logo"/></a>
+                            <a href="{{ route('user.home') }}"><img src="{{ asset('Template/images/logo_light.png') }}" alt="logo"/></a>
                         </div>
                         <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
                     </div>
                     <div class="widget">
                         <ul class="social_icons rounded_social">
-                            <li><a href="index-4.html#" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="index-4.html#" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="index-4.html#" class="sc_google"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="index-4.html#" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="index-4.html#" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
+                            <li><a href="" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="" class="sc_google"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
+                            <li><a href="" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul>
                     </div>
         		</div>
@@ -280,25 +276,13 @@
                 	<div class="row">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="widget">
-                                <h6 class="widget_title">Quick Links</h6>
+                                <h6 class="widget_title">Career</h6>
                                 <ul class="widget_links">
-                                    <li><a href="index-4.html#">About Us</a></li>
-                                    <li><a href="index-4.html#">FAQ</a></li>
-                                    <li><a href="index-4.html#">Affiliates</a></li>
-                                    <li><a href="index-4.html#">Blogs</a></li>
-                                    <li><a href="index-4.html#">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="widget">
-                                <h6 class="widget_title">Information</h6>
-                                <ul class="widget_links">
-                                    <li><a href="index-4.html#">Term Of Service</a></li>
-                                    <li><a href="index-4.html#">Privacy Policy</a></li>
-                                    <li><a href="index-4.html#">Return policy</a></li>
-                                    <li><a href="index-4.html#">Your Account</a></li>
-                                    <li><a href="index-4.html#">Suppliers</a></li>
+                                    <li><a href="">About Us</a></li>
+                                    <li><a href="">Contact</a></li>
+                                    <li><a href="">FAQ</a></li>
+                                    <li><a href="">Term Of Service</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -306,11 +290,10 @@
                             <div class="widget">
                                 <h6 class="widget_title">My Account</h6>
                                 <ul class="widget_links">
-                                    <li><a href="index-4.html#">My Account</a></li>
-                                    <li><a href="index-4.html#">Discount</a></li>
-                                    <li><a href="index-4.html#">Returns</a></li>
-                                    <li><a href="index-4.html#">Orders History</a></li>
-                                    <li><a href="index-4.html#">Order Tracking</a></li>
+                                    <li><a href="">My Account</a></li>
+                                    <li><a href="">Shopping Cart</a></li>
+                                    <li><a href="">Wishlist</a></li>
+                                    <li><a href="">Orders History</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -354,7 +337,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>27/4 Online Support</h5>
-                                        <p>Call for styling advice on </br> <a href="tell:+123 1234 5678">+123 1234 5678</a> </p>
+                                        <p>Call for styling advice on </br> <a href="">+123 1234 5678</a> </p>
                                     </div>
                                 </div>
                             </div>
@@ -372,11 +355,11 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="footer_payment text-center text-md-right">
-                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/visa.png') }}" alt="visa"></a></li>
-                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/discover.png') }}" alt="discover"></a></li>
-                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/master_card.png') }}" alt="master_card"></a></li>
-                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/paypal.png') }}" alt="paypal"></a></li>
-                        <li><a href="index-4.html#"><img src="{{ asset('Template/images/amarican_express.png') }}" alt="amarican_express"></a></li>
+                        <li><a href=""><img src="{{ asset('Template/images/visa.png') }}" alt="visa"></a></li>
+                        <li><a href=""><img src="{{ asset('Template/images/discover.png') }}" alt="discover"></a></li>
+                        <li><a href=""><img src="{{ asset('Template/images/master_card.png') }}" alt="master_card"></a></li>
+                        <li><a href=""><img src="{{ asset('Template/images/paypal.png') }}" alt="paypal"></a></li>
+                        <li><a href=""><img src="{{ asset('Template/images/amarican_express.png') }}" alt="amarican_express"></a></li>
                     </ul>
                 </div>
             </div>
@@ -384,8 +367,7 @@
     </div>
 </footer>
 <!-- END FOOTER -->
-
-<a href="shop-left-sidebar.html#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
+@yield('up')
 
 <!-- Latest jQuery --> 
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('Template/js/jquery-1.12.4.min.js') }}"></script> 
