@@ -58,7 +58,7 @@ class ProfileController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Admin $admin)
     {
         /*$profile = $request->validated([
             'name' => 'required|string',
@@ -73,30 +73,46 @@ class ProfileController extends Controller
         $request->session()->flash('success', "You updated successfully");
         session("success");*/
 
-        $admin_data = Admin::find($id);
-        $this->save($admin_data, $request);
+        //$admin_data = Admin::find($id);
+        //$this->save($admin_data, $request);
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|unique:admins,email,'.$admin->id,
+            'gender' => 'required|integer',
+            'phone' => 'required',
+            'dob' => 'required|date',
+        ]);
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->gender = $request->gender;
+        $admin->phone = $request->phone;
+        $admin->dob = $request->dob;
+
+        $admin->save();
 
         return redirect()->route('admin.home');
     }
 
     private function save(Admin $admin_data, Request $request){
-        /*$profile = $request->validated([
+        $profile = $request->validator([
             'name' => 'required|string',
             'email' => 'required|unique:admins,email,'.$admin_data->id,
             'gender' => 'required|integer',
             'phone' => 'required|integer',
             'dob' => 'required|date',
-        ]);*/
+        ]);
 
-        $admin_data->update([
+        /*$admin_data->update([
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
             'phone' => $request->phone,
             'dob' => $request->dob,
-        ]);
+        ]);*/
 
-        //$admin_data->update($profile);
+        $admin_data->update($profile);
 
         $request->session()->flash('success', "You updated successfully");
         session("success");
