@@ -55,7 +55,7 @@
     </div>
 </div>
 <!-- END LOADER -->
-
+{{-- @include('user.HomeController',['categories'=>$categories]) --}}
 <!-- START HEADER -->
 @if (Auth::check())
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
@@ -78,6 +78,9 @@
                                 <ul class="mega-menu d-lg-flex">
                                             <li class="mega-menu-col col-lg-3">
                                                 <ul> 
+                                                    @foreach ($categories as $cat)
+                                                        {{ $cat->name }}
+                                                    @endforeach
                                                     <li class="dropdown-header">Bedroom</li>
                                                     <li><a class="dropdown-item nav-link nav_item" href="">Bed</a></li>
                                                     <li><a class="dropdown-item nav-link nav_item" href="">Chests & Drawers</a></li>
