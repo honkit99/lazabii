@@ -15,12 +15,6 @@ class ProfileController extends Controller
         $todos = Admin::all();//select all
 
         return view('admin.home');
-
-        //compact means
-
-        /*return view('todo.index', [
-            'todos' => 'todos';
-        ]);*/ 
     }
 
     /**
@@ -60,7 +54,16 @@ class ProfileController extends Controller
             return redirect()->route('admin.home');
         }
         else if(!$encypt_password){
-            return redirect()->route('admin.profile.index');
+            $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|unique:admins,email,'.$admin_data->id,
+                'gender' => 'required|integer',
+                'phone' => 'required',
+                'dob' => 'required|date',
+                //'current_password' => 'same: $admin_data->password',
+            ]);
+
+            return redirect()->route('admin.profile.edit');
         }
     }
 
