@@ -34,13 +34,9 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 
-    //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile');
-
-    //Route::post('profile', [App\Http\Controllers\Admin\ProfileController::class, 'update']);
-
     Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
 
-    //Route::post('profile', 'App\Http\Controllers\Admin\ProfileController@update');
+    Route::resource('changePassword', App\Http\Controllers\Admin\ProfileController::class);
     
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
 

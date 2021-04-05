@@ -58,59 +58,22 @@ class ProfileController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        /*$profile = $request->validated([
-            'name' => 'required|string',
-            'email' => 'required|unique:admins,email,'.$admin->id,
-            'gender' => 'required|integer',
-            'phone' => 'required|integer',
-            'dob' => 'required|date',
-        ]);
-
-        $admin->update($profile);
-
-        $request->session()->flash('success', "You updated successfully");
-        session("success");*/
-
-        //$admin_data = Admin::find($id);
-        //$this->save($admin_data, $request);
-
-        $this->validate($request, [
-            'name' => 'required|string',
-            'email' => 'required|unique:admins,email,'.$admin->id,
-            'gender' => 'required|integer',
-            'phone' => 'required',
-            'dob' => 'required|date',
-        ]);
-
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->gender = $request->gender;
-        $admin->phone = $request->phone;
-        $admin->dob = $request->dob;
-
-        $admin->save();
+        $admin_data = Admin::find($id);
+        $this->save($admin_data, $request);
 
         return redirect()->route('admin.home');
     }
 
     private function save(Admin $admin_data, Request $request){
-        $profile = $request->validator([
+        $profile = $request->validate([
             'name' => 'required|string',
             'email' => 'required|unique:admins,email,'.$admin_data->id,
             'gender' => 'required|integer',
-            'phone' => 'required|integer',
+            'phone' => 'required',
             'dob' => 'required|date',
         ]);
-
-        /*$admin_data->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'dob' => $request->dob,
-        ]);*/
 
         $admin_data->update($profile);
 

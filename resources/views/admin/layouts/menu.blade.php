@@ -151,7 +151,7 @@
 							<span class="nav-text">Information</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('admin.userlist.index') }}">Customers</a></li>
+                           <!-- <li><a href="{{ route('admin.userlist.index') }}">Customers</a></li>-->
                             <li><a href="{{ route('admin.admins.index') }}">Admins</a></li>
                         
                         </ul>
