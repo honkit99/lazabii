@@ -7,7 +7,9 @@
         <div class="content-body">
             <div class="container-fluid">
 				<!-- Add Project -->
-
+                <div class="d-flex flex-wrap mb-3">
+							<a href="{{route('admin.products.create')}}"  class="btn btn-outline-primary  mr-auto mb-2">Add New Product</a>
+						</div>	
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">

@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.admin.create');
+        return view('admin.auth.addadmin');
     }
 
     /**
@@ -36,12 +36,29 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate();
-        $admin = Admin::create($request->validated());
+       $request->validate([
+            'name' => 'required',
+            'email'=> 'required|unique:admins,email',
+            'gender'=> 'required',
+            'phone'=> 'required',
+            'dob'=> 'required',
 
+        ],[
+            'name.required'=>'Please fill in the name',
+            'unique'=>'This email already taken',
+        ],[
+            ]);
+            Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'dob' => $request->dob,
+                'password' => $request->password,
+            ]);
         $request->session()->flash('success', "You created successfully");
         session('success');
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admins.index');      
     }
 
     /**
@@ -79,7 +96,7 @@ class AdminController extends Controller
             'dob'=> 'required',
 
         ],[
-            'name.required'=>'Please fill in the title',
+            'name.required'=>'Please fill in the name',
         ],[
             ]);
         $admin->update($validated);
@@ -98,6 +115,6 @@ class AdminController extends Controller
 
         $request->session()->flash('success', "You deleted successfully");
 
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admins.index');
     }
 }

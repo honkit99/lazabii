@@ -9,48 +9,9 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-xl-12">
-						<div class="d-flex flex-wrap mb-3">
-							<a href="javascript:void(0);" data-toggle="modal" data-target="#addContactModal" class="btn btn-outline-primary  mr-auto mb-2">Add New Customer</a>
-							<!-- Add Order -->
-							<div class="modal fade" id="addContactModal">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Add Contact</h5>
-											<button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label class="text-black font-w500">First Name</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label class="text-black font-w500">Last Name</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label class="text-black font-w500">Address</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<button type="button" class="btn btn-primary">SAVE</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-							<select class="form-control style-2 mr-3 mb-2 default-select ">
-								<option>Filter</option>
-								<option>Date</option>
-							</select>
-							<select class="form-control style-2 mb-2 default-select ">
-								<option>Newest</option>
-								<option>Oldest</option>
-							</select>
-						</div>
+					<div class="d-flex flex-wrap mb-3">
+							<a href="{{route('admin.users.create')}}"  class="btn btn-outline-primary  mr-auto mb-2">Add New User</a>
+						</div>							
 						<div class="table-responsive">
 							<table style="text-align: center;"id="dataTable1" class="display mb-4 dataTablesCard card-table text-black customer-list-tbl">
 								<thead >
@@ -63,11 +24,12 @@
 										</th>
                                        
 										<th><strong class="font-w600 wspace-no">User ID</strong></th>
-                                        <th><strong class="font-w600 wspace-no">Admin Name</strong></th>
-										<th><strong class="font-w600 wspace-no">Admin Email </strong></th>
+                                        <th><strong class="font-w600 wspace-no">User Name</strong></th>
+										<th><strong class="font-w600 wspace-no">User Email </strong></th>
 										<th><strong class="font-w600 wspace-no">Gender</strong></th>
                                         <th><strong class="font-w600 wspace-no">Phone </strong></th>
 										<th><strong class="font-w600 wspace-no">Date of Birth</strong></th>
+										<th colspan="2"><strong class="font-w600 wspace-no">Action</strong></th>
 										<th class="bg-none"></th>
 									</tr>
 								</thead>
@@ -84,9 +46,18 @@
 										<td>{{$user ->id}}</td>
                                         <td>{{$user ->name}}</td>
                                         <td>{{$user ->email}}</td>
-                                        <td>{{$user ->gender}}</td>		
+                                        <td><span class="badge {{($user->status==0) ? 'bg-success' : (($user->status==1) ? 'bg-warning' :'bg-danger')}}">{{$user ->status_name}}</span></td>		
                                         <td>{{$user ->phone}}</td>								
 										<td>{{$user ->dob}}</td>
+										<td> <a href="{{route('admin.users.edit',$user->id)}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></a></i></td>
+										
+										<td>
+										<form action="{{route('admin.users.destroy',$user->id) }}" method="post">
+										@csrf
+       									@method("DELETE")
+										<a href="#"onclick="return confirmation(this);" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+										</form>
+										</td>
                                         @endforeach
 
 																		
@@ -99,7 +70,16 @@
 					</div>
 				</div>
             </div>
-           
+			<script>
+function confirmation(form)
+{
+	var answer;
+	answer=confirm("Are you sure you want to delete this user?");
+	if(answer)
+		$(form).parent().submit();
+	return answer;
+}
+</script>          
         </div>
         <!--**********************************
             Content body end
