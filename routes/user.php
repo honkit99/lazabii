@@ -51,9 +51,13 @@ Route::group(['middleware'=>['auth:user']], function () {
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
     
     Route::resource('category', CartController::class);
+
     Route::resource('product', ProductController::class);
+
     // Route::resource('voucher', 'User\VoucherController');
+    
     Route::resource('productCategory', ProductCategoryRelationController::class);
+
     Route::resource('cart', CartController::class);
     // Route::resource('order', 'User\OrderController');
 

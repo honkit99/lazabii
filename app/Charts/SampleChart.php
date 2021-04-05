@@ -48,9 +48,11 @@ class SampleChart extends BaseChart
     public function handler(Request $request): Chartisan
     {
         $data1 = Ewallet::all();
+
         $gg1 = [];
         $gg2 = [];
         $gg3 = [];
+        
         foreach ($data1 as $key=>$da1):
 
             $gg1[] = $da1->id;

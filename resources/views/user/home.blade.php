@@ -236,7 +236,7 @@
                 	<div class="row align-items-center">
         				<div class="col-lg-3 col-md-4">
                         	<div class="text-center text-md-left">
-                                <h4>Top Categories</h4>
+                                <h4>Categories</h4>
                                 <p class="mb-2">There are many variations of passages of Lorem</p>
                                 <a href="" class="btn btn-line-fill btn-sm">View All</a>
                             </div>
