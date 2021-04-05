@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.product.create');
+        return view('admin.auth.addproduct');
     }
 
     /**

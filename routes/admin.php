@@ -42,9 +42,9 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
     
-     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
      Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');
-     Route::resource('userlist', 'App\Http\Controllers\User\UserController');
+     Route::resource('users', 'App\Http\Controllers\User\UserController');
 
     // Route::resource('voucher', 'Admin\VoucherController');
 
