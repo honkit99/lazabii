@@ -85,7 +85,7 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                    @foreach ($categories as $category )
+                                    {{-- @foreach ($categories as $category )
                                     <li class="mega-menu-col col-lg-3">
                                         <ul> 
                                             <li class="dropdown-header">{{ $category->name }}</li>
@@ -96,7 +96,7 @@
                                             @endif
                                         </ul>
                                     </li>
-                                    @endforeach
+                                    @endforeach --}}
                                 </ul>
                             </div>
                         </li>
@@ -153,7 +153,9 @@
                             </ul>
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>78.00</p>
-                                <p class="cart_buttons"><a href="" class="btn btn-fill-line view-cart">View Cart</a><a href="" class="btn btn-fill-out checkout">Checkout</a></p>
+                                <p class="cart_buttons"><a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
+                                                        <a href="" class="btn btn-fill-out checkout">Checkout</a>
+                                </p>
                             </div>
                         </div>
                     </li>
