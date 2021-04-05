@@ -7,6 +7,8 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\FavouriteController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,7 +67,7 @@ Route::group(['middleware'=>['auth:user']], function () {
 
     // Route::resource('address', 'User\AddressController');
 
-    // Route::resource('favourite', 'User\FavouriteController');
+    Route::resource('favourite', FavouriteController::class);
 
     // Route::resource('feedback', 'User\FeedbackController');
 
