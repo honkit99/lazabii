@@ -18,7 +18,7 @@ class FavouriteController extends Controller
     {
         $favourites = Favourite::all();
 
-        return view('user.favourite.index', compact('favourites'));
+        return view('user.favourite', compact('favourites'));
     }
 
     /**

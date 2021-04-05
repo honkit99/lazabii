@@ -85,7 +85,7 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                    {{-- @foreach ($categories as $category )
+                                    @foreach ($categories as $category )
                                     <li class="mega-menu-col col-lg-3">
                                         <ul> 
                                             <li class="dropdown-header">{{ $category->name }}</li>
@@ -96,7 +96,7 @@
                                             @endif
                                         </ul>
                                     </li>
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>

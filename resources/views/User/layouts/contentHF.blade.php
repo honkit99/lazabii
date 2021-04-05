@@ -89,38 +89,6 @@
                                     </li>
                                     @endforeach
                                 </ul>
-                                <div class="d-lg-flex menu_banners">
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner11.jpg') }}" alt="menu_banner1">
-                                            <div class="banne_info">
-                                                <h6>10% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner22.jpg') }}" alt="menu_banner2">
-                                            <div class="banne_info">
-                                                <h6>15% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner33.jpg') }}" alt="menu_banner3">
-                                            <div class="banne_info">
-                                                <h6>23% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </li>
 						<li class="dropdown">
@@ -185,7 +153,7 @@
                     </li>
                 </ul>
 				<ul class="navbar-nav attr-nav align-items-center">
-					<li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
+					<li><a href="{{ route('user.favourite.index') }}" class="nav-link"><i class="ti-heart"></i></a></li>
 				</ul>
             </nav>
         </div>
