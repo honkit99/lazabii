@@ -15,7 +15,7 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id',
+        'user_id',
         'product_id',
         'product_name',
         'product_price',
@@ -30,16 +30,16 @@ class Cart extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'order_id' => 'integer',
+        'user_id' => 'integer',
         'product_id' => 'integer',
         'product_price' => 'decimal:2',
         'variance_id' => 'integer',
     ];
 
 
-    public function order()
+    public function user()
     {
-        return $this->belongsTo(\App\Order::class);
+        return $this->belongsTo(\App\User::class);
     }
 
     public function product()

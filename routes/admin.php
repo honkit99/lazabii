@@ -34,7 +34,13 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 
-    //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('profile');
+    Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
+
+    Route::resource('changePassword', App\Http\Controllers\Admin\ProfileController::class);
+    
+    Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+
+    Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
     
      Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
      Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');

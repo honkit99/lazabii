@@ -55,8 +55,9 @@
     </div>
 </div>
 <!-- END LOADER -->
-
+{{-- @include('user.HomeController',['categories'=>$categories]) --}}
 <!-- START HEADER -->
+@if (Auth::check())
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
@@ -75,60 +76,19 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul> 
-                                                    <li class="dropdown-header">Bedroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bed</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Chests & Drawers</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Wardrobes</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Clothes Organisers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Hook & Hangers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dressing Tables</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Mirror</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Lamp</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Rugs</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Kitchen</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Interior fittings</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Sinks & taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Kitchen lighting</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Unit kitchens</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cookware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Food Storage and Organising</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cooking & baking utensils</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dishwashing accessories</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Bathroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom funiture sets</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom cabinets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom vanities</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Showers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom sinks</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom accessories</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom Textiles</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Dining</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Dining tables</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining chairs</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining sets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Table linen</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Stools and Benches</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cafe furniture</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dinnerware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cutlery</a></li>
-												</ul>
-                                            </li>
+                                    @foreach ($categories as $category )
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul> 
+                                            <li class="dropdown-header">{{ $category->name }}</li>
+                                            @if ($category->children)
+                                                @foreach ($category->children as $children )
+                                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.product.show',$children->id) }}">{{ $children->name }}</a></li>
+                                                @endforeach
+                                            @endif
                                         </ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
                                 <div class="d-lg-flex menu_banners">
                                     <div class="col-sm-4">
                                         <div class="header-banner">
@@ -179,7 +139,17 @@
                             <div class="dropdown-menu">
                                 <ul> 
                                     <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="{{ route('user.login') }}">Log out</a></li>
+									<li>
+                                        <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -207,7 +177,7 @@
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
                                 <p class="cart_buttons">
-                                    <a href="" class="btn btn-fill-line view-cart">View Cart</a>
+                                    <a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
                                     <a href="" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
@@ -221,6 +191,7 @@
         </div>
     </div>
 </header>
+@endif
 <!-- END HEADER -->
 
 <!-- START SECTION BREADCRUMB -->
@@ -305,7 +276,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>Location</h5>
-                                        <p>123 Street, Old Trafford, </br> NewYork, USA</p>
+                                        <p>123 Street, Old Trafford,  NewYork, USA</p>
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +298,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>27/4 Online Support</h5>
-                                        <p>Call for styling advice on </br> <a href="">+123 1234 5678</a> </p>
+                                        <p>Call for styling advice on  <a href="">+123 1234 5678</a> </p>
                                     </div>
                                 </div>
                             </div>

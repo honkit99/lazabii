@@ -71,7 +71,7 @@
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('user.home') }}">
                     <img class="logo_light" src="{{ asset('Template/images/logo_light.png') }}" alt="logo" />
                     <img class="logo_dark" src="{{ asset('Template/images/logo_dark.png') }}" alt="logo" />
                 </a>
@@ -85,114 +85,51 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul> 
-                                                    <li class="dropdown-header">Bedroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bed</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Chests & Drawers</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Wardrobes</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Clothes Organisers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Hook & Hangers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dressing Tables</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Mirror</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Lamp</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Rugs</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Kitchen</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Interior fittings</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Sinks & taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Kitchen lighting</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Unit kitchens</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cookware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Food Storage and Organising</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cooking & baking utensils</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dishwashing accessories</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Bathroom</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom funiture sets</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Bathroom cabinets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom vanities</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Showers</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom sinks</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom taps</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom accessories</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Bathroom Textiles</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-3">
-                                                <ul>
-                                                    <li class="dropdown-header">Dining</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="">Dining tables</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining chairs</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dining sets</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Table linen</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Stools and Benches</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cafe furniture</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Dinnerware</a></li>
-													<li><a class="dropdown-item nav-link nav_item" href="">Cutlery</a></li>
-												</ul>
-                                            </li>
+                                    {{-- @foreach ($categories as $category )
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul> 
+                                            <li class="dropdown-header">{{ $category->name }}</li>
+                                            @if ($category->children)
+                                                @foreach ($category->children as $children )
+                                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.product.show',$children->id) }}">{{ $children->name }}</a></li>
+                                                @endforeach
+                                            @endif
                                         </ul>
-                                <div class="d-lg-flex menu_banners">
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner11.jpg') }}" alt="menu_banner1">
-                                            <div class="banne_info">
-                                                <h6>10% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner22.jpg') }}" alt="menu_banner2">
-                                            <div class="banne_info">
-                                                <h6>15% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner33.jpg') }}" alt="menu_banner3">
-                                            <div class="banne_info">
-                                                <h6>23% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </li>
+                                    @endforeach --}}
+                                </ul>
                             </div>
                         </li>
 						<li class="dropdown">
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="about.html">About Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="contact.html">Contact Us</a></li> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="faq.html">Faq</a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="term-condition.html">Terms and Conditions</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">About Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Contact Us</a></li> 
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Faq</a></li>
+									<li><a class="dropdown-item nav-link nav_item" href="">Terms and Conditions</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">My Account</a>
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="my-account.html">Profile</a></li>
-                                    <li><a class="dropdown-item nav-link nav_item" href="login.html">Log out</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+									<li>
+                                        <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>   
                     </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
@@ -205,7 +142,7 @@
                             </form>
                         </div><div class="search_overlay"></div><div class="search_overlay"></div>
                     </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="shop-cart.html" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
@@ -216,7 +153,9 @@
                             </ul>
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>78.00</p>
-                                <p class="cart_buttons"><a href="" class="btn btn-fill-line view-cart">View Cart</a><a href="" class="btn btn-fill-out checkout">Checkout</a></p>
+                                <p class="cart_buttons"><a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
+                                                        <a href="" class="btn btn-fill-out checkout">Checkout</a>
+                                </p>
                             </div>
                         </div>
                     </li>
@@ -241,7 +180,7 @@
                                     <h5 class="mb-3 bg_strip staggered-animation text-uppercase" data-animation="fadeInDown" data-animation-delay="0.2s">Starting $90.00</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Unique Furniture Style</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.5s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.5s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +196,7 @@
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="fadeInDown" data-animation-delay="0.2s">Get up to 50% off Today Only!</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Quality Furniture</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +212,7 @@
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="fadeInDown" data-animation-delay="0.2s">Taking your Viewing Experience to Next Level</h5>
                                     <h2 class="staggered-animation" data-animation="fadeInDown" data-animation-delay="0.3s">Living Room Collection</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-                                    <a class="btn btn-white staggered-animation" href="shop-left-sidebar.html" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
+                                    <a class="btn btn-white staggered-animation" href="" data-animation="fadeInUp" data-animation-delay="0.4s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -281,8 +220,8 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="index-4.html#carouselExampleControls" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
-        <a class="carousel-control-next" href="index-4.html#carouselExampleControls" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
     </div>
 </div>
 <!-- END SECTION BANNER -->
@@ -299,7 +238,7 @@
                 	<div class="row align-items-center">
         				<div class="col-lg-3 col-md-4">
                         	<div class="text-center text-md-left">
-                                <h4>Top Categories</h4>
+                                <h4>Categories</h4>
                                 <p class="mb-2">There are many variations of passages of Lorem</p>
                                 <a href="" class="btn btn-line-fill btn-sm">View All</a>
                             </div>
@@ -379,7 +318,7 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="product_box text-center">
                     <div class="product_img">
-                        <a href="shop-product-detail.html">
+                        <a href="">
                             <img src="{{ asset('Template/images/furniture_img1.jpg') }}" alt="furniture_img1">
                         </a>
                         <div class="product_action_box">
@@ -391,7 +330,7 @@
                         </div>
                     </div>
                     <div class="product_info">
-                        <h6 class="product_title"><a href="shop-product-detail.html">enim expedita sed</a></h6>
+                        <h6 class="product_title"><a href="">enim expedita sed</a></h6>
                         <div class="product_price">
                             <span class="price">$45.00</span>
                             <del>$55.25</del>
@@ -444,27 +383,15 @@
                 
 				<div class="col-lg-8 col-12">
                 	<div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="widget">
-                                <h6 class="widget_title">Quick Links</h6>
-                                <ul class="widget_links">
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">FAQ</a></li>
-                                    <li><a href="">Affiliates</a></li>
-                                    <li><a href="">Blogs</a></li>
-                                    <li><a href="">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <div class="col-lg-4 col-md-4 col-12"></div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="widget">
                                 <h6 class="widget_title">Information</h6>
                                 <ul class="widget_links">
+                                    <li><a href="">About Us</a></li>
+                                    <li><a href="">Contact Us</a></li>
+                                    <li><a href="">FAQ</a></li>
                                     <li><a href="">Term Of Service</a></li>
-                                    <li><a href="">Privacy Policy</a></li>
-                                    <li><a href="">Return policy</a></li>
-                                    <li><a href="">Your Account</a></li>
-                                    <li><a href="">Suppliers</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -474,9 +401,8 @@
                                 <ul class="widget_links">
                                     <li><a href="">My Account</a></li>
                                     <li><a href="">Discount</a></li>
-                                    <li><a href="">Returns</a></li>
+                                    <li><a href="">E-wallet</a></li>
                                     <li><a href="">Orders History</a></li>
-                                    <li><a href="">Order Tracking</a></li>
                                 </ul>
                             </div>
                         </div>
