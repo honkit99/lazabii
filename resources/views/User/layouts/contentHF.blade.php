@@ -57,6 +57,7 @@
 <!-- END LOADER -->
 
 <!-- START HEADER -->
+@if (Auth::check())
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
@@ -217,7 +218,7 @@
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
                                 <p class="cart_buttons">
-                                    <a href="" class="btn btn-fill-line view-cart">View Cart</a>
+                                    <a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
                                     <a href="" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
@@ -231,6 +232,7 @@
         </div>
     </div>
 </header>
+@endif
 <!-- END HEADER -->
 
 <!-- START SECTION BREADCRUMB -->
@@ -315,7 +317,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>Location</h5>
-                                        <p>123 Street, Old Trafford, </br> NewYork, USA</p>
+                                        <p>123 Street, Old Trafford,  NewYork, USA</p>
                                     </div>
                                 </div>
                             </div>
@@ -337,7 +339,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>27/4 Online Support</h5>
-                                        <p>Call for styling advice on </br> <a href="">+123 1234 5678</a> </p>
+                                        <p>Call for styling advice on  <a href="">+123 1234 5678</a> </p>
                                     </div>
                                 </div>
                             </div>

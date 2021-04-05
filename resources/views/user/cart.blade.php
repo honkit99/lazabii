@@ -14,9 +14,13 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in!') }}                                  
                     <br>
                     CARTTT
+                    @foreach ($carts as $cart)
+                    {{-- @dd($cart) --}}
+                        <p>-{{ $cart["name"] }}</p>RM{{ $cart["price"] }} x {{ $cart["quantity"] }} 
+                    @endforeach
                 </div>
                
                 </div>
