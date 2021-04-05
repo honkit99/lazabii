@@ -51,6 +51,8 @@ Route::get('cart/addtocart/{id}', 'App\Http\Controllers\User\CartController@addt
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+
+    Route::resource('profile', App\Http\Controllers\User\ProfileController::class);
     
     Route::resource('category', CartController::class);
 

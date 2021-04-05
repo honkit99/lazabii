@@ -27,7 +27,16 @@ class ProductImageController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.product_image.create');
+        $formInput=$request->all();
+        $image=$request->image;
+        if($image)
+        {
+            $imageName=$image->getClientOriginalName();
+            $image->move('images',$imageName);
+            $formInput['image']=$imageName;
+        }
+        ProductImage::create($formInput);
+        return view('admin.addproduct.create');
     }
 
     /**

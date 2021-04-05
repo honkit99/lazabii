@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductStoreRequest;
-use App\Http\Requests\Admin\ProductUpdateRequest;
+use App\Http\Requests\User\ProductStoreRequest;
+use App\Http\Requests\User\ProductUpdateRequest;
 use App\Product;
+use App\ProductCategoryRelation;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductCategoryRelationController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -28,12 +29,11 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        $categorys = Category::all();
-        return view('admin.auth.addproduct',compact('categorys'));
+        return view('user.product.create');
     }
 
     /**
-     * @param \App\Http\Requests\Admin\ProductStoreRequest $request
+     * @param \App\Http\Requests\User\ProductStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,9 +64,14 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Product $product)
+    public function show(ProductCategoryRelation $productCategoryRelation)
     {
-        return view('admin.product.show', compact('product'));
+        //$id = $Prodcategory->id;
+       // $sql = ProductCategoryRelation::wherecategory_id($ProdcategoproductCategoryRelationry);
+        dd($productCategoryRelation);
+        // ProductCategoryRelation::wherecategory_id()
+        // dd($product);
+        return view('user.product.show', compact('product'));
     }
 
     /**
@@ -76,21 +81,23 @@ class ProductController extends Controller
      */
     public function edit(Request $request, Product $product)
     {
-        return view('admin.product.edit', compact('product'));
+        return view('user.product.edit', compact('product'));
     }
 
     /**
-     * @param \App\Http\Requests\Admin\ProductUpdateRequest $request
+     * @param \App\Http\Requests\User\ProductUpdateRequest $request
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
     {
+        $request->validated();
         $product->update($request->validated());
 
-        $request->session()->flash('success', "You created successfully");
-
-        return redirect()->route('admin.product.index');
+        $request->session()->flash('success', 'You have updated successfully');
+        session('success');
+        
+        return redirect()->route('user.product.index');
     }
 
     /**
@@ -102,8 +109,9 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        $request->session()->flash('success', "You created successfully");
+        $request->session()->flash('success', 'You have deleted successfully');
+        session('success');
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('user.product.index');
     }
 }
