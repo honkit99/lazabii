@@ -142,5 +142,5 @@
 @endsection
 
 @section('up')
-    <a href="{{ route('user.cart') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+    <a href="{{ route('user.cart.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection
