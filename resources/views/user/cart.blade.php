@@ -33,10 +33,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($carts as $cart)
+                            <?php $total = 0; ?>
+                            @foreach ($carts as $key => $cart)
                                 <tr>
-                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="assets/images/product_img1.jpg" alt="product1"></a></td>
-                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
+                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
                                     <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
                                     <td class="product-quantity" data-title="Quantity"><div class="quantity">
                                 <div>
@@ -55,7 +55,7 @@
                                     
                                 </div>
                                 </div></td>
-                                    <td class="product-subtotal" data-title="Total">{{ $cart->product_qty*$cart->product_price }}</td>
+                                <td class="product-subtotal" data-title="Total">{{ number_format($cart["quantity"]*$cart["price"],2) }}</td>
                                     <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
                                 </tr>
                                 @endforeach
@@ -134,7 +134,7 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr>
+                                {{-- <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
                                     <td class="cart_total_amount">$ {{number_format($total, 2)}}</td>
                                 </tr>
@@ -145,7 +145,7 @@
                                 <tr>
                                     <td class="cart_total_label">Total</td>
                                     <td class="cart_total_amount"><strong>$ {{number_format($total + $Area["price"], 2)}}</strong></td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

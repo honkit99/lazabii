@@ -36,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\SampleChart::class,
             // \App\Charts\SalesChart::class
         ]);
+
+        $carts = Cart::where( 'user_id', 1)->get(); //children is from category model
+        View::share('carts',$carts);
     }
 }
