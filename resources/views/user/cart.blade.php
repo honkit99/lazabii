@@ -59,14 +59,11 @@
                                     <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
                                 </tr>
                                 @endforeach
-                                
-                            
                         </tbody>
                         <tfoot>
                         	<tr>
                             	<td colspan="6" class="px-0">
                                 	<div class="row no-gutters align-items-center">
-
                                     	<div class="col-lg-4 col-md-6 mb-3 mb-md-0">
                                             <div class="coupon field_form input-group">
                                                 <input type="text" value="" class="form-control form-control-sm" placeholder="Enter Coupon Code..">
@@ -75,7 +72,6 @@
                                                 </div>
                                             </div>
                                     	</div>
-                                       
                                     </div>
                                 </td>
                             </tr>
