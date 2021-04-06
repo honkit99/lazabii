@@ -126,7 +126,7 @@
 						</a>
                         <ul aria-expanded="false">
 							<li><a href="">Dashboard</a></li>
-							<li><a href="">Orders list</a></li>
+							<li><a href="{{ route('admin.order.index') }}">Orders list</a></li>
 							<li><a href="">Sales Report</a></li>
 							<li><a href="">Feedback</a></li>	
 						</ul>

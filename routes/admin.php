@@ -35,8 +35,6 @@ Route::group(['middleware'=>['auth:admin']], function () {
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 
     Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
-
-    //Route::resource('changePassword', App\Http\Controllers\Admin\changePasswordController::class);
     
     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
 
@@ -45,16 +43,16 @@ Route::group(['middleware'=>['auth:admin']], function () {
     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
 
     Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');
-    
+
     Route::resource('users', 'App\Http\Controllers\User\UserController');
 
     Route::resource('productCategory', 'App\Http\Controllers\Admin\ProductCategoryRelationController');
 
     // Route::resource('voucher', 'Admin\VoucherController');
 
-    // Route::resource('order', 'Admin\OrderController');
+    Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
 
-     Route::resource('categorys', 'App\Http\Controllers\Admin\CategoryController');
+    Route::resource('categorys', 'App\Http\Controllers\Admin\CategoryController');
 
     // Route::resource('variance', 'Admin\VarianceController');
 
