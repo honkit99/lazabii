@@ -16,6 +16,7 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
+        'product_id',
         'total_amount',
         'delivery_company_id',
         'delivery_company_name',
@@ -60,6 +61,32 @@ class Order extends Model
         'status' => 'integer',
     ];
 
+    protected $guarded = ['id'];
+    protected $appends = ['delivery_status_name', 'payment_status_name'];
+
+    public function getDeliveryStatusNameAttribute(){
+        if($this->delivery_status == 0){
+            return "New";
+        }
+        if($this->delivery_status == 1){
+            return "OTW";
+        }
+        if($this->delivery_status == 2){
+            return "Done";
+        }
+    }
+
+    public function getPaymentStatusNameAttribute(){
+        if($this->payment_status == 0){
+            return "New";
+        }
+        if($this->payment_status == 1){
+            return "OTW";
+        }
+        if($this->payment_status == 2){
+            return "Done";
+        }
+    }
 
     public function deliveryCompany()
     {
@@ -94,5 +121,10 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(\App\Product::class);
     }
 }

@@ -11,6 +11,7 @@
 
 	<link rel="stylesheet" href="{{asset('vendor/chartist/css/chartist.min.css')}}">
 	<link href="{{asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
 	
 </head>
@@ -125,7 +126,7 @@
 							<span class="nav-text">Dashboard</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="">Dashboard</a></li>
+							<li><a href="{{ route('admin.home') }}">Dashboard</a></li>
 							<li><a href="{{ route('admin.order.index') }}">Orders list</a></li>
 							<li><a href="">Sales Report</a></li>
 							<li><a href="">Feedback</a></li>	
