@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderStoreRequest;
 use App\Http\Requests\User\OrderUpdateRequest;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -50,9 +52,11 @@ class OrderController extends Controller
      * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Order $order)
+    public function show(Request $request,$id)
     {
-        return view('user.order.show', compact('order'));
+        $user = Auth::user()->id;
+        $histories = Order::whereuser_id($user)->get();
+        return view('user.orderhistory', compact('histories'));
     }
 
     /**

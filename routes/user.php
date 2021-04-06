@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ProfileController;
 
 /*
@@ -48,7 +49,6 @@ Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordContr
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
-    Route::delete('cart/{id}', 'CartController@destroy')->name('cart.destroy');
     Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);
@@ -61,7 +61,7 @@ Route::group(['middleware'=>['auth:user']], function () {
     Route::resource('productCategory', ProductCategoryRelationController::class);
 
     Route::resource('cart', CartController::class);
-    // Route::resource('order', 'User\OrderController');
+    Route::resource('order', OrderController::class);
 
     // Route::resource('ewallet', 'User\EwalletController')->except('destroy');
 
