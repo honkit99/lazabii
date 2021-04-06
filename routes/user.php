@@ -7,6 +7,9 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,10 +36,6 @@ Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswo
 Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
 
 // Add to cart Routes..
-Route::get('cart/addtocart/{id}', 'App\Http\Controllers\User\CartController@addtocart');
-// Route::post('addtocart', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
-
-
 
 // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
 
@@ -50,10 +49,11 @@ Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
 
-    Route::resource('profile', App\Http\Controllers\User\ProfileController::class);
+    Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);
-
+    Route::post('addtocart/{id}', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
+    Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
     Route::resource('product', ProductController::class);
 
     // Route::resource('voucher', 'User\VoucherController');
@@ -67,7 +67,7 @@ Route::group(['middleware'=>['auth:user']], function () {
 
     // Route::resource('address', 'User\AddressController');
 
-    // Route::resource('favourite', 'User\FavouriteController');
+    Route::resource('favourite', FavouriteController::class);
 
     // Route::resource('feedback', 'User\FeedbackController');
 

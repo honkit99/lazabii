@@ -16,7 +16,7 @@ class DeliveryState extends Model
      */
     protected $fillable = [
         'delivery_company_id',
-        'state_id',
+        'state_area',
         'price',
     ];
 
@@ -28,7 +28,6 @@ class DeliveryState extends Model
     protected $casts = [
         'id' => 'integer',
         'delivery_company_id' => 'integer',
-        'state_id' => 'integer',
         'price' => 'decimal:2',
     ];
 
@@ -36,10 +35,5 @@ class DeliveryState extends Model
     public function deliveryCompany()
     {
         return $this->belongsTo(\App\DeliveryCompany::class);
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(\App\State::class);
     }
 }

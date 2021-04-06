@@ -33,21 +33,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($carts as $cart)
-                            <tr>
-                            	<td class="product-thumbnail"><a href="shop-cart.html#"><img src="assets/images/product_img1.jpg" alt="product1"></a></td>
-                                <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart["name"] }}</a></td>
-                                <td class="product-price" data-title="Price">{{ $cart["price"] }}</td>
-                                <td class="product-quantity" data-title="Quantity"><div class="quantity">
-                                <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="{{ $cart["quantity"] }}" title="Qty" class="qty" size="4">
-                                <input type="button" value="+" class="plus">
-                              </div></td>
-                              	<td class="product-subtotal" data-title="Total">{{ $cart["quantity"]*$cart["price"] }}</td>
-                                <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
-                            </tr>
-                            @endforeach
-                        	
+                                @foreach ($carts as $cart)
+                                <tr>
+                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="assets/images/product_img1.jpg" alt="product1"></a></td>
+                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
+                                    <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
+                                    <td class="product-quantity" data-title="Quantity"><div class="quantity">
+                                <div>
+                                    <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
+                                        @csrf
+                                        @method("PATCH")
+
+                                    {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
+                                    <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
+                                    {{-- <input type="button" value="+" class="plus"> --}}
+                                    
+                                    <div class="col-lg-8 col-md-6 text-left text-md-right">
+                                        <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
+                                    </div>
+                                    </form>
+                                    
+                                </div>
+                                </div></td>
+                                    <td class="product-subtotal" data-title="Total">{{ $cart->product_qty*$cart->product_price }}</td>
+                                    <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
+                                </tr>
+                                @endforeach
+                                
                             
                         </tbody>
                         <tfoot>
@@ -63,9 +75,7 @@
                                                 </div>
                                             </div>
                                     	</div>
-                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
-                                        </div>
+                                       
                                     </div>
                                 </td>
                             </tr>
@@ -91,19 +101,26 @@
                         <div class="form-group col-lg-12">
                             <div class="custom_select">
                                 <select class="form-control">
-                                    <option value="">Choose a option...</option>
+                                    <option value="">Select your country...</option>
                                     <!-- Shipping country Example-->
-                                    <option value="MLYS">Malaysia</option>
+                                    @foreach ($country as $countries )
+                                        <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input required="required" placeholder="State / Country" class="form-control" name="name" type="text">
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input required="required" placeholder="PostCode / ZIP" class="form-control" name="name" type="text">
+                        <div class="form-group col-lg-12">
+                            <div class="custom_select">
+                                <select class="form-control">
+                                    <option value="">Select your state...</option>
+                                    <!-- Shipping country Example-->
+                                    @foreach ($countryArea as $Area )
+                                        <option value="{{ $Area -> id }}">{{ $Area -> state_area}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -123,15 +140,15 @@
                             <tbody>
                                 <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
-                                    <td class="cart_total_amount">$349.00</td>
+                                    <td class="cart_total_amount">$ {{number_format($total, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>
-                                    <td class="cart_total_amount">Free Shipping</td>
+                                    <td class="cart_total_amount">$ {{ $Area -> price}}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Total</td>
-                                    <td class="cart_total_amount"><strong>$349.00</strong></td>
+                                    <td class="cart_total_amount"><strong>$ {{number_format($total + $Area["price"], 2)}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -148,3 +165,4 @@
 @section('up')
     <a href="{{ route('user.cart.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection
+

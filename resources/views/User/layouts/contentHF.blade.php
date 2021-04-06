@@ -55,7 +55,6 @@
     </div>
 </div>
 <!-- END LOADER -->
-{{-- @include('user.HomeController',['categories'=>$categories]) --}}
 <!-- START HEADER -->
 @if (Auth::check())
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
@@ -89,38 +88,6 @@
                                     </li>
                                     @endforeach
                                 </ul>
-                                <div class="d-lg-flex menu_banners">
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner11.jpg') }}" alt="menu_banner1">
-                                            <div class="banne_info">
-                                                <h6>10% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner22.jpg') }}" alt="menu_banner2">
-                                            <div class="banne_info">
-                                                <h6>15% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="header-banner">
-                                            <img src="{{ asset('Template/images/menu_banner33.jpg') }}" alt="menu_banner3">
-                                            <div class="banne_info">
-                                                <h6>23% Off</h6>
-                                                <h4>Wooden Chair</h4>
-                                                <a href="">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </li>
 						<li class="dropdown">
@@ -138,7 +105,7 @@
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.profile.edit', Auth('user')->user()->id) }}">Profile</a></li>
 									<li>
                                         <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
@@ -167,25 +134,30 @@
                     </li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
+                            <?php $total = 0; ?>
+                            @foreach ($carts as $key => $cart)
                             <ul class="cart_list">
                                 <li>
                                     <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
-                                    <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
+                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"] }}</a>
+                                    <span class="cart_quantity"> {{ $cart["quantity"] }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart["price"] }}</span>
                                 </li>
                             </ul>
+                            <?php $total += $cart["quantity"]*$cart["price"]; ?>
+                            @endforeach
                             <div class="cart_footer">
-                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
+                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>{{ number_format($total,2) }}</p>
                                 <p class="cart_buttons">
                                     <a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
                                     <a href="" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
+                            
                         </div>
                     </li>
                 </ul>
 				<ul class="navbar-nav attr-nav align-items-center">
-					<li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
+					<li><a href="{{ route('user.favourite.index') }}" class="nav-link"><i class="ti-heart"></i></a></li>
 				</ul>
             </nav>
         </div>
@@ -331,6 +303,7 @@
 @yield('up')
 
 <!-- Latest jQuery --> 
+@yield('script');
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('Template/js/jquery-1.12.4.min.js') }}"></script> 
 <!-- jquery-ui --> 
 <script src="{{ asset('Template/js/jquery-ui.js') }}"></script>
