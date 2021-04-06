@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end">
             <li class="breadcrumb-item "><a href="{{ route('user.home') }}" class="color_white">Home</a></li>
-            <li class="breadcrumb-item "><a href="{{ route('user.cart') }}" class="color_white">Cart</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('user.cart.index') }}" class="color_white">Cart</a></li>
             <li class="breadcrumb-item active">Check-Out</li>
         </ol>
     </div>
@@ -19,12 +19,10 @@
 <!-- START SECTION SHOP -->
 <div class="section">
 	<div class="container">
-        <div class="row">
-            <div class="col-12">
-            	<div class="medium_divider"></div>
-            	<div class="divider center_icon"><i class="linearicons-credit-card"></i></div>
-            	<div class="medium_divider"></div>
-            </div>
+        <div class="col-12">
+            <div class="medium_divider"></div>
+            <div class="divider center_icon"><i class="linearicons-credit-card"></i></div>
+            <div class="medium_divider"></div>
         </div>
         <div class="row">
         	<div class="col-md-6">
@@ -42,7 +40,9 @@
                         <div class="custom_select">
                             <select class="form-control">
                                 <option value="">Select your country...</option>
-                                <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
+                                @foreach ($country as $countries )
+                                    <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -60,12 +60,6 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" name="phone" placeholder="Phone Number *">
-                    </div>
-                    <div class="heading_s1">
-                        <h4>Additional information</h4>
-                    </div>
-                    <div class="form-group mb-0">
-                        <textarea rows="5" class="form-control" placeholder="Order notes"></textarea>
                     </div>
                 </form>
             </div>
@@ -127,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="checkout.html#" class="btn btn-fill-out btn-block">Place Order</a>
+                    <button type="submit" href="" class="btn btn-fill-out btn-block">Place Order</button>
                 </div>
             </div>
         </div>
@@ -137,5 +131,5 @@
 @endsection
 
 @section('up')
-<a href="{{ route('user.checkout') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+<a href="{{ route('user.order.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection

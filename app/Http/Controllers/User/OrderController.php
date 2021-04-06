@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderStoreRequest;
 use App\Http\Requests\User\OrderUpdateRequest;
@@ -17,8 +18,9 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = Order::all();
+        $country = Country::all();
 
-        return view('user.order.index', compact('orders'));
+        return view('user.order', compact('orders','country'));
     }
 
     /**

@@ -106,7 +106,7 @@
                     </div><!-- EndProduct -->
                         {{-- test --}}
                      @if (isset($fill->product))
-                @foreach ($fill->product as $product)
+                    @foreach ($fill->product as $product)
                     <div class="col-md-4 col-6">
                         <div class="product">
                             <div class="product_img">
