@@ -90,4 +90,9 @@ class Order extends Model
     {
         return $this->belongsTo(\App\Postcode::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class);
+    }
 }

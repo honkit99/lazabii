@@ -105,12 +105,25 @@ class CartController extends Controller
      */
     public function updatecart(Request $request, Cart $cart)
     {
-        $id = $cart->product_id;
+            $id = $cart->product_id;
             $cart->update(['product_qty'=>$request->product_qty]);
             
-            $cart = session()->get('cart');
-            $cart[$id]['quantity'] = $request->product_qty;
-            session()->put('cart', $cart);
+            $scart = session()->get('cart');
+            if(!$scart){
+                $scart = [
+                    $id => [
+                        "id" => $cart->product_id,
+                        "name" => $cart->product_name,
+                        "quantity" => $request->product_qty,
+                        "price" => $cart->product_price,
+                        "descr" => ""
+                    ]
+            ];
+            }else{
+                $scart[$id]['quantity'] = $request->product_qty;
+            }
+            
+            session()->put('cart', $scart);
             
             session()->flash('success', 'Cart updated successfully');
         
