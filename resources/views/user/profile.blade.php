@@ -1,6 +1,20 @@
-@extends('user.layouts.app')
+@extends('user.layouts.contentHF')
 
-@section('content')
+@section('contents')
+    <div class="col-md-6">
+        <div class="page-title">
+            <h1>Shopping Cart</h1>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <ol class="breadcrumb justify-content-md-end">
+            <li class="breadcrumb-item "><a href="{{ route('user.home') }}" class="color_white">Home</a></li>
+            <li class="breadcrumb-item active">Shopping Cart</li>
+        </ol>
+    </div>
+@endsection
+
+@section('contenthf')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

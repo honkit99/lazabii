@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
 
-    Route::resource('profile', App\Http\Controllers\User\ProfileController::class);
+    Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);
 
