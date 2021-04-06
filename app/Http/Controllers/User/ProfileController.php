@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
@@ -54,14 +55,10 @@ class ProfileController extends Controller
             return redirect()->route('user.home');
         }
         else if(!$encypt_password){
-            $request->validate([
-                'name' => 'required|string',
-                'email' => 'required|unique:users,email,'.$user_data->id,
-                'gender' => 'required|integer',
-                'phone' => 'required',
-                'dob' => 'required|date',
-                'current_password' => 'same: $user_data->password',
-            ]);
+            $validator = Validator::make([], []);
+            $validator->errors()->add('current_password', "Wrong password");
+
+            throw new ValidationException($validator);
 
             return redirect()->route('user.profile.edit');
         }

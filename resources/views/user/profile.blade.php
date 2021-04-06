@@ -110,6 +110,12 @@
                             <div class="col-md-6">
                                 <input id="current_password" type="password" class="form-control @error('password') is-invalid @enderror" 
                                 name="current_password" autocomplete="new-password">
+
+                                @error('current_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         
