@@ -48,7 +48,7 @@ Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordContr
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
-
+    Route::delete('cart/{id}', 'CartController@destroy')->name('cart.destroy');
     Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);

@@ -55,9 +55,29 @@
                                     
                                 </div>
                                 </div></td>
-                                <td class="product-subtotal" data-title="Total">{{ number_format($cart["quantity"]*$cart["price"],2) }}</td>
-                                    <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
+                                <td class="product-subtotal" data-title="Total">{{ number_format($cart->product_qty*$cart->product_price,2) }}</td>
+                                <td class="product-remove" data-title="Remove">
+                                    <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
+										@csrf
+       									@method('DELETE')
+										<a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
+										</form>
+                                </td>
+                                  {{-- <form id="form1" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <td class="product-remove" data-title="Remove">
+                                        <a href="#" onclick="$(this).parent().submit();"><i class="ti-close"></i></a></td>
+                                    </form>
+                                    <form id="form" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <td class="product-remove" data-title="Remove">
+                                        <a href="#" onclick="$(this).parent().submit();"><i class="bi bi-trash-fill">ds</i></a></td>
+                                    </form> --}}
+                                    
                                 </tr>
+                             
                                 @endforeach
                         </tbody>
                         <tfoot>
@@ -155,6 +175,16 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmation(form)
+    {
+        var answer;
+        answer=confirm("Are you sure you want to delete this cart?");
+        if(answer)
+            $(form).parent().submit();
+        return answer;
+    }
+    </script> 
 <!-- END SECTION SHOP -->
 @endsection
 
