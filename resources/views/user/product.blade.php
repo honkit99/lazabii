@@ -16,7 +16,7 @@
                 @else
                 <li class="breadcrumb-item active"></li>
                 @endif
-            
+            @endforeach
         </ol>
     </div>
 @endsection
@@ -58,13 +58,13 @@
                         </div>
                     </div>
                 </div> 
-                            @if (\Session::has('success'))
+                @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>
                         <li>{!! \Session::get('success') !!}</li>
                     </ul>
                 </div>
-            @endif
+                @endif
                 <div class="row shop_container">
                     <!-- Product -->
                     <div class="col-md-4 col-6">
@@ -131,28 +131,36 @@
                                         <span>100% off</span>
                                     </div>
                                 </div>
-                                <div class="rating_wrap">
-                                    <div class="rating">
-                                        <!-- Rating Star -->
-                                        <div class="product_rate" style="width:80%"></div>
+                                <div class="product_info">
+                                    <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
+                                    <div class="product_price">
+                                        <span class="price">RM{{ $product->price }}</span>
+                                        <del>Original price</del>
+                                        <div class="on_sale">
+                                            <span>100% off</span>
+                                        </div>
                                     </div>
-                                    <span class="rating_num">(21)</span>
-                                </div>
-                                <div class="pr_switch_wrap">
-                                    <div class="product_color_switch">
-                                        <span class="active" data-color="#87554B"></span>
-                                        <span data-color="#333333"></span>
-                                        <span data-color="#DA323F"></span>
+                                    <div class="rating_wrap">
+                                        <div class="rating">
+                                            <!-- Rating Star -->
+                                            <div class="product_rate" style="width:80%"></div>
+                                        </div>
+                                        <span class="rating_num">(21)</span>
+                                    </div>
+                                    <div class="pr_switch_wrap">
+                                        <div class="product_color_switch">
+                                            <span class="active" data-color="#87554B"></span>
+                                            <span data-color="#333333"></span>
+                                            <span data-color="#DA323F"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                     @endif
                     {{-- endtest --}}
                 </div>
-                @endforeach 
                 {{-- @foreach ($products as $product)
                     <div class="col-md-4 col-6">
                         <div class="product">

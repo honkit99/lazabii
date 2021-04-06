@@ -101,19 +101,26 @@
                         <div class="form-group col-lg-12">
                             <div class="custom_select">
                                 <select class="form-control">
-                                    <option value="">Choose a option...</option>
+                                    <option value="">Select your country...</option>
                                     <!-- Shipping country Example-->
-                                    <option value="MLYS">Malaysia</option>
+                                    @foreach ($country as $countries )
+                                        <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input required="required" placeholder="State / Country" class="form-control" name="name" type="text">
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input required="required" placeholder="PostCode / ZIP" class="form-control" name="name" type="text">
+                        <div class="form-group col-lg-12">
+                            <div class="custom_select">
+                                <select class="form-control">
+                                    <option value="">Select your state...</option>
+                                    <!-- Shipping country Example-->
+                                    @foreach ($countryArea as $Area )
+                                        <option value="{{ $Area -> id }}">{{ $Area -> state_area}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -133,7 +140,7 @@
                             <tbody>
                                 <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
-                                    <td class="cart_total_amount">$349.00</td>
+                                    <td class="cart_total_amount">$ {{number_format($total, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>

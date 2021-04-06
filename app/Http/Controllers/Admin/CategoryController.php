@@ -27,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.category.create');
+        $categorys = Category::all();
+        return view('admin.addproduct.create', compact('categorys'));
     }
 
     /**
@@ -41,7 +42,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('success', "You created successfully");
         session('success');
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.auth.addproduct');
     }
 
     /**

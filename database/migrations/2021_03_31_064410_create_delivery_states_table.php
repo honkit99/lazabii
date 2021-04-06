@@ -19,8 +19,7 @@ class CreateDeliveryStatesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('delivery_company_id');
             $table->foreign('delivery_company_id')->references('id')->on('Delivery_Companies');
-            $table->unsignedBigInteger('state_id');
-            $table->foreign('state_id')->references('id')->on('States');
+            $table->string('state_area');
             $table->decimal('price', 8, 2);
             $table->timestamps();
         });

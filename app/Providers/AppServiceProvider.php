@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Cart;
 use App\Category;
 use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider

@@ -115,7 +115,7 @@
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
-                                    <li><a class="dropdown-item nav-link nav_item" href="">Profile</a></li>
+                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.profile.edit', Auth('user')->user()->id) }}">Profile</a></li>
 									<li>
                                         <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
+                    <li><a href="{{ route('user.favourite.index') }}" class="nav-link"><i class="ti-heart"></i></a></li>
                 </ul>
             </nav>
         </div>

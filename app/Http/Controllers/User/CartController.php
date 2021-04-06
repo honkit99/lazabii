@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\User;
 
 use App\Cart;
+use App\Country;
+use App\CountryArea;
+use App\DeliveryState;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CartStoreRequest;
 use App\Http\Requests\User\CartUpdateRequest;
 use App\Product;
 use App\User;
+use CreateCountriesTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +26,17 @@ class CartController extends Controller
         
         $carts = Cart::where('user_id',Auth::user()->id)->get();
         // dd($carts);
+        $carts = session()->get('cart');
+        $country = Country::all();
+        $countryArea = DeliveryState::all();
+
         if(!$carts){
             abort(404);
         }
         // dd($carts);
-        return view('user.cart',compact('carts'));
+        return view('user.cart',compact('carts','country','countryArea'));
+
+        
     }
 
     /**

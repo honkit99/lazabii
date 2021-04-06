@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('user.user.create');
+        return view('admin.auth.adduser');
     }
 
     /**
@@ -36,13 +36,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validated();
-        $user = User::create($request->validated());
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required|unique:users,email',
+            'gender'=> 'required',
+            'phone'=> 'required',
+            'dob'=> 'required',
 
-        $request->session()->flash('success', 'You have created successfully');
-        session('success');
-
-        return redirect()->route('user.user.index');
+        ],[
+            'name.required'=>'Please fill in the name',
+            'unique'=>'This email already taken',
+        ],[
+            ]);
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'dob' => $request->dob,
+                'password' => $request->password,
+            ]);
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -62,7 +76,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, User $user)
     {
-        return view('user.user.edit', compact('user'));
+        return view('admin.auth.useredit', compact('user'));
     }
 
     /**
@@ -72,13 +86,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validated();
-        $user->update($request->validated());
+        $validated=$request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'gender'=> 'required',
+            'phone'=> 'required',
+            'dob'=> 'required',
 
-        $request->session()->flash('success', 'You have updated successfully');
-        session('success');
+        ],[
+            'name.required'=>'Please fill in the name',
+        ],[
+            ]);
+         $user->update($validated);
 
-        return redirect()->route('user.user.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -93,6 +114,6 @@ class UserController extends Controller
         $request->session()->flash('success', 'You have deleted successfully');
         session('success');
 
-        return redirect()->route('user.user.index');
+        return redirect()->route('admin.users.index');
     }
 }

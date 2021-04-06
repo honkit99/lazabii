@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lazabii Admin Dashboard </title>
+    <title>Lazabii Admin Panel </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <link href="{{asset('vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
@@ -139,8 +139,8 @@
                         <ul aria-expanded="false">
                                 
                                 <ul aria-expanded="false">
-                                    <li><a href="{{ route('admin.product.index') }}">Product List</a></li>
-									<li><a href="">Product Details</a></li>
+                                    <li><a href="{{ route('admin.products.index') }}">Product List</a></li>
+									<li><a href="">Product Category</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -151,7 +151,7 @@
 							<span class="nav-text">Information</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('admin.userlist.index') }}">Customers</a></li>
+                            <li><a href="{{ route('admin.users.index') }}">Customers</a></li>
                             <li><a href="{{ route('admin.admins.index') }}">Admins</a></li>
                         
                         </ul>
@@ -219,6 +219,7 @@
 <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
 <!-- Chartisan -->
 <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 @stack('scripts')
 </html>

@@ -7,6 +7,9 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +48,9 @@ Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordContr
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+
+    Route::resource('profile', ProfileController::class);
+    
     Route::resource('category', CartController::class);
     Route::post('addtocart/{id}', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
     Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
@@ -61,7 +67,7 @@ Route::group(['middleware'=>['auth:user']], function () {
 
     // Route::resource('address', 'User\AddressController');
 
-    // Route::resource('favourite', 'User\FavouriteController');
+    Route::resource('favourite', FavouriteController::class);
 
     // Route::resource('feedback', 'User\FeedbackController');
 

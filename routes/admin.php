@@ -34,27 +34,24 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     Route::get('home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 
-    //Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile');
-
-    //Route::post('profile', [App\Http\Controllers\Admin\ProfileController::class, 'update']);
-
     Route::resource('profile', App\Http\Controllers\Admin\ProfileController::class);
 
-    //Route::post('profile', 'App\Http\Controllers\Admin\ProfileController@update');
+    //Route::resource('changePassword', App\Http\Controllers\Admin\changePasswordController::class);
     
-    Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+    Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
 
     Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
     
-     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
      Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');
-     Route::resource('userlist', 'App\Http\Controllers\User\UserController');
+     Route::resource('users', 'App\Http\Controllers\User\UserController');
+     Route::resource('productCategory', 'App\Http\Controllers\Admin\ProductCategoryRelationController');
 
     // Route::resource('voucher', 'Admin\VoucherController');
 
     // Route::resource('order', 'Admin\OrderController');
 
-    // Route::resource('category', 'Admin\CategoryController');
+     Route::resource('categorys', 'App\Http\Controllers\Admin\CategoryController');
 
     // Route::resource('variance', 'Admin\VarianceController');
 
