@@ -38,9 +38,20 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\RevenueChart::class,
             \App\Charts\CustomerChart::class,
         ]);
+       
+        // dd($carts);
+       
 
-        $carts = Cart::where( 'user_id', 1)->get(); //children is from category model
-        View::share('carts',$carts);
+        view()->composer('*',function($view){
+            if (Auth::check()) {
+                $carts = Cart::where( 'user_id', Auth::user()->id)->get();
+                $sum = Cart::where( 'user_id', Auth::user()->id)->count();
+                View::share('carts',$carts);
+                View::share('sum',$sum);
+            }else {
+                $view->with('currentUser', null);
+            }
+        });
 
     }
 }

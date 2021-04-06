@@ -40,24 +40,39 @@
                                     <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
                                     <td class="product-quantity" data-title="Quantity"><div class="quantity">
                                     <div>
-                                        <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
-                                            @csrf
-                                            @method("PATCH")
-
                                         {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
-                                        <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
-                                        {{-- <input type="button" value="+" class="plus"> --}}
-                                        
-                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
-                                        </div>
-                                        </form>
+                                        <div class="minus" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                                        <input type="text" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="qty" size="4" >
+                                        <div class="plus" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
                                     </div>
-                                    </div></td>
-                                    <td class="product-subtotal" data-title="Total">{{ number_format($cart["quantity"]*$cart["price"],2) }}</td>
-                                    <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
+                                    </form>
+                                    
+                                </div>
+                                </div></td>
+                                <td class="product-subtotal" data-title="Total">{{ number_format($cart->product_qty*$cart->product_price,2) }}</td>
+                                <td class="product-remove" data-title="Remove">
+                                    <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
+										@csrf
+       									@method('DELETE')
+										<a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
+										</form>
+                                </td>
+                                  {{-- <form id="form1" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <td class="product-remove" data-title="Remove">
+                                        <a href="#" onclick="$(this).parent().submit();"><i class="ti-close"></i></a></td>
+                                    </form>
+                                    <form id="form" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <td class="product-remove" data-title="Remove">
+                                        <a href="#" onclick="$(this).parent().submit();"><i class="bi bi-trash-fill">ds</i></a></td>
+                                    </form> --}}
+                                    
                                 </tr>
-                            @endforeach
+                             
+                                @endforeach
                         </tbody>
                         <tfoot>
                         	<tr>
@@ -71,6 +86,9 @@
                                                 </div>
                                             </div>
                                     	</div>
+                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
+                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -154,6 +172,16 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmation(form)
+    {
+        var answer;
+        answer=confirm("Are you sure you want to delete this cart?");
+        if(answer)
+            $(form).parent().submit();
+        return answer;
+    }
+    </script> 
 <!-- END SECTION SHOP -->
 @endsection
 

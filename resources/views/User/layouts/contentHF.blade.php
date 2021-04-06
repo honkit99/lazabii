@@ -72,7 +72,7 @@
                     <ul class="navbar-nav">
                         <li><a class="nav-link nav_item" href="{{ route('user.home') }}">Home</a></li>
                         <li class="dropdown dropdown-mega-menu">
-                            <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
+                            <a class="dropdown-toggle nav-link" href="{{ route('user.product.index') }}" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
                                     @foreach ($categories as $category )
@@ -106,7 +106,8 @@
                             <div class="dropdown-menu">
                                 <ul> 
                                     <li><a class="dropdown-item nav-link nav_item" href="{{ route('user.profile.edit', Auth('user')->user()->id) }}">Profile</a></li>
-									<li>
+									<li><a class="dropdown-item nav-link nav_item" href="{{ route('user.order.show' , Auth('user')->user()->id) }}">History</a></li>
+                                    <li>
                                         <a class="dropdown-item nav-link nav_item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -132,18 +133,19 @@
                             </form>
                         </div><div class="search_overlay"></div>
                     </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                    
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{{ $sum }}</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <?php $total = 0; ?>
-                            @foreach ($carts as $key => $cart)
+                            @foreach ($carts as $cart)
                             <ul class="cart_list">
                                 <li>
                                     <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"] }}</a>
-                                    <span class="cart_quantity"> {{ $cart["quantity"] }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart["price"] }}</span>
+                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
+                                    <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
                                 </li>
                             </ul>
-                            <?php $total += $cart["quantity"]*$cart["price"]; ?>
+                            <?php $total += $cart->product_qty*$cart->product_price; ?>
                             @endforeach
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>{{ number_format($total,2) }}</p>
@@ -303,7 +305,7 @@
 @yield('up')
 
 <!-- Latest jQuery --> 
-@yield('script');
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('Template/js/jquery-1.12.4.min.js') }}"></script> 
 <!-- jquery-ui --> 
 <script src="{{ asset('Template/js/jquery-ui.js') }}"></script>
