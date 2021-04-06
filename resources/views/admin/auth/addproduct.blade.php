@@ -28,10 +28,6 @@
 								@error('description')
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
-                                <p><b>Description: </b><input type="file" class="form-control @error('description') is-invalid @enderror"name="image"value="{{ old('image') }}"></p>
-								@error('image')
-                                <span class="mt-2 text-danger">{{ $message }}</span>
-                                @enderror
                                 <label class="form-label">Category: </label>
                                 
                                 <select name="category"class="form-control " aria-label="Default select example">
