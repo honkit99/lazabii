@@ -36,7 +36,8 @@
                             <?php $total = 0; ?>
                             @foreach ($carts as $key => $cart)
                                 <tr>
-                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
+                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    
+                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
                                     <td class="product-price" data-title="Price">$ {{ $cart->product_price  }}</td>
                                     <td class="product-quantity" data-title="Quantity">
                                     <div class="quantity">

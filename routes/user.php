@@ -10,7 +10,6 @@ use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\FavouriteController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\User\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +62,6 @@ Route::group(['middleware'=>['auth:user']], function () {
 
     Route::resource('cart', CartController::class);
     Route::resource('order', OrderController::class);
-
     // Route::resource('ewallet', 'User\EwalletController')->except('destroy');
 
     // Route::resource('address', 'User\AddressController');

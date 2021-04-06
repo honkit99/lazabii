@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use App\City;
 use App\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderStoreRequest;
 use App\Http\Requests\User\OrderUpdateRequest;
 use App\Order;
+use App\Postcode;
+use App\State;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,16 +24,28 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $country = Country::all();
+        $state = State::all();
+        $city = City::all();
+        $postcode = Postcode::all();
 
-        return view('user.order', compact('orders','country'));
+        return view('user.order', compact('orders','country','state','city','postcode'));
     }
 
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(array $data)
     {
+        return User::create([
+            'receiver_name' => $data['name'],
+            'receiver_email' => $data['email'],
+            'country_id' => $data['country'],
+            'state_id' => $data['state'],
+            'city_id' => $data['city'],
+            'postcode_id' => $data['postcode'],
+            'receiver_contact' => $data['phone'],
+        ],);
         return view('user.order.create');
     }
 
@@ -86,7 +101,6 @@ class OrderController extends Controller
 
         return redirect()->route('user.order.index');
     }
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Order $order

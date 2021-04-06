@@ -25,20 +25,31 @@
             <div class="medium_divider"></div>
         </div>
         <div class="row">
-        	<div class="col-md-6">
-            	<div class="heading_s1">
-            		<h4>Billing Details</h4>
-                </div>
-                <form method="post">
-                    <div class="form-group">
-                        <input type="text" required class="form-control" name="fname" placeholder="Receiver Name *">
+                <div class="col-md-6">
+                <form method="post" action="{{ route('user.order.create') }}">
+                @csrf
+                    <div class="heading_s1">
+                        <h4>Billing Details (Required)</h4>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" required type="text" name="email" placeholder="Email address *">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Receiver Name *">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email address *">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                         @enderror
                     </div>
                     <div class="form-group">
                         <div class="custom_select">
-                            <select class="form-control">
+                            <select name="country" class="form-control">
                                 <option value="">Select your country...</option>
                                 @foreach ($country as $countries )
                                     <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
@@ -47,83 +58,120 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="billing_address" placeholder="Receiver Address *">
+                        <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" placeholder="Receiver Address *">
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="city" placeholder="City / Town *">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="state" placeholder="State / County *">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="zipcode" placeholder="Postcode / ZIP *">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="phone" placeholder="Phone Number *">
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <div class="order_review">
-                    <div class="heading_s1">
-                        <h4>Your Orders</h4>
-                    </div>
-                    <div class="table-responsive order_table">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Blue Dress For Woman <span class="product-qty">x 2</span></td>
-                                    <td>$90.00</td>
-                                </tr>
-                            </tbody>
-							
-                            <tfoot>
-                                <tr>
-                                    <th>SubTotal</th>
-                                    <td class="product-subtotal">$349.00</td>
-                                </tr>
-                                <tr>
-                                    <th>Shipping</th>
-                                    <td>Free Shipping</td>
-                                </tr>
-                                <tr>
-                                    <th>Total</th>
-                                    <td class="product-subtotal">$349.00</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="payment_method">
-                        <div class="heading_s1">
-                            <h4>Payment</h4>
-                        </div>
-                        <div class="payment_option">
-                            <div class="custome-radio">
-                                <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
-                                <label class="form-check-label" for="exampleRadios3">Direct Bank Transfer</label>
-                                <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
-                            </div>
-                            <div class="custome-radio">
-                                <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
-                                <label class="form-check-label" for="exampleRadios4">Check Payment</label>
-                                <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                            </div>
-                            <div class="custome-radio">
-                                <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
-                                <label class="form-check-label" for="exampleRadios5">Paypal</label>
-                                <p data-method="option5" class="payment-text">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
-                            </div>
+                        <div class="custom_select">
+                            <select name="state" class="form-control">
+                                <option value="">Select your state...</option>
+                                @foreach ($state as $states )
+                                    <option value="{{ $states -> id }}">{{ $states -> name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <button type="submit" href="" class="btn btn-fill-out btn-block">Place Order</button>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="city" class="form-control">
+                                <option value="">Select your city...</option>
+                                @foreach ($city as $cities )
+                                    <option value="{{ $cities -> id }}">{{ $cities -> name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="postcode" class="form-control">
+                                <option value="">Select your Postcode / ZIP...</option>
+                                @foreach ($postcode as $postcodes )
+                                    <option value="{{ $postcodes -> id }}">{{ $postcodes -> number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" 
+                         name="phone" placeholder="Phone Number *">
+
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
-            </div>
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="heading_s1">
+                            <h4>Your Orders</h4>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php $total = 0; ?>
+                                @foreach ($carts as $key => $cart)
+                                    <tr>
+                                        <td>{{ $cart->product_name }}<span class="product-qty"> x {{ $cart->product_qty }}</span></td>
+                                        <td>$ {{ number_format($cart->product_qty*$cart->product_price,2) }}</td>
+                                    </tr>
+                                    <?php $total  += $cart->product_qty* $cart->product_price; ?>
+                                @endforeach
+                                </tbody>
+                                
+                                <tfoot>
+                                    <tr>
+                                        <th>SubTotal</th>
+                                        <td class="product-subtotal">$ {{ number_format($total, 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping</th>
+                                        <td>Free Shipping</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <td class="product-subtotal">$ {{ number_format($total, 2) }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="heading_s1">
+                                <h4>Payment</h4>
+                            </div>
+                            <div class="payment_option">
+                                <div class="custome-radio">
+                                    <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
+                                    <label class="form-check-label" for="exampleRadios3">Direct Bank Transfer</label>
+                                    <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
+                                </div>
+                                <div class="custome-radio">
+                                    <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
+                                    <label class="form-check-label" for="exampleRadios4">Check Payment</label>
+                                    <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                </div>
+                                <div class="custome-radio">
+                                    <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
+                                    <label class="form-check-label" for="exampleRadios5">Paypal</label>
+                                    <p data-method="option5" class="payment-text">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-fill-out btn-block">Place Order</button>
+                        </form>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
