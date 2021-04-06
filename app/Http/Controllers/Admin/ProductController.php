@@ -18,7 +18,6 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::all();
-
         return view('admin.auth.product', compact('products'));
     }
 
@@ -37,7 +36,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {       
+        
         $request->validate([
             'name' => 'required',
             'price'=> 'required',
@@ -47,15 +47,14 @@ class ProductController extends Controller
             'name.required'=>'Please fill in the name',
         ],[
             ]);
-            Product::create([
+            $product=Product::create([
                 'name' => $request->name,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'description' => $request->description,
-                'status' => 0
+                'status' => 1
             ]);
-        $request->session()->flash('success', "You created successfully");
-        session('success');
+        $product->category()->attach($request->category);
         return redirect()->route('admin.products.index');
     }
 

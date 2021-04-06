@@ -10,7 +10,7 @@
 						<div class="table-responsive">
 						<table style="text-align: center;"id="dataTable1" class="display mb-4 dataTablesCard card-table text-black customer-list-tbl">
 								<thead>
-								<form action="{{route('admin.productCategory.store') }}" method="post">
+								<form action="{{route('admin.products.store') }}" method="post">
                                 @csrf
                                 <p><b>Product Name: </b><input type="text" name="name"class="form-control @error('name') is-invalid @enderror"value="{{ old('name') }}"></p>
 								@error('name')
@@ -34,7 +34,7 @@
                                     <option value="">-Please select the option-</option>   
                                     @foreach($categorys as $key =>$category)
 
-                                    <option value="">{{$category -> id}}</option>
+                                    <option value="{{$category -> id}}">{{$category -> name}}</option>
                                     @endforeach
 
                                 </select>

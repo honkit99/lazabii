@@ -33,7 +33,7 @@ class Category extends Model
 
     public function product()
     {
-        return $this->belongsToMany(\App\Product::class);
+        return $this->belongsToMany('App\Product');
     }
 
     public function children() //to find children from parent

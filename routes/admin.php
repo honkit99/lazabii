@@ -45,7 +45,7 @@ Route::group(['middleware'=>['auth:admin']], function () {
      Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
      Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');
      Route::resource('users', 'App\Http\Controllers\User\UserController');
-     Route::resource('productCategory', 'App\Http\Controllers\Admin\ProductCategoryRelationController');
+     //Route::resource('productCategory', 'App\Http\Controllers\Admin\ProductCategoryRelationController');
 
     // Route::resource('voucher', 'Admin\VoucherController');
 

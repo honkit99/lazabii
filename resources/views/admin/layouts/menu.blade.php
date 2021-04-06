@@ -140,7 +140,7 @@
                                 
                                 <ul aria-expanded="false">
                                     <li><a href="{{ route('admin.products.index') }}">Product List</a></li>
-									<li><a href="">Product Category</a></li>
+									<li><a href="{{ route('admin.categorys.index') }}">Product Category</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->integer('parent_id')->nullable();
             $table->string('name', 255);
-            $table->text('image');
+            $table->string('image');
             $table->tinyInteger('status');
             $table->softDeletes('deleted_at');
             $table->timestamps();

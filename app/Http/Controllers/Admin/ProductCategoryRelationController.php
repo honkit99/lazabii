@@ -18,8 +18,6 @@ class ProductCategoryRelationController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
-
         return view('admin.auth.product', compact('products'));
     }
 

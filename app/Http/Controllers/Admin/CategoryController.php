@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $categorys = Category::all();
 
-        return view('admin.category.index', compact('categorys'));
+        return view('admin.auth.productcategory', compact('categorys'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $categorys = Category::all();
-        return view('admin.addproduct.create', compact('categorys'));
+        return view('admin.auth.addproductcategory', compact('categorys'));
     }
 
     /**
@@ -37,12 +37,26 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate();
-        $category = Category::create($request->validated());
+         $request->validate([
+            'parent_id' => 'required',
+            'name' => 'required',
+            'image'=>'required',
+            'status'=> 'required',
+        ],[
+        ],[
+            ]);
+        $input= $request->all();
+        if($request->hasFile('image'))
+        {
+            $destination_path = 'public/images/users';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path,$image_name);
 
-        $request->session()->flash('success', "You created successfully");
-        session('success');
-        return redirect()->route('admin.auth.addproduct');
+            $input['image'] = $image_name;
+        }
+        Category::create($input);
+        return redirect()->route('admin.categorys.index');
     }
 
     /**
@@ -62,7 +76,7 @@ class CategoryController extends Controller
      */
     public function edit(Request $request, Category $category)
     {
-        return view('admin.category.edit', compact('category'));
+        return view('admin.auth.editproductcategory', compact('category'));
     }
 
     /**
@@ -72,11 +86,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->validated());
+        $validated=$request->validate([
+            'parent_id' => 'required',
+            'name' => 'required',
+            'image'=>'required',
+            'status'=> 'required',
+        ],[
+        ],[
+            ]);
+            $input= $request->all();
+            if($request->hasFile('image'))
+            {
+                $destination_path = 'public/images/users';
+                $image = $request->file('image');
+                $image_name = $image->getClientOriginalName();
+                $path = $request->file('image')->storeAs($destination_path,$image_name);
+    
+                $input['image'] = $image_name;
+            }
+            $category->update($input);
 
-        $request->session()->flash('success', "You created successfully");
-
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categorys.index');
     }
 
     /**
@@ -90,6 +120,6 @@ class CategoryController extends Controller
 
         $request->session()->flash('success', "You created successfully");
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categorys.index');
     }
 }
