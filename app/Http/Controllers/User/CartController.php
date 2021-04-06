@@ -109,7 +109,7 @@ class CartController extends Controller
             $cart->update(['product_qty'=>$request->product_qty]);
             
             $cart = session()->get('cart');
-            $cart[$id]['quantity'] = 36;
+            $cart[$id]['quantity'] = $request->product_qty;
             session()->put('cart', $cart);
             
             session()->flash('success', 'Cart updated successfully');
@@ -195,7 +195,7 @@ class CartController extends Controller
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'product_price' => $product->price,
-                'product_qty' => $product->quantity,
+                'product_qty' => 1,
                 'user_id' => Auth::user()->id,
                 'variance_id' => 1, //need to change
             ]);
@@ -203,14 +203,7 @@ class CartController extends Controller
             dd(Auth::user());
             return redirect(route('user.login'));
         }
-        Cart::create([
-                    'product_id' => $product->id,
-                    'product_name' => $product->name,
-                    'product_price' => $product->price,
-                    'product_qty' => $product->quantity,
-                    'user_id' => Auth::user()->id,
-                    'variance_id' => 1, //need to change
-                ]);
+      
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
