@@ -1,5 +1,11 @@
 @extends('admin.layouts.menu')
 
+<style>
+	#widgetChart1{
+		height: 400px;
+	} 
+</style>
+
 @section('content')
 <!--**********************************
             Content body start
@@ -268,5 +274,33 @@
         .legend({ position: 'bottom' })
         .datasets([{ type: 'line', fill: false }, 'line']),
     });
+
+	const SalesChart = new Chartisan({
+    el: '#widgetChart1',
+    url: "@chart('sales_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: false }, 'line']),
+    });
+
+	const RevenueChart = new Chartisan({
+    el: '#widgetChart2',
+    url: "@chart('revenue_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: false }, 'line']),
+    });
+
+	const CustomerChart = new Chartisan({
+    el: '#widgetChart3',
+    url: "@chart('customer_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: false }, 'line']),
+    });
+
 </script>
 @endpush
