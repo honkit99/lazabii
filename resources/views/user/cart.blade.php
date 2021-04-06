@@ -33,9 +33,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($carts as $cart)
+                            <?php $total = 0; ?>
+                            @foreach ($carts as $key => $cart)
                             <tr>
-                            	<td class="product-thumbnail"><a href="shop-cart.html#"><img src="assets/images/product_img1.jpg" alt="product1"></a></td>
+                            	<td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>
                                 <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart["name"] }}</a></td>
                                 <td class="product-price" data-title="Price">{{ $cart["price"] }}</td>
                                 <td class="product-quantity" data-title="Quantity">
@@ -45,12 +46,11 @@
                                         <input type="button" value="+" class="plus">
                                     </div>
                                 </td>
-                              	<td class="product-subtotal" data-title="Total">{{ $cart["quantity"]*$cart["price"] }}</td>
+                              	<td class="product-subtotal" data-title="Total">{{ number_format($cart["quantity"]*$cart["price"],2) }}</td>
                                 <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
                             </tr>
+                            <?php $total  += $cart["quantity"]*$cart["price"]; ?>
                             @endforeach
-                        	
-                            
                         </tbody>
                         <tfoot>
                         	<tr>
@@ -132,7 +132,7 @@
                             <tbody>
                                 <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
-                                    <td class="cart_total_amount">$349.00</td>
+                                    <td class="cart_total_amount">$ {{number_format($total, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>

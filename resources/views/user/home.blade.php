@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
+                    <li><a href="{{ route('user.favourite.index') }}" class="nav-link"><i class="ti-heart"></i></a></li>
                 </ul>
             </nav>
         </div>
