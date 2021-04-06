@@ -8,6 +8,7 @@ use App\Order;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalesChart extends BaseChart
 {
@@ -46,23 +47,24 @@ class SalesChart extends BaseChart
     
     public function handler(Request $request): Chartisan
     {
-        $data = Order::all();
+        $data = DB::table('orders')
+                ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('COUNT(total_payment_amount) as num'), DB::raw('MONTH(created_at) as month_num'))
+                ->groupBy(DB::raw('MONTHNAME(created_at)'), 'month_num')
+                ->orderBy(DB::raw('month_num'))
+                ->get();
 
         $gg1 = [];
         $gg2 = [];
-        $gg3 = [];
         
         foreach ($data as $key=>$da1):
 
-            $gg1[] = $da1->id;
-            $gg2[] = $da1->total_payment_amount;
-            $gg3[] = $da1->current_balance;
+            $gg1[] = $da1->month;
+            $gg2[] = $da1->num;
 
         endforeach;
 
         return Chartisan::build()
-            //->labels($gg1)
-            ->dataset('new', $gg2)
-            ->dataset('current', $gg3);
+            ->labels($gg1)
+            ->dataset('', $gg2);
     }
 }

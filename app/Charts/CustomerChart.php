@@ -7,6 +7,7 @@ namespace App\Charts;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerChart extends BaseChart
 {
@@ -44,9 +45,24 @@ class CustomerChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+        $data = DB::table('users')
+            ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('COUNT(name) as num'), DB::raw('MONTH(created_at) as month_num'))
+            ->groupBy(DB::raw('MONTHNAME(created_at)'), 'month_num')
+            ->orderBy(DB::raw('month_num'))
+            ->get();
+
+        $gg1 = [];
+        $gg2 = [];
+
+        foreach ($data as $key => $da1):
+
+            $gg1[] = $da1->month;
+            $gg2[] = $da1->num;
+
+        endforeach;
+
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
-    }
+            ->labels($gg1)
+            ->dataset('', $gg2);
+        }
 }

@@ -46,22 +46,24 @@ class RevenueChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        //$data = Order::select("MONTHNAME(`created_at`) as month, `total_payment_amount`");
-        $data = DB::select('SELECT MONTHNAME(`created_at`) AS month, `total_payment_amount` FROM `lazabii`.`orders`');
+        $data = DB::table('orders')
+                ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('SUM(total_payment_amount) as total'), DB::raw('MONTH(created_at) as month_num'))
+                ->groupBy(DB::raw('MONTHNAME(created_at)'), 'month_num')
+                ->orderBy(DB::raw('month_num'))
+                ->get();
 
         $gg1 = [];
         $gg2 = [];
-        $gg3 = [];
         
-        foreach ($data as $key=>$da1):
+        foreach ($data as $key => $da1):
 
             $gg1[] = $da1->month;
-            $gg2[] = $da1->total_payment_amount;
+            $gg2[] = $da1->total;
 
         endforeach;
 
         return Chartisan::build()
             ->labels($gg1)
-            ->dataset('new', $gg2);
+            ->dataset('', $gg2);
     }
 }
