@@ -85,7 +85,7 @@
                             <a class="dropdown-toggle nav-link" href="" data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu">
                                 <ul class="mega-menu d-lg-flex">
-                                    {{-- @foreach ($categories as $category )
+                                    @foreach ($categories as $category )
                                     <li class="mega-menu-col col-lg-3">
                                         <ul> 
                                             <li class="dropdown-header">{{ $category->name }}</li>
@@ -96,7 +96,7 @@
                                             @endif
                                         </ul>
                                     </li>
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>
@@ -228,7 +228,7 @@
 
 <!-- END MAIN CONTENT -->
 <div class="main_content">
-
+    
 <!-- START SECTION CATEGORIES -->
 <div class="section pt-0 small_pb">
 	<div class="container">
@@ -250,6 +250,7 @@
                                         <a href="">
                                             <i class="flaticon-bed"></i>
                                             <span>Bedroom</span>
+                                            
                                         </a>
                                     </div>
                                 </div>

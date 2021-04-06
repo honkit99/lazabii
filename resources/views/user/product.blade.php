@@ -73,8 +73,7 @@
                                 <img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product_img1">
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
-                                        <li class="add-to-cart"><a href="{{ route('user.cart.update',1 //1change to $   ->id
-                                        ) }}"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                        <li class="add-to-cart"><a href=""><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                         <li><a href=""><i class="icon-heart"></i></a></li>
                                     </ul>
                                 </div>
@@ -114,9 +113,8 @@
                                 <img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product_img1">
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
-                                        <form action="{{ route('user.cart.update',$product->id) }}" method="POST">
+                                        <form action="{{ route('user.addtocart',$product->id) }}" method="POST">
                                             @csrf
-                                            @method("PATCH")
                                             <li class="add-to-cart"><button><i class="icon-basket-loaded"></button></i></li>
                                         </form>
                                         {{-- <li class="add-to-cart"><a href="{{ route('user.cart.store',$product->id) }}" role="button"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
@@ -197,9 +195,9 @@
                         </div>
                     </div>
                     @endforeach --}}
-               {{-- <div>
-                {{ $products->links() }}
-               </div> --}}
+                <div>
+                {{-- {{ $filproducts->links() }} --}}
+               </div>
         		<div class="row">
                     <div class="col-12">
                         <ul class="pagination mt-3 justify-content-center pagination_style1">

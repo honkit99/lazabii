@@ -34,7 +34,5 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\SampleChart::class,
             // \App\Charts\SalesChart::class
         ]);
-        $categories = Category::with('children')->whereNull('parent_id')->get(); //children is from category model
-        View::share('categories',$categories);
     }
 }
