@@ -144,7 +144,7 @@ class CartController extends Controller
         if(Auth::check()){
             //add prod data and usr id to cart db
             Cart::create([
-                 'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->id,
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'product_price' => $product->price,
