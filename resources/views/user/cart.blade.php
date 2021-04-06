@@ -144,11 +144,11 @@
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>
-                                    <td class="cart_total_amount">Free Shipping</td>
+                                    <td class="cart_total_amount">$ {{ $Area -> price}}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Total</td>
-                                    <td class="cart_total_amount"><strong>$349.00</strong></td>
+                                    <td class="cart_total_amount"><strong>$ {{number_format($total + $Area["price"], 2)}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
