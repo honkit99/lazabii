@@ -33,7 +33,7 @@
                 </div>
                 <form method="post">
                     <div class="form-group">
-                        <input type="text" required class="form-control" name="fname" placeholder="Name *">
+                        <input type="text" required class="form-control" name="fname" placeholder="Receiver Name *">
                     </div>
                     <div class="form-group">
                         <input class="form-control" required type="text" name="email" placeholder="Email address *">
@@ -47,19 +47,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="billing_address" required="" placeholder="Address*">
+                        <input type="text" class="form-control" name="billing_address" placeholder="Receiver Address *">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" required type="text" name="city" placeholder="City / Town *">
+                        <input class="form-control" type="text" name="city" placeholder="City / Town *">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" required type="text" name="state" placeholder="State / County *">
+                        <input class="form-control" type="text" name="state" placeholder="State / County *">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" required type="text" name="zipcode" placeholder="Postcode / ZIP *">
+                        <input class="form-control" type="text" name="zipcode" placeholder="Postcode / ZIP *">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" required type="text" name="phone" placeholder="Phone *">
+                        <input class="form-control" type="text" name="phone" placeholder="Phone Number *">
                     </div>
                     <div class="heading_s1">
                         <h4>Additional information</h4>

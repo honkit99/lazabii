@@ -4,20 +4,19 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
-use App\Order;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SalesChart extends BaseChart
+class CustomerChart extends BaseChart
 {
     /**
      * Determines the chart name to be used on the
      * route. If null, the name will be a snake_case
      * version of the class name.
      */
-    public ?string $name = 'sales_chart';
+    public ?string $name = 'customer_chart';
 
     /**
      * Determines the name suffix of the chart route.
@@ -25,7 +24,7 @@ class SalesChart extends BaseChart
      * from the blade directrive. If null, the chart
      * name will be used.
      */
-    public ?string $routeName = 'sales_chart';
+    public ?string $routeName = 'customer_chart';
 
     /**
      * Determines the prefix that will be used by the chart
@@ -44,19 +43,18 @@ class SalesChart extends BaseChart
      * It must always return an instance of Chartisan
      * and never a string or an array.
      */
-    
     public function handler(Request $request): Chartisan
     {
-        $data = DB::table('orders')
-                ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('COUNT(total_payment_amount) as num'), DB::raw('MONTH(created_at) as month_num'))
-                ->groupBy(DB::raw('MONTHNAME(created_at)'), 'month_num')
-                ->orderBy(DB::raw('month_num'))
-                ->get();
+        $data = DB::table('users')
+            ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw('COUNT(name) as num'), DB::raw('MONTH(created_at) as month_num'))
+            ->groupBy(DB::raw('MONTHNAME(created_at)'), 'month_num')
+            ->orderBy(DB::raw('month_num'))
+            ->get();
 
         $gg1 = [];
         $gg2 = [];
-        
-        foreach ($data as $key=>$da1):
+
+        foreach ($data as $key => $da1):
 
             $gg1[] = $da1->month;
             $gg2[] = $da1->num;
@@ -66,5 +64,5 @@ class SalesChart extends BaseChart
         return Chartisan::build()
             ->labels($gg1)
             ->dataset('', $gg2);
-    }
+        }
 }

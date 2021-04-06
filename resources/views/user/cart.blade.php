@@ -39,17 +39,19 @@
                                     <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
                                     <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
                                     <td class="product-quantity" data-title="Quantity"><div class="quantity">
-                                <div>
-                                    <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
-                                        @csrf
-                                        @method("PATCH")
+                                    <div>
+                                        <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
+                                            @csrf
+                                            @method("PATCH")
 
-                                    {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
-                                    <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
-                                    {{-- <input type="button" value="+" class="plus"> --}}
-                                    
-                                    <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                        <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
+                                        {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
+                                        <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
+                                        {{-- <input type="button" value="+" class="plus"> --}}
+                                        
+                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
+                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
+                                        </div>
+                                        </form>
                                     </div>
                                     </form>
                                     

@@ -68,13 +68,13 @@
 												</svg>
 											</div>
 											<div>
-												<h2 class="text-black fs-32 font-w600 mb-0">892 <span class="text-success fs-18 font-w500">+2,7%</span></h2>
-												<p class="mb-0 text-black font-w500">Orders</p>
+												<h2 class="text-black fs-32 font-w600 mb-0">{{ $sale }} <span class="text-success fs-18 font-w500"></span></h2>
+												<p class="mb-0 text-black font-w500">Sales</p>
 											</div>	
 										</div>
 									</div>
 									<div class="card-body p-0">
-										<div id="widgetChart1" class="dashboard-chart"></div>
+										<div id="newChart1" style="height: 300px;" class="dashboard-chart"></div>
 									</div>
 								</div>
 							</div>
@@ -91,13 +91,13 @@
 												</svg>
 											</div>
 											<div>
-												<h2 class="text-black fs-32 font-w600 mb-0">9,334 <span class="text-danger fs-18 font-w500">-0,5%</span></h2>
+												<h2 class="text-black fs-32 font-w600 mb-0">{{ $user }} <span class="text-danger fs-18 font-w500"></span></h2>
 												<p class="mb-0 text-black font-w500">Customers</p>
 											</div>	
 										</div>
 									</div>
 									<div class="card-body p-0">
-										<div id="widgetChart2" class="dashboard-chart"></div>
+										<div id="newChart2" style="height: 300px;" class="dashboard-chart"></div>
 									</div>
 								</div>
 							</div>
@@ -113,13 +113,13 @@
 												</svg>
 											</div>
 											<div>
-												<h2 class="text-black fs-32 font-w600 mb-0">524</h2>
-												<p class="mb-0 text-black font-w500">Menu</p>
+												<h2 class="text-black fs-32 font-w600 mb-0">{{ $revenue }}</h2>
+												<p class="mb-0 text-black font-w500">Revenues</p>
 											</div>	
 										</div>
 									</div>
 									<div class="card-body p-0">
-										<div id="widgetChart3" class="dashboard-chart"></div>
+										<div id="newChart3" style="height: 300px;" class="dashboard-chart"></div>
 									</div>
 								</div>
 							</div>
@@ -260,13 +260,40 @@
 @push('scripts')
 <!-- Your application script -->
 <script>
-    const sampleChart = new Chartisan({
+    /*const sampleChart = new Chartisan({
     el: '#radialChart',
     url: "@chart('sample_chart')",
     hooks: new ChartisanHooks()
         .colors(['#ECC94B', '#4299E1'])
         .legend({ position: 'bottom' })
+        .datasets(['doughnut']),
+    });*/
+
+	const SalesChart = new Chartisan({
+    el: '#newChart1',
+    url: "@chart('sales_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
         .datasets([{ type: 'line', fill: false }, 'line']),
+    });
+
+	const CustomerChart = new Chartisan({
+    el: '#newChart2',
+    url: "@chart('customer_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: false }, 'line']),
+    });
+
+	const RevenueChart = new Chartisan({
+    el: '#newChart3',
+    url: "@chart('revenue_chart')",
+    hooks: new ChartisanHooks()
+        .colors(['#ECC94B', '#4299E1'])
+        .legend({ position: 'bottom' })
+        .datasets([{ type: 'line', fill: true, colors: '#4299E1' }]),
     });
 </script>
 @endpush
