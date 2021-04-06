@@ -36,10 +36,6 @@ Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswo
 Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
 
 // Add to cart Routes..
-Route::get('cart/addtocart/{id}', 'App\Http\Controllers\User\CartController@addtocart');
-// Route::post('addtocart', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
-
-
 
 // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
 
@@ -56,7 +52,8 @@ Route::group(['middleware'=>['auth:user']], function () {
     Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);
-
+    Route::post('addtocart/{id}', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
+    Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
     Route::resource('product', ProductController::class);
 
     // Route::resource('voucher', 'User\VoucherController');

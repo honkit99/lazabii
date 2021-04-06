@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="" class="nav-link"><i class="ti-heart"></i></a></li>
+                    <li><a href="{{ route('user.favourite.index') }}" class="nav-link"><i class="ti-heart"></i></a></li>
                 </ul>
             </nav>
         </div>
@@ -228,7 +228,7 @@
 
 <!-- END MAIN CONTENT -->
 <div class="main_content">
-
+    
 <!-- START SECTION CATEGORIES -->
 <div class="section pt-0 small_pb">
 	<div class="container">
@@ -250,6 +250,7 @@
                                         <a href="">
                                             <i class="flaticon-bed"></i>
                                             <span>Bedroom</span>
+                                            
                                         </a>
                                     </div>
                                 </div>

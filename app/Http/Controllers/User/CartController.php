@@ -11,7 +11,6 @@ use App\Http\Requests\User\CartStoreRequest;
 use App\Http\Requests\User\CartUpdateRequest;
 use App\Product;
 use App\User;
-use CreateCountriesTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,14 +25,13 @@ class CartController extends Controller
         $carts = session()->get('cart');
         $country = Country::all();
         $countryArea = DeliveryState::all();
-
+        $carts = Cart::where('user_id',Auth::user()->id)->get();
+        // dd($carts);
         if(!$carts){
             abort(404);
         }
         // dd($carts);
         return view('user.cart',compact('carts','country','countryArea'));
-
-        
     }
 
     /**
@@ -82,8 +80,21 @@ class CartController extends Controller
      * @param \App\Cart $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Cart $cart)
+    public function edit(Request $request, Cart $cart,$quantity)
     {
+        dd($quantity);
+        if($cart->id and $quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }//update database
+   
+        $cart->update([
+            'product_qty' =>$quantity,
+        ]);
+        
         return view('user.cart.edit', compact('cart'));
     }
 
@@ -92,10 +103,40 @@ class CartController extends Controller
      * @param \App\Cart $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function updatecart(Request $request, Cart $cart)
     {
-        $product = Product::whereid($id)->first();
+        $id = $cart->product_id;
+            $cart->update(['product_qty'=>$request->product_qty]);
+            
+            $cart = session()->get('cart');
+            $cart[$id]['quantity'] = $request->product_qty;
+            session()->put('cart', $cart);
+            
+            session()->flash('success', 'Cart updated successfully');
+        
 
+        return redirect()->route('user.cart.index');
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Cart $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, Cart $cart)
+    {
+        $cart->delete();
+
+        $request->session()->flash('success', 'You have deleted successfully');
+
+        session('success');
+
+        return redirect()->route('user.cart.index');
+    }
+
+    public function addtocart($id)
+    { 
+        $product = Product::whereid($id)->first();
         if(!$product) {
             abort(404);
         }
@@ -114,13 +155,13 @@ class CartController extends Controller
                     'product_id' => $product->id,
                     'product_name' => $product->name,
                     'product_price' => $product->price,
-                    'product_qty' => $product->quantity,
+                    'product_qty' => +1,
                     'variance_id' => 1, //need to change
                 ]);
             }else{
+                dd(Auth::user());
                 return redirect(route('user.login'));
             }
-
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
 
@@ -128,6 +169,7 @@ class CartController extends Controller
         if(!$cart) {
             $cart = [
                     $id => [
+                        "id" => $product->id,
                         "name" => $product->name,
                         "quantity" => 1,
                         "price" => $product->price,
@@ -137,6 +179,7 @@ class CartController extends Controller
         }else{
             // if item not exist in cart then add to cart with quantity = 1
             $cart[$id] = [
+                "id" => $product->id,
                 "name" => $product->name,
                 "quantity" => 1,
                 "price" => $product->price,
@@ -152,42 +195,16 @@ class CartController extends Controller
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'product_price' => $product->price,
-                'product_qty' => $product->quantity,
+                'product_qty' => 1,
                 'user_id' => Auth::user()->id,
                 'variance_id' => 1, //need to change
             ]);
         }else{
+            dd(Auth::user());
             return redirect(route('user.login'));
         }
-
+      
         return redirect()->back()->with('success', 'Product added to cart successfully!');
-        // $product->update([
-
-        // ]);
-        // $request->validated();
-        // $cart->update($request->validated());
-
-        // $request->session()->flash('success', 'You have updated successfully');
-
-        // session('success');
-
-        // return redirect()->route('user.cart.index');
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Cart $cart)
-    {
-        $cart->delete();
-
-        $request->session()->flash('success', 'You have deleted successfully');
-
-        session('success');
-
-        return redirect()->route('user.cart.index');
     }
 
 }
