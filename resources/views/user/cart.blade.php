@@ -40,24 +40,32 @@
                                     <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
                                     <td class="product-quantity" data-title="Quantity"><div class="quantity">
                                     <div>
-                                        <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
-                                            @csrf
-                                            @method("PATCH")
-
                                         {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
-                                        <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
-                                        {{-- <input type="button" value="+" class="plus"> --}}
-                                        
-                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
-                                        </div>
-                                        </form>
+                                        <div class="minus" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                                        <input type="text" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="qty" size="4" >
+                                        <div class="plus" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
                                     </div>
                                     </div></td>
                                     <td class="product-subtotal" data-title="Total">{{ number_format($cart["quantity"]*$cart["price"],2) }}</td>
                                     <td class="product-remove" data-title="Remove"><a href="shop-cart.html#"><i class="ti-close"></i></a></td>
                                 </tr>
                             @endforeach
+                            <script>
+                                function increaseValue() {
+                                    var value = parseInt(document.getElementById('number').value, 10);
+                                    value = isNaN(value) ? 1 : value;
+                                    value++;
+                                    document.getElementById('number').value = value;
+                                }
+
+                                function decreaseValue() {
+                                    var value = parseInt(document.getElementById('number').value, 10);
+                                    value = isNaN(value) ? 1 : value;
+                                    value < 2 ? value = 2 : '';
+                                    value--;
+                                    document.getElementById('number').value = value;
+                                }
+                            </script>
                         </tbody>
                         <tfoot>
                         	<tr>
@@ -71,6 +79,9 @@
                                                 </div>
                                             </div>
                                     	</div>
+                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
+                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
