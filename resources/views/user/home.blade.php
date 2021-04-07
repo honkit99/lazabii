@@ -366,7 +366,7 @@
                         </div>
                     </div>
                     <div class="product_info">
-                        <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
+                        <h6 class="product_title"><a href="{{ route('user.productdetails',$product->id) }}">{{ $product->name }}</a></h6>
                         <div class="product_price">
                             <span class="price">RM{{ $product->price }}</span>
                         </div>
