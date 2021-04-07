@@ -70,6 +70,7 @@ class HomeController extends Controller
             'sale'     => $gg1,
             'user'     => $gg2,
             'revenue'  => $gg3,
+            'x'        => '0',
         ];
 
         return view('admin.home', $info);

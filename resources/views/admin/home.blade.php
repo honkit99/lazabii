@@ -28,15 +28,15 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="col-xl-12 col-lg-6 col-md-6">
 								<div class="card trending-menus">
 									<div class="card-header border-0">
 										<div class="separator"></div>
 										<div class="mr-auto">	
-											<h4 class="text-black fs-20">Daily Trending Menus</h4>
-											<p class="fs-13 mb-0">Lorem ipsum dolor</p>
+											<h4 class="text-black fs-20">Top Sales Furniture</h4>
+											<!--<p class="fs-13 mb-0">Lorem ipsum dolor</p>-->
 										</div>	
-										
 									</div>
 									<div class="card-body ">
 										<div class="dz-scroll height500" id="tredingMenus">
@@ -53,6 +53,7 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 					<div class="col-xl-9 col-xxl-8">
@@ -123,6 +124,7 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header pb-0 flex-wrap border-0">
@@ -175,6 +177,7 @@
 									</div>
 								</div>
 							</div>
+
 							<!--<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header border-0 flex-wrap pb-0">

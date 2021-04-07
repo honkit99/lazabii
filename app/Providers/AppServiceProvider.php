@@ -52,9 +52,9 @@ class AppServiceProvider extends ServiceProvider
                 $carts = session()->get('cart');
                 View::share('carts',$carts);
                 $sum = 0;
-                foreach ($carts as $cart) {
+                /*foreach ($carts as $cart) {
                     $sum +=1;
-                }
+                }*/
                 View::share('sum',$sum);
             }
         });
