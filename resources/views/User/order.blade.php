@@ -48,54 +48,6 @@
                          @enderror
                     </div>
                     <div class="form-group">
-                        <div class="custom_select">
-                            <select name="country" class="form-control">
-                                <option value="">Select your country...</option>
-                                @foreach ($country as $countries )
-                                    <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" placeholder="Receiver Address *">
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <div class="custom_select">
-                            <select name="state" class="form-control">
-                                <option value="">Select your state...</option>
-                                @foreach ($state as $states )
-                                    <option value="{{ $states -> id }}">{{ $states -> name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom_select">
-                            <select name="city" class="form-control">
-                                <option value="">Select your city...</option>
-                                @foreach ($city as $cities )
-                                    <option value="{{ $cities -> id }}">{{ $cities -> name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom_select">
-                            <select name="postcode" class="form-control">
-                                <option value="">Select your Postcode / ZIP...</option>
-                                @foreach ($postcode as $postcodes )
-                                    <option value="{{ $postcodes -> id }}">{{ $postcodes -> number}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" 
                          name="phone" placeholder="Phone Number *">
 
@@ -104,6 +56,89 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="country" class="form-control @error('country') is-invalid @enderror">
+                                <option value="">Select your country...</option>
+                                @foreach ($country as $countries )
+                                    <option value="{{ $countries -> id }}">{{ $countries -> name}}</option>
+                                @endforeach
+                            </select>
+                            @error('country')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input  type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Receiver Address *">
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="state" class="form-control @error('state') is-invalid @enderror">
+                                <option value="">Select your state...</option>
+                                @foreach ($state as $states )
+                                    <option value="{{ $states -> id }}">{{ $states -> name}}</option>
+                                @endforeach
+                            </select>
+                            @error('state')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="city" class="form-control @error('city') is-invalid @enderror">
+                                <option value="">Select your city...</option>
+                                @foreach ($city as $cities )
+                                    <option value="{{ $cities -> id }}">{{ $cities -> name}}</option>
+                                @endforeach
+                            </select>
+                            @error('city')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="postcode" class="form-control @error('postcode') is-invalid @enderror">
+                                <option value="">Select your Postcode / ZIP...</option>
+                                @foreach ($postcode as $postcodes )
+                                    <option value="{{ $postcodes -> id }}">{{ $postcodes -> number}}</option>
+                                @endforeach
+                            </select>
+                            @error('postcode')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom_select">
+                            <select name="delivery" class="form-control @error('delivery') is-invalid @enderror">
+                                <option value="">Select your Delivery Company...</option>
+                                @foreach ($delivery as $deliverys )
+                                    <option value="{{ $deliverys -> id }}">{{ $deliverys -> name}}</option>
+                                @endforeach
+                            </select>
+                            @error('delivery')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">

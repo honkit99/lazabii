@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Cart;
 use App\City;
 use App\Country;
+use App\DeliveryCompany;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderStoreRequest;
 use App\Http\Requests\User\OrderUpdateRequest;
@@ -29,8 +30,9 @@ class OrderController extends Controller
         $state = State::all();
         $city = City::all();
         $postcode = Postcode::all();
+        $delivery = DeliveryCompany::all();
 
-        return view('user.order', compact('orders','country','state','city','postcode'));
+        return view('user.order', compact('orders','country','state','city','postcode','delivery'));
     }
 
     /**
@@ -50,6 +52,7 @@ class OrderController extends Controller
     {
         $carts = Cart::where('user_id',Auth::user()->id)->get();
         $total = 0;
+        $delivery = DeliveryCompany::where('id',$request->delivery)->first();
         $request->session()->flash('success', 'You have created successfully');
         session('success');
 
@@ -60,26 +63,32 @@ class OrderController extends Controller
         $request->validate([
             'name' => 'required',
             'email'=> 'required',
+            'address'=> 'required',
             'country'=> 'required',
             'state'=> 'required',
             'city'=> 'required',
             'postcode'=> 'required',
             'phone'=> 'required',
+            'delivery'=> 'required',
         ],[],[]);
             Order::create([
                 'user_id' => Auth::user()->id,
                 'receiver_name' => $request->name,
                 'receiver_email' => $request->email,
                 'country_id' => $request->country,
+                'address' => $request->address,
                 'state_id' => $request->state,
                 'city_id' => $request->city,
                 'postcode_id' => $request->postcode,
                 'receiver_contact' => $request->phone,
+                'delivery_company_id' => $request->delivery,
+                'delivery_company_name' => $delivery->name,
                 'total_amount'=>$total,
-                'Status' => 1 ,
-                'payment_status'=> 1,
+                'status' => 2 ,
+                'payment_status'=> 2,
+                'delivery_status'=> 0,
             ]);
-        return redirect()->route('user.');
+        return redirect()->route('user.ordersuccess');
     }
 
     /**
