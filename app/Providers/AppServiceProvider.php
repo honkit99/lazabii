@@ -46,12 +46,12 @@ class AppServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 $carts = Cart::where( 'user_id', Auth::user()->id)->get();
                 $sum = Cart::where( 'user_id', Auth::user()->id)->groupBy('product_id')->count();
-                // dd($sum);    
+                //dd($sum);    
                 View::share('carts',$carts);
                 View::share('sum',$sum);
             }else {
                 $carts = session()->get('cart');
-
+                
                 if(isset($carts)){
                     View::share('carts',$carts);
                     $sum = 0;
@@ -60,8 +60,6 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 View::share('sum',$sum);
-                }else{
-
                 }
             }
         });
