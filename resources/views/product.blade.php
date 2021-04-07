@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end">
-            <li class="breadcrumb-item "><a href="{{ route('user.home') }}" class="color_white">Home</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('home') }}" class="color_white">Home</a></li>
             <li class="breadcrumb-item active">Product</li>
             @foreach ($filproducts as $fill)
                 @if (isset($fill))
@@ -81,7 +81,11 @@
                             <div class="product_info">
                                 <h6 class="product_title"><a href="">Product name</a></h6>
                                 <div class="product_price">
-                                    <span class="price">Price</span>
+                                    <span class="price">Discount price</span>
+                                    <del>Original price</del>
+                                    <div class="on_sale">
+                                        <span>100% off</span>
+                                    </div>
                                 </div>
                                 <div class="rating_wrap">
                                     <div class="rating">
@@ -102,14 +106,14 @@
                     </div><!-- EndProduct -->
                         {{-- test --}}
                      @if (isset($fill->product))
-                    @foreach ($fill->product as $product)
+                @foreach ($fill->product as $product)
                     <div class="col-md-4 col-6">
                         <div class="product">
                             <div class="product_img">
                                 <img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product_img1">
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
-                                        <form action="{{ route('user.addtocart',$product->id) }}" method="POST">
+                                        <form action="{{ route('addtocart',$product->id) }}" method="POST">
                                             @csrf
                                             <li class="add-to-cart"><button><i class="icon-basket-loaded"></button></i></li>
                                         </form>
@@ -126,6 +130,10 @@
                                 <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
                                 <div class="product_price">
                                     <span class="price">RM{{ $product->price }}</span>
+                                    <del>Original price</del>
+                                    <div class="on_sale">
+                                        <span>100% off</span>
+                                    </div>
                                 </div>
                                     <div class="rating_wrap">
                                         <div class="rating">
@@ -284,5 +292,5 @@
 @endsection
 
 @section('up')
-<a href="{{ route('user.product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+<a href="{{ route('product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection

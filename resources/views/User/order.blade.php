@@ -26,7 +26,7 @@
         </div>
         <div class="row">
                 <div class="col-md-6">
-                <form method="post" action="{{ route('user.order.create') }}">
+                <form method="POST" action="{{ route('user.order.store') }}">
                 @csrf
                     <div class="heading_s1">
                         <h4>Billing Details (Required)</h4>

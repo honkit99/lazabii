@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Cart;
 use App\City;
 use App\Country;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,7 @@ use App\Order;
 use App\Postcode;
 use App\State;
 use App\User;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,17 +37,8 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create(array $data)
+    public function create()
     {
-        return User::create([
-            'receiver_name' => $data['name'],
-            'receiver_email' => $data['email'],
-            'country_id' => $data['country'],
-            'state_id' => $data['state'],
-            'city_id' => $data['city'],
-            'postcode_id' => $data['postcode'],
-            'receiver_contact' => $data['phone'],
-        ],);
         return view('user.order.create');
     }
 
@@ -55,13 +48,38 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validated();
-        $order = Order::create($request->validated());
-
+        $carts = Cart::where('user_id',Auth::user()->id)->get();
+        $total = 0;
         $request->session()->flash('success', 'You have created successfully');
         session('success');
 
-        return redirect()->route('user.order.index');
+        foreach($carts as $key => $cart){
+            $total  += $cart->product_qty* $cart->product_price;
+        };
+
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'country'=> 'required',
+            'state'=> 'required',
+            'city'=> 'required',
+            'postcode'=> 'required',
+            'phone'=> 'required',
+        ],[],[]);
+            Order::create([
+                'user_id' => Auth::user()->id,
+                'receiver_name' => $request->name,
+                'receiver_email' => $request->email,
+                'country_id' => $request->country,
+                'state_id' => $request->state,
+                'city_id' => $request->city,
+                'postcode_id' => $request->postcode,
+                'receiver_contact' => $request->phone,
+                'total_amount'=>$total,
+                'Status' => 1 ,
+                'payment_status'=> 1,
+            ]);
+        return redirect()->route('user.');
     }
 
     /**
