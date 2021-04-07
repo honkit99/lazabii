@@ -170,7 +170,7 @@
             $(form).parent().submit();
         return answer;
     }
-    </script> 
+</script> 
 <!-- END SECTION SHOP -->
 @endsection
 

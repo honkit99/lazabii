@@ -81,11 +81,7 @@
                             <div class="product_info">
                                 <h6 class="product_title"><a href="">Product name</a></h6>
                                 <div class="product_price">
-                                    <span class="price">Discount price</span>
-                                    <del>Original price</del>
-                                    <div class="on_sale">
-                                        <span>100% off</span>
-                                    </div>
+                                    <span class="price">Price</span>
                                 </div>
                                 <div class="rating_wrap">
                                     <div class="rating">
@@ -116,9 +112,9 @@
                                         <form action="{{ route('user.addtocart',$product->id) }}" method="POST">
                                             @csrf
                                             <li class="add-to-cart"><button><i class="icon-basket-loaded"></button></i></li>
-                                        </form>
-                                        {{-- <li class="add-to-cart"><a href="{{ route('user.cart.store',$product->id) }}" role="button"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                        <li><a href=""><i class="icon-heart"></i></a></li> --}}
+                                            <li class="add-to-cart"><a href="{{ route('user.cart.store',$product->id) }}" role="button"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                        </form> 
+                                        <li><a href=""><i class="icon-heart"></i></a></li>
                                    </ul>
                                 </div>
                             </div>
@@ -126,10 +122,6 @@
                                 <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
                                 <div class="product_price">
                                     <span class="price">RM{{ $product->price }}</span>
-                                    <del>Original price</del>
-                                    <div class="on_sale">
-                                        <span>100% off</span>
-                                    </div>
                                 </div>
                                     <div class="rating_wrap">
                                         <div class="rating">

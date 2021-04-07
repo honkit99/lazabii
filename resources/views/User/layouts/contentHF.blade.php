@@ -140,7 +140,11 @@
                             @foreach ($carts as $cart)
                             <ul class="cart_list">
                                 <li>
-                                    <a href="" class="item_remove"><i class="ion-close"></i></a>
+                                    <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
+                                    </form>
                                     <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
                                     <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
                                 </li>
@@ -154,7 +158,6 @@
                                     <a href="{{ route('user.order.index') }}" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
-                            
                         </div>
                     </li>
                 </ul>
@@ -303,7 +306,16 @@
 </footer>
 <!-- END FOOTER -->
 @yield('up')
-
+<script>
+    function confirmation(form)
+    {
+        var answer;
+        answer=confirm("Are you sure you want to delete this cart?");
+        if(answer)
+            $(form).parent().submit();
+        return answer;
+    }
+</script> 
 <!-- Latest jQuery --> 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('Template/js/jquery-1.12.4.min.js') }}"></script> 

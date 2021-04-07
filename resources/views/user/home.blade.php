@@ -144,17 +144,22 @@
                     </li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
+                            <?php $total = 0; ?>
+                            @foreach ($carts as $cart)
                             <ul class="cart_list">
                                 <li>
                                     <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
-                                    <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
+                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
+                                    <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
                                 </li>
                             </ul>
+                            <?php $total += $cart->product_qty*$cart->product_price; ?>
+                            @endforeach
                             <div class="cart_footer">
-                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>78.00</p>
-                                <p class="cart_buttons"><a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
-                                                        <a href="" class="btn btn-fill-out checkout">Checkout</a>
+                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>{{ number_format($total,2) }}</p>
+                                <p class="cart_buttons">
+                                    <a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
+                                    <a href="{{ route('user.order.index') }}" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
                         </div>
