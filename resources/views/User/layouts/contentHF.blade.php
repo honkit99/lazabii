@@ -193,7 +193,7 @@
                                     <a href="{{ route('user.order.index') }}" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
-                            @endif
+                    @endif
                         </div>
                     </li>
                 </ul>
