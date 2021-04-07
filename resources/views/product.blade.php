@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end">
-            <li class="breadcrumb-item "><a href="{{ route('user.home') }}" class="color_white">Home</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('home') }}" class="color_white">Home</a></li>
             <li class="breadcrumb-item active">Product</li>
             @foreach ($filproducts as $fill)
                 @if (isset($fill))
@@ -113,7 +113,7 @@
                                 <img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product_img1">
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
-                                        <form action="{{ route('user.addtocart',$product->id) }}" method="POST">
+                                        <form action="{{ route('addtocart',$product->id) }}" method="POST">
                                             @csrf
                                             <li class="add-to-cart"><button><i class="icon-basket-loaded"></button></i></li>
                                         </form>
@@ -292,5 +292,5 @@
 @endsection
 
 @section('up')
-<a href="{{ route('user.product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
+<a href="{{ route('product.index') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 @endsection

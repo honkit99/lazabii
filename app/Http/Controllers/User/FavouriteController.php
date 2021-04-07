@@ -6,7 +6,9 @@ use App\Favourite;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\FavouriteStoreRequest;
 use App\Http\Requests\User\FavouriteUpdateRequest;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
@@ -16,8 +18,9 @@ class FavouriteController extends Controller
      */
     public function index(Request $request)
     {
-        $favourites = Favourite::all();
-
+        $favourites = Favourite::join('products', 'favourites.product_id', '=', 'products.id')
+                                ->whereuser_id(Auth::user()->id)->get();
+        // dd($favourites);
         return view('user.favourite', compact('favourites'));
     }
 
@@ -34,13 +37,38 @@ class FavouriteController extends Controller
      * @param \App\Http\Requests\User\FavouriteStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        $request->validated();
-        $favourite = Favourite::create($request->validated());
+        // $request->validated();
+        // $favourite = Favourite::create($request->validated());
 
-        $request->session()->flash('success', 'You have created successfully');
-        session('success');
+        // $request->session()->flash('success', 'You have created successfully');
+        // session('success');
+
+        return redirect()->route('user.favourite.index');
+    }
+
+    public function addtowishlist($id)
+    {
+        // $request->validated();
+        // $favourite = Favourite::create($request->validated());
+
+        // $request->session()->flash('success', 'You have created successfully');
+        // session('success');
+
+        $product = Product::whereid($id)->first();
+    
+            if(Auth::check()){
+                //add prod data and usr id to cart db
+                Favourite::create([
+                     'user_id' => Auth::user()->id,
+                    'product_id' => $product->id,
+                ]);
+            }else{
+                dd(Auth::user());
+                return redirect(route('user.login'));
+            }
+            return redirect()->back()->with('success', 'Product added to favourite successfully!');
 
         return redirect()->route('user.favourite.index');
     }
@@ -52,7 +80,7 @@ class FavouriteController extends Controller
      */
     public function show(Request $request, Favourite $favourite)
     {
-        return view('user.favourite.show', compact('favourite'));
+        return view('user.favourite', compact('favourite'));
     }
 
     /**
@@ -88,6 +116,7 @@ class FavouriteController extends Controller
      */
     public function destroy(Request $request, Favourite $favourite)
     {
+        dd($favourite);
         $favourite->delete();
 
         $request->session()->flash('success', 'You have deleted successfully');
