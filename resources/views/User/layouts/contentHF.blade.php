@@ -158,7 +158,7 @@
                             </form>
                         </div><div class="search_overlay"></div>
                     </li>
-                    
+                    @if (!empty($carts))        
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{{ $sum }}</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <?php $total = 0; ?>
@@ -193,6 +193,7 @@
                                     <a href="{{ route('user.order.index') }}" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
+                            @endif
                         </div>
                     </li>
                 </ul>
