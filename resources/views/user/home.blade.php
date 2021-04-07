@@ -143,7 +143,7 @@
                             </form>
                         </div><div class="search_overlay"></div><div class="search_overlay"></div>
                     </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{{ $sum }}</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <?php $total = 0; ?>
                             @foreach ($carts as $cart)
