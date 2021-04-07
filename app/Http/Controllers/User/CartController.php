@@ -83,7 +83,6 @@ class CartController extends Controller
      */
     public function edit(Request $request, Cart $cart,$quantity)
     {
-        dd($quantity);
         if($cart->id and $quantity)
         {
             $cart = session()->get('cart');
@@ -106,7 +105,6 @@ class CartController extends Controller
      */
     public function updatecart(Request $request, Cart $cart)
     {
-        dd($cart);
             $id = $cart->product_id;
             $cart->update(['product_qty'=>$request->product_qty]);
             
@@ -146,7 +144,7 @@ class CartController extends Controller
 
         // session('success');
 
-        // return redirect()->route('user.cart.index');
+        // return redirect()->route('user.cart.index');\
         $cart->delete();
 
         $request->session()->flash('success', 'You have deleted cart successfully');
@@ -188,7 +186,6 @@ class CartController extends Controller
                 }
                 
             }else{
-                dd(Auth::user());
                 return redirect(route('user.login'));
             }
             if(url()->previous()=='http://lazabii.test/user/favourite'){
@@ -232,7 +229,6 @@ class CartController extends Controller
                 'variance_id' => 1, //need to change
             ]);
         }else{
-            dd(Auth::user());
             return redirect(route('user.login'));
         }
         if(url()->previous()=='http://lazabii.test/user/favourite'){
@@ -313,7 +309,6 @@ class CartController extends Controller
                 'variance_id' => 1, //need to change
             ]);
         }
-        dd($favourite);
         return redirect(route('user.favourite.destroy',$favourite));
     }
 

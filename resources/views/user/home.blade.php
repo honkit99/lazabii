@@ -251,6 +251,17 @@
                         </div>
                         <div class="col-lg-9 col-md-8">
                             <div class="cat_slider mt-4 mt-md-0 carousel_slider owl-carousel owl-theme nav_style5" data-loop="true" data-dots="false" data-nav="true" data-margin="30" data-responsive='{"0":{"items": "1"}, "380":{"items": "2"}, "991":{"items": "3"}, "1199":{"items": "4"}}'>
+                                @foreach ( $parentcategories as $parentcategory)
+                                <div class="item">
+                                    <div class="categories_box">
+                                        <a href="{{ route('product.show',$parentcategory->id) }}">
+                                            <i class="flaticon-{{ $parentcategory->name }}"></i>
+                                            <span>{{ $parentcategory->name }}</span>
+                                            
+                                        </a>
+                                    </div>
+                                </div>
+                                @endforeach
                                 <div class="item">
                                     <div class="categories_box">
                                         <a href="">
@@ -318,9 +329,65 @@
                 <div class="heading_s4 text-center">
                     <h2>Our Top Products</h2>
                 </div>
-                <p class="text-center leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim Nullam nunc varius.</p>
+                @if (\Session::has('warning'))
+                <div class="alert alert-warning">
+                    <ul>
+                        <li>{!! \Session::get('warning') !!}</li>
+                    </ul>
+                </div>
+                @elseif (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+                @endif
+                <p class="text-center leads">Too Good</p>
             </div>
 		</div>
+        
+        <div class="row shop_container">
+        @foreach ($products as $product)      
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="product_box text-center">
+                    <div class="product_img">
+                        <a href="">
+                            <img src="{{ asset('Template/images/furniture_img1.jpg') }}" alt="furniture_img1">
+                        </a>
+                        <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li><a href="" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                <form action="{{ route('user.addtowishlist',$product->id) }}" method="POST">
+                                    @csrf 
+                                   <li><button><i class="icon-heart"></i></button></a></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
+                        <div class="product_price">
+                            <span class="price">RM{{ $product->price }}</span>
+                        </div>
+                        <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:80%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                        <div class="pr_desc">
+                            <p>{{ $product->description }}</p>
+                        </div>
+                        <div class="add-to-cart">
+                            <a href="" class="btn btn-fill-out btn-radius"><i class="icon-basket-loaded"></i> Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>              
+        @endforeach
+    </div>
+
         <div class="row shop_container">
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="product_box text-center">
