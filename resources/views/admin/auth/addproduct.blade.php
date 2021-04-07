@@ -43,8 +43,8 @@
                                 <span class="mt-2 text-danger">{{ $message }}</span>
                                 @enderror
                                 <button type ="submit"class="btn btn-primary">Submit</button>
-                
 								</form>
+
 								</thead>
 							</table>
 						</div>

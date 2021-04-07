@@ -34,7 +34,7 @@
                                         <td>{{$category ->parent_id}}</td>
                                         <td>{{$category ->name}}</td>
                                         <td><img style="height:100px; width:100px;" alt="X Image" class="rounded-full" src="{{asset('/storage/images/users/'.$category->image)}}"></td>
-                                        <td>{{$category ->status}}</td>
+                                        <td><span class="badge {{($category->status==0) ? 'bg-success' : (($category->status==1) ? 'bg-warning' :'bg-danger')}}">{{$category ->status_name}}</td>
 										<td> <a href="{{route('admin.categorys.edit',$category->id)}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></a></i></td>
 										<td>
 										<form action="{{route('admin.categorys.destroy',$category->id) }}" method="post">

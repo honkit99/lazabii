@@ -1,58 +1,67 @@
 @extends('admin.layouts.menu')
 
 @section('content')
- <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid">
-				<!-- Add Project -->
-                <div class="d-flex flex-wrap mb-3">
+<div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="d-flex flex-wrap mb-3">
 							<a href="{{route('admin.products.create')}}"  class="btn btn-outline-primary  mr-auto mb-2">Add New Product</a>
-						</div>	
-                <div class="row page-titles mx-0">
-                    <div class="col-sm-6 p-md-0">
-                        <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Furnitures</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Layout</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Blank</a></li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="new-arrival-product">
-                                    <div class="new-arrivals-img-contnent">
-                                    @foreach($products as $key =>$product)
-                                        <img class="img-fluid" src="{{asset('images/product/1.jpg')}}" alt="">
-                                    </div>
-                                    <div class="new-arrival-content text-center mt-3">
-                                        <h4><a href="">{{$product ->name}}</a></h4>
-                                        <ul class="star-rating">
-                                            <li>{{$product ->quantity}}</li>
-                                            
-
-                                        </ul>
-                                        <li>{{$product ->description}}</li>
-                                        <span class="price">{{$product ->price}}</span>
+						</div>
+						<div class="table-responsive">
+						<table style="text-align: center;"id="dataTable1" class="display mb-4 dataTablesCard card-table text-black customer-list-tbl">
+								<thead>
+									<tr class="bg-primary">
+										<th><strong class="font-w600 wspace-no">Product ID</strong></th>
+                                        <th><strong class="font-w600 wspace-no">Product Name</strong></th>
+										<th><strong class="font-w600 wspace-no">Product Price </strong></th>
+										<th><strong class="font-w600 wspace-no ">Quantity</strong></th>
+                                        <th><strong class="font-w600 wspace-no">Description </strong></th>
+										<th><strong class="font-w600 wspace-no">Status</strong></th>
+										<th colspan="3"><strong class="font-w600 wspace-no">Action</strong></th>
+										<th class="bg-none"></th>
+									</tr>
+								</thead>
+								<tbody>
+                                @foreach($products as $key =>$product)
+									<tr>
+										<td>{{$product ->id}}</td>
+                                        <td>{{$product ->name}}</td>
+                                        <td>{{$product ->price}}</td>
+                                        <td>{{$product ->quantity}}</td>
+                                        <td>{{$product ->description}}</td>								
+                                        <td> <span class="badge {{($product->status==0) ? 'bg-success' : (($product->status==1) ? 'bg-warning' :'bg-danger')}}">{{$product ->status}}</span></td>		
+                                        <td>Add Images</td>
+                                        <td> <a href=""><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></a></i></td>
+										<td>
+										<form action="{{route('admin.products.destroy',$product->id) }}" method="post">
+										@csrf
+       									@method("DELETE")
+										<a href="#"onclick="return confirmation(this);" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+										</form>
+										</td>
+										
                                         @endforeach
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>       
-                </div>
+										</div>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+<script>
+                function confirmation(form)
+{
+	var answer;
+	answer=confirm("Are you sure you want to delete this admin?");
+	if(answer)
+		$(form).parent().submit();
+	return answer;
+}
+</script>
             </div>
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+
+            
 @endsection
+

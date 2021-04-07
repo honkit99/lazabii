@@ -103,6 +103,6 @@ class ProductController extends Controller
 
         $request->session()->flash('success', "You created successfully");
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.products.index');
     }
 }

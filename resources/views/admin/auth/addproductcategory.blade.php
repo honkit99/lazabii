@@ -18,8 +18,8 @@
                                 <p><b>Image: </b><input type="file" class="form-control"name="image"value=""></p>
                                 <select name="status"class="form-control" aria-label="Default select example">
                                 <option value="">-Please select the option-</option>
-                                <option value="0">New</option>
-                                <option value="1">Old</option>
+                                <option value="0">Available</option>
+                                <option value="1">Disabled</option>
                                 </select>
                                 <button type ="submit"class="btn btn-primary">Submit</button>
                 

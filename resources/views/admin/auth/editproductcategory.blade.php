@@ -15,9 +15,9 @@
 						<div class="table-responsive">
 						<table style="text-align: center;"id="dataTable1" class="display mb-4 dataTablesCard card-table text-black customer-list-tbl">
 								<thead>
-                                <p><b>Parent ID: </b><input type="text" class="form-control"name="parent_id" value="{{$category ->parent_id}}"required></p>
+                                <p><b>Parent ID: </b><input type="text" class="form-control"name="parent_id" value="{{$category ->parent_id}}"></p>
                                 <p><b>Category Name: </b><input type="text" class="form-control"name="name" value="{{$category ->name}}"required></p>
-                                <p><b>Image: </b><input type="file" name="image"class="form-control"value=""></p>
+                                <p><b>Image: </b><input type="file" name="image"class="form-control"></p>
                                 <label class="form-label">Status: </label>
                                 <select name="status"class="form-control" aria-label="Default select example">
                                     <option value="">-Please select the option-</option>

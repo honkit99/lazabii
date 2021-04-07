@@ -38,7 +38,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'parent_id' => 'required',
             'name' => 'required',
             'image'=>'required',
             'status'=> 'required',
@@ -89,7 +88,6 @@ class CategoryController extends Controller
         $validated=$request->validate([
             'parent_id' => 'required',
             'name' => 'required',
-            'image'=>'required',
             'status'=> 'required',
         ],[
         ],[

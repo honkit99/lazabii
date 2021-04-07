@@ -20,6 +20,8 @@ class Category extends Model
         'image',
         'status',
     ];
+    protected $appends =['status_name'];
+
 
     /**
      * The attributes that should be cast to native types.
@@ -39,5 +41,23 @@ class Category extends Model
     public function children() //to find children from parent
     {
       return $this->hasMany('App\Category', 'parent_id');
+    }
+
+    public function getStatusNameAttribute(){
+        /*
+        if($this->status ==0)
+        return "New";
+        if($this->status ==1)
+        return "Doing";
+        if($this->status ==2)
+        return "Done";*/
+
+        //Method 2
+        return[
+            0=>'Available',
+            1=>'Disabled',
+        ][$this->status];
+       
+        
     }
 }
