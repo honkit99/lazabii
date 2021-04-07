@@ -51,13 +51,15 @@ class AppServiceProvider extends ServiceProvider
                 View::share('sum',$sum);
             }else {
                 $carts = session()->get('cart');
-                if(!$carts){
+                if(isset($carts)){
                     View::share('carts',$carts);
                     $sum = 0;
                     foreach ($carts as $cart) {
                         $sum +=1;
                     }
                 View::share('sum',$sum);
+                }else{
+                    
                 }
             }
         });
