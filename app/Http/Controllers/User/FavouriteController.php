@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Category;
 use App\Favourite;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\FavouriteStoreRequest;
@@ -19,7 +20,8 @@ class FavouriteController extends Controller
     public function index(Request $request)
     {
         $favourites = Favourite::join('products', 'favourites.product_id', '=', 'products.id')
-                                ->whereuser_id(Auth::user()->id)->get();
+                                ->whereuser_id(Auth::user()->id)
+                                ->select('favourites.*','products.name','products.price')->get();
         // dd($favourites);
         return view('user.favourite', compact('favourites'));
     }
@@ -57,7 +59,10 @@ class FavouriteController extends Controller
         // session('success');
 
         $product = Product::whereid($id)->first();
-    
+        $added = Favourite::whereuser_id(Auth::user()->id)->whereproduct_id($id)->get();
+        if(count($added)>0){
+            return redirect()->back()->with('warning', 'The product is added to favourite , <a href="'. route('user.favourite.index') . '"> Click here  </a>to see your favourite');            
+        }else{
             if(Auth::check()){
                 //add prod data and usr id to cart db
                 Favourite::create([
@@ -68,9 +73,8 @@ class FavouriteController extends Controller
                 dd(Auth::user());
                 return redirect(route('user.login'));
             }
-            return redirect()->back()->with('success', 'Product added to favourite successfully!');
-
-        return redirect()->route('user.favourite.index');
+        }
+        return redirect()->back()->with('success', 'Product added to favourite successfully!');
     }
 
     /**
@@ -116,7 +120,6 @@ class FavouriteController extends Controller
      */
     public function destroy(Request $request, Favourite $favourite)
     {
-        dd($favourite);
         $favourite->delete();
 
         $request->session()->flash('success', 'You have deleted successfully');
