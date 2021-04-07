@@ -23,6 +23,8 @@
 										<th class="bg-none"></th>
 									</tr>
 								</thead>
+
+
 								<tbody>
                                 @foreach($products as $key =>$product)
 									<tr>
@@ -32,8 +34,8 @@
                                         <td>{{$product ->quantity}}</td>
                                         <td>{{$product ->description}}</td>								
                                         <td> <span class="badge {{($product->status==0) ? 'bg-success' : (($product->status==1) ? 'bg-warning' :'bg-danger')}}">{{$product ->status}}</span></td>		
-                                        <td>Add Images</td>
-                                        <td> <a href=""><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></a></i></td>
+                                        <td> <a href="{{route('admin.products.show',$product->id) }}"><i class="fa fa-eye fa-o fa-2x"  aria-hidden="true"></i></a></td>
+                                        <td> <a href=""><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
 										<td>
 										<form action="{{route('admin.products.destroy',$product->id) }}" method="post">
 										@csrf
@@ -54,7 +56,7 @@
                 function confirmation(form)
 {
 	var answer;
-	answer=confirm("Are you sure you want to delete this admin?");
+	answer=confirm("Are you sure you want to delete this product?");
 	if(answer)
 		$(form).parent().submit();
 	return answer;

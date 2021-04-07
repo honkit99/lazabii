@@ -38,11 +38,13 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     //Route::resource('changePassword', App\Http\Controllers\Admin\changePasswordController::class);
     
-    Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
+    //Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
 
     Route::resource('adminlist', 'App\Http\Controllers\Admin\AdminController');
-    
-     Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
+     
+     Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
+     Route::post('productimage', [App\Http\Controllers\Admin\ProductController::class,'addImages'])->name('productimage');
+
      Route::resource('admins', 'App\Http\Controllers\Admin\AdminController');
      Route::resource('users', 'App\Http\Controllers\User\UserController');
      //Route::resource('productCategory', 'App\Http\Controllers\Admin\ProductCategoryRelationController');
@@ -55,7 +57,7 @@ Route::group(['middleware'=>['auth:admin']], function () {
 
     // Route::resource('variance', 'Admin\VarianceController');
 
-    // Route::resource('product-image', 'Admin\ProductImageController');
+     //Route::resource('productimages', 'App\Http\Controllers\Admin\ProductImageController');
 
     // Route::resource('delivery-company', 'Admin\DeliveryCompanyController');
 

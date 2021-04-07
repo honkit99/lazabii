@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -37,7 +38,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {       
-        
         $request->validate([
             'name' => 'required',
             'price'=> 'required',
@@ -65,7 +65,7 @@ class ProductController extends Controller
      */
     public function show(Request $request, Product $product)
     {
-        return view('admin.product.show', compact('product'));
+        return view('admin.auth.productdetails', compact('product'));
     }
 
     /**
@@ -104,5 +104,28 @@ class ProductController extends Controller
         $request->session()->flash('success', "You created successfully");
 
         return redirect()->route('admin.products.index');
+    }
+
+    public function addImages(Request $request,$id=null, Product $product)
+    {
+             $products = Product::all();
+   
+        $productDetails = product::where(['id'=>$id])->first();
+        // if($request->isMethod('post')){
+        //     $data=$request->all();{
+        //         $files = $request->file('product_image');
+        //         foreach($files as $file)
+        //         {
+        //             $image = new ProductImage;
+        //             $extension = $file->getClientOriginalExtension();
+        //             $filename = rand(111,9999).'.'.$extension;
+        //             $image_path = 'uploads/products';
+        //             ProductImage::make($file)->save($image_path);
+        //             $image->product_id = $data['product_id'];
+        //             $image->save();
+        //         }
+        //     }
+        // }
+        return view('admin.auth.product', compact('products'));
     }
 }
