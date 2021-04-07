@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         // dd($carts);
        
 
-        /*view()->composer('*',function($view){
+        view()->composer('*',function($view){
             if (Auth::check()) {
                 $carts = Cart::where( 'user_id', Auth::user()->id)->get();
                 $sum = Cart::where( 'user_id', Auth::user()->id)->groupBy('product_id')->count();
@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
 
                 }
             }
-        });*/
+        });
 
     }
 }
