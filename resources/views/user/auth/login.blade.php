@@ -52,7 +52,7 @@
                                             <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                         </div>
                                     </div>
-                                    <a href="login.html#">Forgot password?</a>
+                                    {{-- <a href="{{ route('user.forgotPassword') }}">Forgot password?</a> --}}
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
@@ -76,7 +76,4 @@
 <!-- END LOGIN SECTION -->
 @endsection
 
-@section('up')
-<a href="{{ route('user.login') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
-@endsection
 

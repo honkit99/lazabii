@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Cart;
+use App\City;
+use App\Country;
+use App\DeliveryCompany;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderStoreRequest;
 use App\Http\Requests\User\OrderUpdateRequest;
 use App\Order;
+use App\Postcode;
+use App\State;
+use App\User;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,15 +26,20 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = Order::all();
+        $country = Country::all();
+        $state = State::all();
+        $city = City::all();
+        $postcode = Postcode::all();
+        $delivery = DeliveryCompany::all();
 
-        return view('user.order.index', compact('orders'));
+        return view('user.order', compact('orders','country','state','city','postcode','delivery'));
     }
 
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('user.order.create');
     }
@@ -36,13 +50,45 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validated();
-        $order = Order::create($request->validated());
-
+        $carts = Cart::where('user_id',Auth::user()->id)->get();
+        $total = 0;
+        $delivery = DeliveryCompany::where('id',$request->delivery)->first();
         $request->session()->flash('success', 'You have created successfully');
         session('success');
 
-        return redirect()->route('user.order.index');
+        foreach($carts as $key => $cart){
+            $total  += $cart->product_qty* $cart->product_price;
+        };
+
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required',
+            'address'=> 'required',
+            'country'=> 'required',
+            'state'=> 'required',
+            'city'=> 'required',
+            'postcode'=> 'required',
+            'phone'=> 'required',
+            'delivery'=> 'required',
+        ],[],[]);
+            Order::create([
+                'user_id' => Auth::user()->id,
+                'receiver_name' => $request->name,
+                'receiver_email' => $request->email,
+                'country_id' => $request->country,
+                'address' => $request->address,
+                'state_id' => $request->state,
+                'city_id' => $request->city,
+                'postcode_id' => $request->postcode,
+                'receiver_contact' => $request->phone,
+                'delivery_company_id' => $request->delivery,
+                'delivery_company_name' => $delivery->name,
+                'total_amount'=>$total,
+                'status' => 2 ,
+                'payment_status'=> 2,
+                'delivery_status'=> 0,
+            ]);
+        return redirect()->route('user.ordersuccess');
     }
 
     /**
@@ -50,9 +96,11 @@ class OrderController extends Controller
      * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Order $order)
+    public function show(Request $request,$id)
     {
-        return view('user.order.show', compact('order'));
+        $user = Auth::user()->id;
+        $histories = Order::whereuser_id($user)->get();
+        return view('user.orderhistory', compact('histories'));
     }
 
     /**
@@ -80,7 +128,6 @@ class OrderController extends Controller
 
         return redirect()->route('user.order.index');
     }
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Order $order

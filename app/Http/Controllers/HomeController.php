@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Controllers\Controller;
@@ -19,10 +19,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -35,8 +35,8 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $categories = Category::with('children')->whereNull('parent_id')->get(); //children is from category model
-        $parentcategories = Category::whereNull('parent_id')->get(); 
-        return view('user.home',compact('products','categories','parentcategories'));
+        // View::share('categories', $categories);
+        return view('home',compact('products','categories'));
     }
 
 

@@ -34,7 +34,37 @@ class AppServiceProvider extends ServiceProvider
 
         $charts->register([
             \App\Charts\SampleChart::class,
-            // \App\Charts\SalesChart::class
+            \App\Charts\SalesChart::class,
+            \App\Charts\RevenueChart::class,
+            \App\Charts\CustomerChart::class,
         ]);
+       
+        // dd($carts);
+       
+
+        view()->composer('*',function($view){
+            if (Auth::check()) {
+                $carts = Cart::where( 'user_id', Auth::user()->id)->get();
+                $sum = Cart::where( 'user_id', Auth::user()->id)->groupBy('product_id')->count();
+                // dd($sum);    
+                View::share('carts',$carts);
+                View::share('sum',$sum);
+            }else {
+                $carts = session()->get('cart');
+
+                if(isset($carts)){
+                    View::share('carts',$carts);
+                    $sum = 0;
+                    foreach ($carts as $cart) {
+                        $sum +=1;
+                    }
+
+                View::share('sum',$sum);
+                }else{
+
+                }
+            }
+        });
+
     }
 }

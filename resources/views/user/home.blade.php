@@ -111,6 +111,7 @@
                                 </ul>
                             </div>
                         </li>
+
                         <li class="dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
@@ -144,17 +145,22 @@
                     </li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
+                            <?php $total = 0; ?>
+                            @foreach ($carts as $cart)
                             <ul class="cart_list">
                                 <li>
                                     <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">Variable product 001</a>
-                                    <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
+                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
+                                    <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
                                 </li>
                             </ul>
+                            <?php $total += $cart->product_qty*$cart->product_price; ?>
+                            @endforeach
                             <div class="cart_footer">
-                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>78.00</p>
-                                <p class="cart_buttons"><a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
-                                                        <a href="" class="btn btn-fill-out checkout">Checkout</a>
+                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>{{ number_format($total,2) }}</p>
+                                <p class="cart_buttons">
+                                    <a href="{{ route('user.cart.index') }}" class="btn btn-fill-line view-cart">View Cart</a>
+                                    <a href="{{ route('user.order.index') }}" class="btn btn-fill-out checkout">Checkout</a>
                                 </p>
                             </div>
                         </div>
@@ -245,55 +251,18 @@
                         </div>
                         <div class="col-lg-9 col-md-8">
                             <div class="cat_slider mt-4 mt-md-0 carousel_slider owl-carousel owl-theme nav_style5" data-loop="true" data-dots="false" data-nav="true" data-margin="30" data-responsive='{"0":{"items": "1"}, "380":{"items": "2"}, "991":{"items": "3"}, "1199":{"items": "4"}}'>
+                                @foreach ( $parentcategories as $parentcategory)
                                 <div class="item">
                                     <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-bed"></i>
-                                            <span>Bedroom</span>
+                                        <a href="{{ route('product.show',$parentcategory->id) }}">
+                                            <i class="flaticon-{{ $parentcategory->name }}"></i>
+                                            <span>{{ $parentcategory->name }}</span>
                                             
                                         </a>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-table"></i>
-                                            <span>Dining Table</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-sofa"></i>
-                                            <span>Sofa</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-armchair"></i>
-                                            <span>Armchair</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-chair"></i>
-                                            <span>chair</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-desk-lamp"></i>
-                                            <span>desk lamp</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                @endforeach
+                                
                             </div>
                         </div>
             		</div>
@@ -312,9 +281,65 @@
                 <div class="heading_s4 text-center">
                     <h2>Our Top Products</h2>
                 </div>
-                <p class="text-center leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim Nullam nunc varius.</p>
+                @if (\Session::has('warning'))
+                <div class="alert alert-warning">
+                    <ul>
+                        <li>{!! \Session::get('warning') !!}</li>
+                    </ul>
+                </div>
+                @elseif (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+                @endif
+                <p class="text-center leads">Too Good</p>
             </div>
 		</div>
+        
+        <div class="row shop_container">
+        @foreach ($products as $product)      
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="product_box text-center">
+                    <div class="product_img">
+                        <a href="">
+                            <img src="{{ asset('Template/images/furniture_img1.jpg') }}" alt="furniture_img1">
+                        </a>
+                        <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li><a href="" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                <form action="{{ route('user.addtowishlist',$product->id) }}" method="POST">
+                                    @csrf 
+                                   <li><button><i class="icon-heart"></i></button></a></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title"><a href="{{ route('user.showdetails',$product->id) }}">{{ $product->name }}</a></h6>
+                        <div class="product_price">
+                            <span class="price">RM{{ $product->price }}</span>
+                        </div>
+                        <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:80%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                        <div class="pr_desc">
+                            <p>{{ $product->description }}</p>
+                        </div>
+                        <div class="add-to-cart">
+                            <a href="" class="btn btn-fill-out btn-radius"><i class="icon-basket-loaded"></i> Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>              
+        @endforeach
+    </div>
+
         <div class="row shop_container">
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="product_box text-center">

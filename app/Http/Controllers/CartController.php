@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Country;
@@ -83,6 +83,7 @@ class CartController extends Controller
      */
     public function edit(Request $request, Cart $cart,$quantity)
     {
+        dd($quantity);
         if($cart->id and $quantity)
         {
             $cart = session()->get('cart');
@@ -105,6 +106,7 @@ class CartController extends Controller
      */
     public function updatecart(Request $request, Cart $cart)
     {
+        dd($cart);
             $id = $cart->product_id;
             $cart->update(['product_qty'=>$request->product_qty]);
             
@@ -144,7 +146,7 @@ class CartController extends Controller
 
         // session('success');
 
-        // return redirect()->route('user.cart.index');\
+        // return redirect()->route('user.cart.index');
         $cart->delete();
 
         $request->session()->flash('success', 'You have deleted cart successfully');
@@ -155,13 +157,14 @@ class CartController extends Controller
 
     public function addtocart($id)
     { 
-        $wishlisted = Favourite::whereuser_id(Auth::user()->id)->get();
-        $mcart = Cart::whereproduct_id($id)->whereuser_id(Auth::user()->id)->first();
+        if(Auth::check()){
+            $mcart = Cart::whereproduct_id($id)->whereuser_id(Auth::user()->id)->first();
+            $available = Cart::whereuser_id(Auth::user()->id)->whereproduct_id($id);
+        }
         $product = Product::whereid($id)->first();
         if(!$product) {
             abort(404);
         }
-        $available = Cart::whereuser_id(Auth::user()->id)->whereproduct_id($id);
         $cart = session()->get('cart');
 
         // if cart not empty then check if this product exist then increment quantity
@@ -185,11 +188,6 @@ class CartController extends Controller
                     // $mcart->save();
                 }
                 
-            }else{
-                return redirect(route('user.login'));
-            }
-            if(url()->previous()=='http://lazabii.test/user/favourite'){
-                return redirect(route('user.favourite.destroy',1))->with('success', 'Product added to cart successfully!');
             }
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
@@ -228,89 +226,7 @@ class CartController extends Controller
                 'user_id' => Auth::user()->id,
                 'variance_id' => 1, //need to change
             ]);
-        }else{
-            return redirect(route('user.login'));
-        }
-        if(url()->previous()=='http://lazabii.test/user/favourite'){
-            return redirect(route('user.favourite.destroy'))->with('success', 'Product added to cart successfully!');
         }
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
-
-    public function cartadded($id,Favourite $favourite)
-    { 
-        if(Auth::check()){
-            $mcart = Cart::whereproduct_id($id)->whereuser_id(Auth::user()->id)->first();
-            $available = Cart::whereuser_id(Auth::user()->id)->whereproduct_id($id);
-        }
-        $product = Product::whereid($id)->first();
-        if(!$product) {
-            abort(404);
-        }
-        $cart = session()->get('cart');
-
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-
-            if(Auth::check()){
-                if(!$available){
-                    //add prod data and usr id to cart db
-                    Cart::create([
-                        'user_id' => Auth::user()->id,
-                    'product_id' => $product->id,
-                    'product_name' => $product->name,
-                    'product_price' => $product->price,
-                    'product_qty' => +1,
-                    'variance_id' => 1, //need to change
-                ]);
-                }else{
-                    $mcart->increment('product_qty' , 1);
-                    // $mcart->save();
-                }
-                
-            }
-            return redirect(route('user.favourite.destroy',$favourite));
-        }
-
-        // if cart is empty then this the first product
-        if(!$cart) {
-            $cart = [
-                    $id => [
-                        "id" => $product->id,
-                        "name" => $product->name,
-                        "quantity" => 1,
-                        "price" => $product->price,
-                        "descr" => $product->description
-                    ]
-            ];
-        }else{
-            // if item not exist in cart then add to cart with quantity = 1
-            $cart[$id] = [
-                "id" => $product->id,
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "descr" => $product->description
-            ];
-        }
-
-        session()->put('cart', $cart);
-
-        if(Auth::check()){
-            //add prod data and usr id to cart db
-            Cart::create([
-                'product_id' => $product->id,
-                'product_name' => $product->name,
-                'product_price' => $product->price,
-                'product_qty' => 1,
-                'user_id' => Auth::user()->id,
-                'variance_id' => 1, //need to change
-            ]);
-        }
-        return redirect(route('user.favourite.destroy',$favourite));
-    }
-
-
 }

@@ -17,7 +17,10 @@ class CreateOrdersTable extends Migration
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->decimal('total_amount', 8, 2);
             $table->unsignedBigInteger('delivery_company_id');
             $table->foreign('delivery_company_id')->references('id')->on('delivery_companies');

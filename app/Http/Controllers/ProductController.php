@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Controllers\Controller;
@@ -65,19 +65,7 @@ class ProductController extends Controller
         //dd($filteredProduct);
         // ProductCategoryRelation::wherecategory_id()
         // dd($product);
-        return view('user.product', compact('filproducts'));
-    }
-
-    public function showdetails($id)
-    {
-        $details = Product::find($id);
-        //    $id = $product->id;
-        //    dd($id);
-       //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
-        //dd($filteredProduct);
-        // ProductCategoryRelation::wherecategory_id()
-        // dd($product);
-        return view('user.productdetails', compact('details'));
+        return view('product', compact('filproducts'));
     }
 
     /**

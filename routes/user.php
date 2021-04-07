@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductCategoryRelationController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ProfileController;
 
 /*
@@ -30,39 +31,42 @@ Route::get('register', 'App\Http\Controllers\User\Auth\RegisterController@showRe
 Route::post('register', 'App\Http\Controllers\User\Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset', 'App\Http\Controllers\User\Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('password/email', 'App\Http\Controllers\User\Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@showResetForm');
-Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
+// Route::get('password/reset', 'App\Http\Controllers\User\Auth\ForgotPasswordController@showLinkRequestForm');
+//Route::post('password/email', 'App\Http\Controllers\User\Auth\ForgotPasswordController@sendResetLinkEmail');
+// Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@showResetForm');
+// Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
+
+Route::get('forgotPassword', 'App\Http\Controllers\User\Auth\ForgotPasswordController@getEmail')->name('forgotPassword');
+Route::post('forgotPassword', 'App\Http\Controllers\User\Auth\ForgotPasswordController@postEmail');
+
+Route::get('resetPassword/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@getPassword');
+Route::post('resetPassword', 'App\Http\Controllers\User\Auth\ResetPasswordController@updatePassword');
+
+//Route::resource('forgotPassword', ForgotPasswordController::class);
 
 // Add to cart Routes..
 
 // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
 
- Route::resource('category', CartController::class);
- Route::resource('product', ProductController::class);
- // Route::resource('voucher', 'User\VoucherController');
- Route::resource('productCategory', ProductCategoryRelationController::class);
- Route::resource('cart', CartController::class);
-
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
-
     Route::resource('profile', ProfileController::class);
     
     Route::resource('category', CartController::class);
     Route::post('addtocart/{id}', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
+    Route::post('cartadded/{id}/{favourite}', [App\Http\Controllers\User\CartController::class, 'cartadded'])->name('cartadded');
     Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
+    Route::post('addtowishlist/{id}', [App\Http\Controllers\User\FavouriteController::class, 'addtowishlist'])->name('addtowishlist');
     Route::resource('product', ProductController::class);
-
+    Route::get('productdetails/{id}', 'App\Http\Controllers\User\ProductController@showdetails')->name('showdetails');
     // Route::resource('voucher', 'User\VoucherController');
     
     Route::resource('productCategory', ProductCategoryRelationController::class);
 
     Route::resource('cart', CartController::class);
-    // Route::resource('order', 'User\OrderController');
-
+    Route::resource('order', OrderController::class);
+    
     // Route::resource('ewallet', 'User\EwalletController')->except('destroy');
 
     // Route::resource('address', 'User\AddressController');

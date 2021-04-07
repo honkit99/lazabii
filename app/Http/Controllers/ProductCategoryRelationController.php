@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Controllers\Controller;
@@ -10,7 +10,7 @@ use App\Product;
 use App\ProductCategoryRelation;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductCategoryRelationController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -18,8 +18,9 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(1);
-        return view('user.product', compact('products'));
+        $products = Product::all();
+
+        return view('user.product.index', compact('products'));
     }
 
     /**
@@ -51,33 +52,14 @@ class ProductController extends Controller
      * @param \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ProductCategoryRelation $productCategoryRelation)
     {
-        // $filtererd = Product::with('category')->where('categories.id', $id)->get();
-        $filproducts = Category::with(['product' => function($q) use ($id) {
-            return $q->where('category_id','=',$id);
-        }])->whereId($id)->paginate(2);
-
-
-        //    $id = $product->id;
-        //    dd($id);
-       //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
-        //dd($filteredProduct);
+        //$id = $Prodcategory->id;
+       // $sql = ProductCategoryRelation::wherecategory_id($ProdcategoproductCategoryRelationry);
+        dd($productCategoryRelation);
         // ProductCategoryRelation::wherecategory_id()
         // dd($product);
-        return view('user.product', compact('filproducts'));
-    }
-
-    public function showdetails($id)
-    {
-        $details = Product::find($id);
-        //    $id = $product->id;
-        //    dd($id);
-       //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
-        //dd($filteredProduct);
-        // ProductCategoryRelation::wherecategory_id()
-        // dd($product);
-        return view('user.productdetails', compact('details'));
+        return view('user.product.show', compact('product'));
     }
 
     /**
