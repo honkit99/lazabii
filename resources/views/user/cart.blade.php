@@ -36,43 +36,35 @@
                             <?php $total = 0; ?>
                             @foreach ($carts as $key => $cart)
                                 <tr>
-                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
-                                    <td class="product-price" data-title="Price">{{ $cart->product_price  }}</td>
-                                    <td class="product-quantity" data-title="Quantity"><div class="quantity">
-                                    <div>
-                                        {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
-                                        <div class="minus" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>                                       
-                                        <input type="text" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="qty" size="4" >
-                                        <div class="plus" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+                                    <td class="product-thumbnail"><a href="shop-cart.html#"><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>                                    
+                                    <td class="product-name" data-title="Product"><a href="shop-cart.html#">{{ $cart->product_name }}</a></td>
+                                    <td class="product-price" data-title="Price">$ {{ $cart->product_price  }}</td>
+                                    <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity">
+                                        <div>
+                                            <form class="container" method="POST" action="{{ route('user.updatecart',$cart->id) }}">
+                                                @csrf
+                                                @method("PATCH")
+
+                                            {{-- <input type="number" name="product_qty" value="{{ $todo->title }}" class="form-control" > --}}
+                                            <input type="number" name="product_qty" value="{{ $cart->product_qty }}" title="Qty" class="form-control" >
+                                            {{-- <input type="button" value="+" class="plus"> --}}
+                                            <button class="btn btn-fill-line" type="submit">Update Cart</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    </form>
-                                    
-                                </div>
-                                </div></td>
-                                <td class="product-subtotal" data-title="Total">{{ number_format($cart->product_qty*$cart->product_price,2) }}</td>
-                                <td class="product-remove" data-title="Remove">
-                                    <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
-										@csrf
-       									@method('DELETE')
-										<a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
-										</form>
-                                </td>
-                                  {{-- <form id="form1" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
-                                        @csrf
-                                        @method("DELETE")
-                                        <td class="product-remove" data-title="Remove">
-                                        <a href="#" onclick="$(this).parent().submit();"><i class="ti-close"></i></a></td>
-                                    </form>
-                                    <form id="form" action="{{ route('user.cart.destroy',$cart->id) }}" method="post">
-                                        @csrf
-                                        @method("DELETE")
-                                        <td class="product-remove" data-title="Remove">
-                                        <a href="#" onclick="$(this).parent().submit();"><i class="bi bi-trash-fill">ds</i></a></td>
-                                    </form> --}}
-                                    
+                                    </td>
+                                    <td class="product-subtotal" data-title="Total">$ {{ number_format($cart->product_qty*$cart->product_price,2) }}</td>
+                                    <td class="product-remove" data-title="Remove">
+                                        <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
+                                        </form>
+                                    </td>
                                 </tr>
-                             
-                                @endforeach
+                                <?php $total  += $cart->product_qty* $cart->product_price; ?>
+                            @endforeach
                         </tbody>
                         <tfoot>
                         	<tr>
@@ -86,9 +78,6 @@
                                                 </div>
                                             </div>
                                     	</div>
-                                        <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                            <button class="btn btn-line-fill btn-sm" type="submit">Update Cart</button>
-                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -151,22 +140,22 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                {{-- <tr>
+                                <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
-                                    <td class="cart_total_amount">$ {{number_format($total, 2)}}</td>
+                                    <td class="cart_total_amount">$ {{ number_format($total, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>
-                                    <td class="cart_total_amount">$ {{ $Area -> price}}</td>
+                                    <td class="cart_total_amount">$ Free Shipping</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Total</td>
-                                    <td class="cart_total_amount"><strong>$ {{number_format($total + $Area["price"], 2)}}</strong></td>
-                                </tr> --}}
+                                    <td class="cart_total_amount"><strong>$ {{number_format($total, 2)}}</strong></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <a href="shop-cart.html#" class="btn btn-fill-out">Proceed To CheckOut</a>
+                    <a href="{{ route('user.order.index') }}" class="btn btn-fill-out">Proceed To CheckOut</a>
                 </div>
             </div>
         </div>

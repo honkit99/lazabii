@@ -14,9 +14,11 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = Order::all();
+        //$orders = Order::all();
+        $orders = Order::with('user', 'product')->get();
+        $x = 0;
 
-        return view('admin.order.index', compact('orders'));
+        return view('admin.order.index', compact('orders', 'x'));
     }
 
     /**
@@ -69,9 +71,23 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order->update($request->validated());
+        $valid = $request->validate([
+            // 'customer'                => 'required|string|exists:users,name',
+            // 'product'                 => 'required|string|exists:products,name',
+            // 'delivery_company_name'   => 'required|string',
+            'delivery_status'         => 'required|integer',
+            //'total_payment_amount'    => 'required|decimal',
+            'payment_status'          => 'required|integer',
+            // 'address'                 => 'required|text',
+            // 'transaction_id'          => 'required|integer',
+        ]);
 
-        $request->session()->flash('success', "You created successfully");
+        //dd($valid);
+
+        $order->update($valid);
+
+        $request->session()->flash('success', "You updated successfully");
+        session('success');
 
         return redirect()->route('admin.order.index');
     }
@@ -85,7 +101,8 @@ class OrderController extends Controller
     {
         $order->delete();
 
-        $request->session()->flash('success', "You created successfully");
+        $request->session()->flash('success', "You deleted successfully");
+        session('success');
 
         return redirect()->route('admin.order.index');
     }
