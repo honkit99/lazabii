@@ -175,7 +175,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-12">
+							<!--<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header border-0 flex-wrap pb-0">
 										<div class="d-flex mb-3">
@@ -246,7 +246,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>-->
 						</div>
 					</div>
 				</div>
@@ -273,7 +273,7 @@
     el: '#newChart1',
     url: "@chart('sales_chart')",
     hooks: new ChartisanHooks()
-        .colors(['#ECC94B', '#4299E1'])
+        .colors(['#FF4500'])
         .legend({ position: 'bottom' })
         .datasets([{ type: 'line', fill: false }, 'line']),
     });
@@ -282,7 +282,7 @@
     el: '#newChart2',
     url: "@chart('customer_chart')",
     hooks: new ChartisanHooks()
-        .colors(['#ECC94B', '#4299E1'])
+        .colors(['#FF4500'])
         .legend({ position: 'bottom' })
         .datasets([{ type: 'line', fill: false }, 'line']),
     });
@@ -291,7 +291,7 @@
     el: '#newChart3',
     url: "@chart('revenue_chart')",
     hooks: new ChartisanHooks()
-        .colors(['#ECC94B', '#4299E1'])
+        .colors(['#FF4500'])
         .legend({ position: 'bottom' })
         .datasets([{ type: 'line', fill: true, colors: '#4299E1' }]),
     });
