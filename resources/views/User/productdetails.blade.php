@@ -3,14 +3,14 @@
 @section('contents')
     <div class="col-md-6">
         <div class="page-title">
-            <h1>Product name</h1>
+            <h1>Product Details</h1>
         </div>
     </div>
     <div class="col-md-6">
         <ol class="breadcrumb justify-content-md-end">
             <li class="breadcrumb-item "><a href="{{ route('user.home') }}" class="color_white">Home</a></li>
-            <li class="breadcrumb-item "><a href="{{ route('user.product') }}" class="color_white">Product</a></li>
-            <li class="breadcrumb-item active">product name</li>
+            <li class="breadcrumb-item "><a href="{{ route('user.product.index') }}" class="color_white">Product</a></li>
+            <li class="breadcrumb-item active">{{ $details["name"] }}</li>
         </ol>
     </div>
 @endsection
@@ -23,7 +23,7 @@
             <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
                 <div class="product-image">
                     <div class="product_img_box">
-                        <img id="product_img" src='assets/images/product_img1.jpg' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
+                        <img id="product_img" src='{{ asset('Template/images/product_img1.jpg') }}' data-zoom-image="assets/images/product_zoom_img1.jpg" alt="product_img1" />
                         <a href="shop-product-detail.html#" class="product_img_zoom" title="Zoom">
                             <span class="linearicons-zoom-in"></span>
                         </a>
@@ -32,27 +32,27 @@
                     <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-slides-to-show="4" data-slides-to-scroll="1" data-infinite="false">
                         <div class="item">
                             <a href="shop-product-detail.html#" class="product_gallery_item active" data-image="assets/images/product_img1.jpg" data-zoom-image="assets/images/product_zoom_img1.jpg">
-                                <img src="assets/images/product_small_img1.jpg" alt="product_small_img1" />
+                                <img src="{{ asset('Template/images/product_small_img1.jpg') }}" alt="product_small_img1" />
                             </a>
                         </div>
                         <div class="item">
                             <a href="shop-product-detail.html#" class="product_gallery_item" data-image="assets/images/product_img1-2.jpg" data-zoom-image="assets/images/product_zoom_img2.jpg">
-                                <img src="assets/images/product_small_img2.jpg" alt="product_small_img2" />
+                                <img src="{{ asset('Template/images/product_small_img2.jpg') }}" alt="product_small_img2" />
                             </a>
                         </div>
                         <div class="item">
                             <a href="shop-product-detail.html#" class="product_gallery_item" data-image="assets/images/product_img1-3.jpg" data-zoom-image="assets/images/product_zoom_img3.jpg">
-                                <img src="assets/images/product_small_img3.jpg" alt="product_small_img3" />
+                                <img src="{{ asset('Template/images/product_small_img3.jpg') }}" alt="product_small_img3" />
                             </a>
                         </div>
                         <div class="item">
                             <a href="shop-product-detail.html#" class="product_gallery_item" data-image="assets/images/product_img1-4.jpg" data-zoom-image="assets/images/product_zoom_img4.jpg">
-                                <img src="assets/images/product_small_img4.jpg" alt="product_small_img4" />
+                                <img src="{{ asset('Template/images/product_small_img4.jpg') }}" alt="product_small_img4" />
                             </a>
                         </div>
                         <div class="item">
                             <a href="shop-product-detail.html#" class="product_gallery_item" data-image="assets/images/product_img1-2.jpg" data-zoom-image="assets/images/product_zoom_img2.jpg">
-                                <img src="assets/images/product_small_img2.jpg" alt="product_small_img2" />
+                                <img src="{{ asset('Template/images/product_small_img2.jpg') }}" alt="product_small_img2" />
                             </a>
                         </div>
                         <div class="item">
@@ -65,7 +65,7 @@
             </div>
             <!-- Product Information -->
             <div class="col-lg-6 col-md-6">
-                <div class="pr_detail">
+                {{-- <div class="pr_detail">
                     <div class="product_description">
                         <!-- Product name -->
                         <h4 class="product_title"><a href="shop-product-detail.html#">Blue Dress For Woman</a></h4>
@@ -149,6 +149,85 @@
                             <li><a href="shop-product-detail.html#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul>
                     </div>
+                </div> --}}
+                <div class="pr_detail">
+                    <div class="product_description">
+                        <!-- Product name -->
+                        <h4 class="product_title"><a href="{{ route('user.showdetails',$details['id']) }}">{{ $details["name"] }}</a></h4>
+                        <!-- Product price -->
+                        <div class="product_price">
+                            <span class="price">RM{{ $details["price"] }}</span>
+                        </div>
+                        <!-- Product rating -->
+                        <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:80%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>          
+                        <!-- Product guarantee -->
+                        <div class="product_sort_info">
+                            <ul>
+                                <li><i class="linearicons-shield-check"></i> 1 Year AL Jazeera Brand Warranty</li>
+                                <li><i class="linearicons-sync"></i> 30 Day Return Policy</li>
+                                <li><i class="linearicons-bag-dollar"></i> Cash on Delivery available</li>
+                            </ul>
+                        </div>
+                        <!-- Product color -->
+                        <div class="pr_switch_wrap">
+                            <span class="switch_lable">Color</span>
+                            <div class="product_color_switch">
+                                <span class="active" data-color="#87554B"></span>
+                                <span data-color="#333333"></span>
+                                <span data-color="#DA323F"></span>
+                            </div>
+                        </div>
+                        <!-- Product size -->
+                        <div class="pr_switch_wrap">
+                            <span class="switch_lable">Size</span>
+                            <div class="product_size_switch">
+                                <span>xs</span>
+                                <span>s</span>
+                                <span>m</span>
+                                <span>l</span>
+                                <span>xl</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                        <div class="cart_extra">
+                            <!-- Enter Quantity -->
+                            <div class="cart-product-quantity">
+                                <div class="quantity">
+                                    <input type="number" name="quantity" value="1" title="Qty" class="qty"  max="{{ $details["quantity"] }}">
+                                </div>
+                            </div>
+                            <!-- Add to cart btn -->
+                            <div class="cart_btn">
+                                <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
+                                <a class="add_compare" href="shop-product-detail.html#"><i class="icon-shuffle"></i></a>
+                                <a class="add_wishlist" href="shop-product-detail.html#"><i class="icon-heart"></i></a>
+                            </div>
+                        </div>
+                    <hr />
+                    <ul class="product-meta">
+                        <!-- Product information -->
+                        <li>Product Code: <a href="shop-product-detail.html#">BE45VGRT</a></li>
+                        <li>Category: <a href="shop-product-detail.html#">Clothing</a></li>
+                        <li>Tags: <a href="shop-product-detail.html#" rel="tag">Cloth</a>, <a href="shop-product-detail.html#" rel="tag">printed</a> </li>
+                    </ul>
+                    
+                    <!-- Share Product -->
+                    <div class="product_share">
+                        <span>Share:</span>
+                        <ul class="social_icons">
+                            <li><a href="shop-product-detail.html#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="shop-product-detail.html#"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="shop-product-detail.html#"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="shop-product-detail.html#"><i class="ion-social-youtube-outline"></i></a></li>
+                            <li><a href="shop-product-detail.html#"><i class="ion-social-instagram-outline"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,8 +254,7 @@
 					</nav>
 					<div class="container tab-content mt-3 mt-md-4" id="presetTabContent">
                       	<div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab" aria-expanded="true">
-                        	<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Vivamus bibendum magna Lorem ipsum dolor sit amet, consectetur adipiscing elit.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                        	<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+                        	<p>{{ $details["description"] }}</p>
                       	</div>
 						<div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab" aria-expanded="false">
                         	<table class="table table-bordered">
@@ -334,7 +412,7 @@
                         <div class="product">
                             <div class="product_img">
                                 <a href="shop-product-detail.html">
-                                    <img src="assets/images/product_img2.jpg" alt="product_img2">
+                                    <img src="{{ asset('images/product_img2.jpg') }}" alt="product_img2">
                                 </a>
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
@@ -509,6 +587,3 @@
 <!-- END SECTION SHOP -->
 @endsection
 
-@section('up')
-<a href="{{ route('user.productdetails') }}" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
-@endsection

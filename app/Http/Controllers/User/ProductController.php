@@ -71,7 +71,6 @@ class ProductController extends Controller
     public function showdetails($id)
     {
         $details = Product::find($id);
-        dd($details);
         //    $id = $product->id;
         //    dd($id);
        //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();

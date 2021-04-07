@@ -262,55 +262,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-bed"></i>
-                                            <span>Bedroom</span>
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-table"></i>
-                                            <span>Dining Table</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-sofa"></i>
-                                            <span>Sofa</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-armchair"></i>
-                                            <span>Armchair</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-chair"></i>
-                                            <span>chair</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="categories_box">
-                                        <a href="">
-                                            <i class="flaticon-desk-lamp"></i>
-                                            <span>desk lamp</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
             		</div>
@@ -366,7 +318,7 @@
                         </div>
                     </div>
                     <div class="product_info">
-                        <h6 class="product_title"><a href="{{ route('user.productdetails',$product->id) }}">{{ $product->name }}</a></h6>
+                        <h6 class="product_title"><a href="{{ route('user.showdetails',$product->id) }}">{{ $product->name }}</a></h6>
                         <div class="product_price">
                             <span class="price">RM{{ $product->price }}</span>
                         </div>
