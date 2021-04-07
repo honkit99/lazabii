@@ -177,8 +177,8 @@
                                 @foreach ($carts as $cart)
                                 <ul class="cart_list">
                                     <li>
-                                        <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"]}}</a>
+                                        <a class="item_remove"><i class="ion-close"></i></a>
+                                        <a ><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"]}}</a>
                                         <span class="cart_quantity"> {{ $cart["quantity"] }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart["price"] }}</span>
                                     </li>
                                 </ul>
