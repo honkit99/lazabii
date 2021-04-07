@@ -51,7 +51,7 @@ Route::group(['middleware'=>['auth:user']], function () {
     Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
     Route::post('addtowishlist/{id}', [App\Http\Controllers\User\FavouriteController::class, 'addtowishlist'])->name('addtowishlist');
     Route::resource('product', ProductController::class);
-
+    Route::get('productdetails/{id}', 'App\Http\Controllers\User\ProductController@showdetails')->name('showdetails');
     // Route::resource('voucher', 'User\VoucherController');
     
     Route::resource('productCategory', ProductCategoryRelationController::class);
