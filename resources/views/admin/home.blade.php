@@ -39,17 +39,18 @@
 										</div>	
 									</div>
 									<div class="card-body ">
-										<div class="dz-scroll height500" id="tredingMenus">
+									
+										<!--<div class="dz-scroll height500" id="tredingMenus">
 											<div class="d-flex pb-3 mb-3 tr-row align-items-center border-bottom">
-												<span class="num">#1</span>
+												<span class="num">#{{ $x = $x + 1 }}</span>
 												<div class="mr-auto pr-3">
 													<a href="post-details.html"><h2 class="text-black fs-14 font-w500">Chicken curry special with cucumber</h2></a>
 													<span class="text-black font-w600 d-inline-block mr-3">$5.6 </span> <span class="fs-14">Order 89x</span>
 												</div>
 												<img src="images/menu/Untitled-1.jpg" alt="">
 											</div>
-
-										</div>
+										</div>-->
+										
 									</div>
 								</div>
 							</div>
