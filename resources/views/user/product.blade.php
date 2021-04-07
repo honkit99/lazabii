@@ -88,11 +88,7 @@
                             <div class="product_info">
                                 <h6 class="product_title"><a href="">Product name</a></h6>
                                 <div class="product_price">
-                                    <span class="price">Discount price</span>
-                                    <del>Original price</del>
-                                    <div class="on_sale">
-                                        <span>100% off</span>
-                                    </div>
+                                    <span class="price">Price</span>
                                 </div>
                                 <div class="rating_wrap">
                                     <div class="rating">
@@ -137,10 +133,6 @@
                                 <h6 class="product_title"><a href="">{{ $product->name }}</a></h6>
                                 <div class="product_price">
                                     <span class="price">RM{{ $product->price }}</span>
-                                    <del>Original price</del>
-                                    <div class="on_sale">
-                                        <span>100% off</span>
-                                    </div>
                                 </div>
                                     <div class="rating_wrap">
                                         <div class="rating">
