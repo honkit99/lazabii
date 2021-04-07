@@ -49,7 +49,13 @@ class AppServiceProvider extends ServiceProvider
                 View::share('carts',$carts);
                 View::share('sum',$sum);
             }else {
-                $view->with('currentUser', null);
+                $carts = session()->get('cart');
+                View::share('carts',$carts);
+                $sum = 0;
+                foreach ($carts as $cart) {
+                    $sum +=1;
+                }
+                View::share('sum',$sum);
             }
         });
 

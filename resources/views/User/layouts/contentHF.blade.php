@@ -56,7 +56,6 @@
 </div>
 <!-- END LOADER -->
 <!-- START HEADER -->
-@if (Auth::check())
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
     <div class="light_skin main_menu_uppercase">
     	<div class="container">
@@ -70,6 +69,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
+                        @if (Auth::check())
                         <li><a class="nav-link nav_item" href="{{ route('user.home') }}">Home</a></li>
                         <li class="dropdown dropdown-mega-menu">
                             <a class="dropdown-toggle nav-link" href="{{ route('user.product.index') }}" data-toggle="dropdown">Products</a>
@@ -90,6 +90,28 @@
                                 </ul>
                             </div>
                         </li>
+                        @else
+                        <li><a class="nav-link nav_item" href="{{ route('home') }}">Home</a></li>
+                        <li class="dropdown dropdown-mega-menu">
+                            <a class="dropdown-toggle nav-link" href="{{ route('product.index') }}" data-toggle="dropdown">Products</a>
+                            <div class="dropdown-menu">
+                                <ul class="mega-menu d-lg-flex">
+                                    @foreach ($categories as $category )
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul> 
+                                            <li class="dropdown-header">{{ $category->name }}</li>
+                                            @if ($category->children)
+                                                @foreach ($category->children as $children )
+                                                    <li><a class="dropdown-item nav-link nav_item" href="{{ route('product.show',$children->id) }}">{{ $children->name }}</a></li>
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
 						<li class="dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
@@ -101,7 +123,8 @@
                                 </ul>
                             </div>
                         </li>
-						<li class="dropdown">
+                        @if (Auth::check())
+                        <li class="dropdown">
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
                                 <ul> 
@@ -121,6 +144,8 @@
                                 </ul>
                             </div>
                         </li>
+                        @endif
+						
                     </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
@@ -137,20 +162,30 @@
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{{ $sum }}</span></a>
                         <div class="cart_box dropdown-menu dropdown-menu-right">
                             <?php $total = 0; ?>
-                            @foreach ($carts as $cart)
-                            <ul class="cart_list">
-                                <li>
-                                    <form action="{{route('user.cart.destroy',$cart->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
-                                    </form>
-                                    <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
-                                    <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
-                                </li>
-                            </ul>
-                            <?php $total += $cart->product_qty*$cart->product_price; ?>
-                            @endforeach
+                            @if (Auth::check())
+                                @foreach ($carts as $cart)
+                                <ul class="cart_list">
+                                    <li>
+                                        <a href="" class="item_remove"><i class="ion-close"></i></a>
+                                        <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->product_name }}</a>
+                                        <span class="cart_quantity"> {{ $cart->product_qty }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->product_price }}</span>
+                                    </li>
+                                </ul>
+                                <?php $total += $cart->product_qty*$cart->product_price; ?>
+                                @endforeach  
+                            @else
+                                @foreach ($carts as $cart)
+                                <ul class="cart_list">
+                                    <li>
+                                        <a href="" class="item_remove"><i class="ion-close"></i></a>
+                                        <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"]}}</a>
+                                        <span class="cart_quantity"> {{ $cart["quantity"] }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart["price"] }}</span>
+                                    </li>
+                                </ul>
+                                <?php $total += $cart["quantity"]*$cart["price"]; ?>
+                                @endforeach
+                            @endif
+                           
                             <div class="cart_footer">
                                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>{{ number_format($total,2) }}</p>
                                 <p class="cart_buttons">
@@ -168,7 +203,6 @@
         </div>
     </div>
 </header>
-@endif
 <!-- END HEADER -->
 
 <!-- START SECTION BREADCRUMB -->

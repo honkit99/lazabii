@@ -40,12 +40,6 @@ Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordContr
 
 // Route::get('profile', [App\Http\Controllers\User\ProfileController::class, 'profile'])->name('profile');
 
- Route::resource('category', CartController::class);
- Route::resource('product', ProductController::class);
- // Route::resource('voucher', 'User\VoucherController');
- Route::resource('productCategory', ProductCategoryRelationController::class);
- Route::resource('cart', CartController::class);
-
 Route::group(['middleware'=>['auth:user']], function () {
    
     Route::get('home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
@@ -53,7 +47,9 @@ Route::group(['middleware'=>['auth:user']], function () {
     
     Route::resource('category', CartController::class);
     Route::post('addtocart/{id}', [App\Http\Controllers\User\CartController::class, 'addtocart'])->name('addtocart');
+    Route::post('cartadded/{id}/{favourite}', [App\Http\Controllers\User\CartController::class, 'cartadded'])->name('cartadded');
     Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
+    Route::post('addtowishlist/{id}', [App\Http\Controllers\User\FavouriteController::class, 'addtowishlist'])->name('addtowishlist');
     Route::resource('product', ProductController::class);
 
     // Route::resource('voucher', 'User\VoucherController');
