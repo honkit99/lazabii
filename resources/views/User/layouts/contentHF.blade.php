@@ -178,8 +178,8 @@
                                 <ul class="cart_list">
                                     <li>
                                         <a href="" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart["name"]}}</a>
-                                        <span class="cart_quantity"> {{ $cart["quantity"] }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart["price"] }}</span>
+                                        <a href=""><img src="{{ asset('Template/images/cart_thamb1.jpg') }}" alt="cart_thumb1">{{ $cart->name }}</a>
+                                        <span class="cart_quantity"> {{ $cart->quantity }} x <span class="cart_amount"> <span class="price_symbole">$</span>{{ $cart->price }}</span>
                                     </li>
                                 </ul>
                                 <?php $total += $cart["quantity"]*$cart["price"]; ?>
@@ -299,7 +299,7 @@
                                     </div>
                                     <div class="icon_box_content">
                                     	<h5>Email us</h5>
-                                        <p><a href="../../cdn-cgi/l/email-protection.html#650c0b030a25160c11000b0408004b060a08"><span class="__cf_email__" data-cfemail="1e777078715e6d776a7b707f737b307d7173">[email&#160;protected]</span></a> </br> <a href="../../cdn-cgi/l/email-protection.html#b8daddcbcccfdddadbcaddd9ccd7ca96dbd7d5">bestwebcreator.com</a></p>
+                                        <p><a href="../../cdn-cgi/l/email-protection.html#650c0b030a25160c11000b0408004b060a08"><span class="_cf_email_" data-cfemail="1e777078715e6d776a7b707f737b307d7173">[email&#160;protected]</span></a> </br> <a href="../../cdn-cgi/l/email-protection.html#b8daddcbcccfdddadbcaddd9ccd7ca96dbd7d5">bestwebcreator.com</a></p>
                                     </div>
                                 </div>
                             </div>
