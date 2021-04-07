@@ -1,4 +1,4 @@
-@extends('user.layouts.contentHF')
+
 
 @section('contents')
     <div class="col-md-6">

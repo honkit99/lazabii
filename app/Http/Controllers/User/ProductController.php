@@ -68,6 +68,19 @@ class ProductController extends Controller
         return view('user.product', compact('filproducts'));
     }
 
+    public function showdetails($id)
+    {
+        $details = Product::find($id);
+        dd($details);
+        //    $id = $product->id;
+        //    dd($id);
+       //$filteredProduct = ProductCategoryRelation::where('category_id','=',$product->id)->get();
+        //dd($filteredProduct);
+        // ProductCategoryRelation::wherecategory_id()
+        // dd($product);
+        return view('user.productdetails', compact('details'));
+    }
+
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Product $product

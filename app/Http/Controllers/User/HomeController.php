@@ -35,8 +35,8 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $categories = Category::with('children')->whereNull('parent_id')->get(); //children is from category model
-        // View::share('categories', $categories);
-        return view('user.home',compact('products','categories'));
+        $parentcategories = Category::whereNull('parent_id')->get(); 
+        return view('user.home',compact('products','categories','parentcategories'));
     }
 
 

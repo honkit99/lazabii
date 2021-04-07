@@ -31,10 +31,18 @@ Route::get('register', 'App\Http\Controllers\User\Auth\RegisterController@showRe
 Route::post('register', 'App\Http\Controllers\User\Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset', 'App\Http\Controllers\User\Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('password/email', 'App\Http\Controllers\User\Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@showResetForm');
-Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
+// Route::get('password/reset', 'App\Http\Controllers\User\Auth\ForgotPasswordController@showLinkRequestForm');
+//Route::post('password/email', 'App\Http\Controllers\User\Auth\ForgotPasswordController@sendResetLinkEmail');
+// Route::get('password/reset/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@showResetForm');
+// Route::post('password/reset', 'App\Http\Controllers\User\Auth\ResetPasswordController@reset');
+
+Route::get('forgotPassword', 'App\Http\Controllers\User\Auth\ForgotPasswordController@getEmail')->name('forgotPassword');
+Route::post('forgotPassword', 'App\Http\Controllers\User\Auth\ForgotPasswordController@postEmail');
+
+Route::get('resetPassword/{token}', 'App\Http\Controllers\User\Auth\ResetPasswordController@getPassword');
+Route::post('resetPassword', 'App\Http\Controllers\User\Auth\ResetPasswordController@updatePassword');
+
+//Route::resource('forgotPassword', ForgotPasswordController::class);
 
 // Add to cart Routes..
 
@@ -51,7 +59,7 @@ Route::group(['middleware'=>['auth:user']], function () {
     Route::patch('updatecart/{cart}', [App\Http\Controllers\User\CartController::class, 'updatecart'])->name('updatecart');
     Route::post('addtowishlist/{id}', [App\Http\Controllers\User\FavouriteController::class, 'addtowishlist'])->name('addtowishlist');
     Route::resource('product', ProductController::class);
-
+    Route::get('productdetails/{id}', 'App\Http\Controllers\User\ProductController@showdetails')->name('showdetails');
     // Route::resource('voucher', 'User\VoucherController');
     
     Route::resource('productCategory', ProductCategoryRelationController::class);

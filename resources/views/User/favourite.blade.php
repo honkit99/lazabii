@@ -44,7 +44,7 @@
                             <tbody>
                                 <tr>
                                     <td class="product-thumbnail"><a href=""><img src="{{ asset('Template/images/product_img1.jpg') }}" alt="product1"></a></td>
-                                    <td class="product-name" data-title="Product"><a href="">{{ $favourite->name }}</a></td>
+                                    <td class="product-name" data-title="Product"><a href="">{{ $favourite->id }}</a></td>
                                     <td class="product-price" data-title="Price">RM{{ $favourite->price }}</td>
                                     <td class="product-stock-status" data-title="Stock Status"><span class="badge badge-pill badge-success">In Stock</span></td>
                                     <td>
@@ -60,16 +60,6 @@
                                             <a href="#"onclick="return confirmation(this);" ><i class="ti-close"></i></a>
                                             </form>
                                     </td>
-                                    {{-- <form action="{{ route('user.cart.update',$product->id) }}" method="POST">
-                                        @csrf
-                                        @method("PATCH")
-                                        <td class="product-add-to-cart"><button><i class="icon-basket-loaded"></i> Add to Cart</button></td>
-                                    </form>
-                                    <form id="form1" action="{{route('Favourite.destroy',$favourite->id)}}" method="POST">
-                                        @csrf
-                                        @method("DELETE")
-                                        <td class="product-remove"><a href="#" onclick="$(this).parent().submit();"><i class="ti-close"></i></a></td>
-                                    </form> --}}
                                 </tr>
                             </tbody>
                             @endforeach
@@ -84,7 +74,7 @@
     function confirmation(form)
     {
         var answer;
-        answer=confirm("Are you sure you want to delete this cart?");
+        answer=confirm("Are you sure you want to delete this record?");
         if(answer)
             $(form).parent().submit();
         return answer;

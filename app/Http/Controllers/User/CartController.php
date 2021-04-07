@@ -144,7 +144,7 @@ class CartController extends Controller
 
         // session('success');
 
-        // return redirect()->route('user.cart.index');
+        // return redirect()->route('user.cart.index');\
         $cart->delete();
 
         $request->session()->flash('success', 'You have deleted cart successfully');
