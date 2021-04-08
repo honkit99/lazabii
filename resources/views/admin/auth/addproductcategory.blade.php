@@ -13,14 +13,22 @@
 								<thead>
 								<form action="{{route('admin.categorys.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <p><b>Parent ID: </b><input type="text" class="form-control "name="parent_id"value=""></p>
+                                <label for="parent_id"><b>Parent Category:</b></label>
+                                <select name="parent_id" id="parent_id" class="form-control ">
+                                @foreach ($categorys as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach  
+                                    <option value="">NULL</option>     
+                                </select><br>
                                 <p><b>Categorys Name: </b><input type="text" class="form-control"name="name"value=""></p>
                                 <p><b>Image: </b><input type="file" class="form-control"name="image"value=""></p>
+                                <br>
                                 <select name="status"class="form-control" aria-label="Default select example">
                                 <option value="">-Please select the option-</option>
                                 <option value="0">Available</option>
                                 <option value="1">Disabled</option>
                                 </select>
+                                <br>
                                 <button type ="submit"class="btn btn-primary">Submit</button>
                 
 								</form>

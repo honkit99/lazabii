@@ -33,7 +33,7 @@
                                         <td>{{$product ->price}}</td>
                                         <td>{{$product ->quantity}}</td>
                                         <td>{{$product ->description}}</td>								
-                                        <td> <span class="badge {{($product->status==0) ? 'bg-success' : (($product->status==1) ? 'bg-warning' :'bg-danger')}}">{{$product ->status}}</span></td>		
+                                        <td> <span class="badge {{($product->status==1) ? 'bg-success' : (($product->status==0) ? 'bg-warning' :'bg-danger')}}">{{$product ->status}}</span></td>		
                                         <td> <a href="{{route('admin.products.show',$product->id) }}"><i class="fa fa-eye fa-o fa-2x"  aria-hidden="true"></i></a></td>
                                         <td> <a href=""><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
 										<td>

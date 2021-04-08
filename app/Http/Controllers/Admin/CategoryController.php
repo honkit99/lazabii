@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        $categorys = Category::all();
+        $categorys = Category::whereParent_id(null)->get();
         return view('admin.auth.addproductcategory', compact('categorys'));
     }
 
